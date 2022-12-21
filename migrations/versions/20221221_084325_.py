@@ -1,8 +1,8 @@
-"""create all tables
+"""empty message
 
-Revision ID: ffa4b0b7c156
+Revision ID: 4d4c083e8b6f
 Revises: 
-Create Date: 2022-12-20 22:25:17.163422
+Create Date: 2022-12-21 08:43:25.256748
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = 'ffa4b0b7c156'
+revision = '4d4c083e8b6f'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -31,8 +31,8 @@ def upgrade():
     op.create_table('shops',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('shop_name', sa.String(length=255), nullable=False),
-    sa.Column('shop_description', sa.String(length=255), nullable=False),
-    sa.Column('shop_img', sa.String(length=255), nullable=False),
+    sa.Column('shop_description', sa.String(length=1000), nullable=False),
+    sa.Column('shop_img', sa.String(length=1000), nullable=False),
     sa.Column('created_at', sa.DateTime(), nullable=True),
     sa.Column('owner_id', sa.Integer(), nullable=True),
     sa.ForeignKeyConstraint(['owner_id'], ['users.id'], ondelete='CASCADE'),
@@ -42,8 +42,8 @@ def upgrade():
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('name', sa.String(length=255), nullable=False),
     sa.Column('price', sa.Integer(), nullable=False),
-    sa.Column('description', sa.String(length=255), nullable=False),
-    sa.Column('img', sa.String(length=255), nullable=False),
+    sa.Column('description', sa.String(length=1000), nullable=False),
+    sa.Column('img', sa.String(length=1000), nullable=False),
     sa.Column('seller_id', sa.Integer(), nullable=True),
     sa.Column('shop_id', sa.Integer(), nullable=True),
     sa.ForeignKeyConstraint(['seller_id'], ['users.id'], ondelete='CASCADE'),
