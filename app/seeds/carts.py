@@ -34,7 +34,7 @@ def seed_carts():
     db.session.add(cart4)
     db.session.commit()
 
-def undo_expenses():
+def undo_carts():
     if environment == "production":
         db.session.execute(f"TRUNCATE table {SCHEMA}.carts RESTART IDENTITY CASCADE;")
     else:

@@ -1,5 +1,6 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
-# from .user import User
+
+# from .shop import Shop
 # from .cart import Cart
 
 class Product(db.Model):
