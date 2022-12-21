@@ -10,8 +10,8 @@ class Shop(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     shop_name = db.Column(db.String(255), nullable=False)
-    shop_description = db.Column(db.String(255),nullable=False)
-    shop_img = db.Column(db.String(255), nullable=False)
+    shop_description = db.Column(db.String(1000),nullable=False)
+    shop_img = db.Column(db.String(1000), nullable=False)
     created_at = db.Column(db.DateTime, default = db.func.now())
 
     owner_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("users.id"),ondelete="CASCADE"))

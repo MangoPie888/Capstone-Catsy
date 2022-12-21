@@ -4,7 +4,7 @@ def seed_products():
     product1 = Product(
         name ="Made by Nacho Minced Wet Cat Food",
         price = 65,
-        description = "Made in the USA.Features sustainably caught salmon and sole.",
+        description = "Made in the USA.Features sustainably caught salmon and sole. Formulated to satisfy a carnivore’s cravings for animal protein, with savory gravy in every easy-open pouch.",
         img = "https://image.chewy.com/is/image/catalog/554886_MAIN._AC_SL1200_V1657659533_.jpg",
         seller_id = 1,
         shop_id = 1
@@ -14,7 +14,7 @@ def seed_products():
     product2 = Product(
         name ="Purina Nutrients Dry Cat Food ",
         price = 24,
-        description = "Natural nutrition with high-quality ingredients like real chicken as the #1 ingredient for a taste your cat will enjoy.",
+        description = "Natural nutrition with high-quality ingredients like real chicken as the #1 ingredient for a taste your cat will enjoy.100% complete and balanced nutritious diet for adult cats",
         img = "https://image.chewy.com/is/image/catalog/211440_MAIN._AC_SL1200_V1661829655_.jpg",
         seller_id = 1,
         shop_id = 1
