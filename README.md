@@ -1,3 +1,6 @@
+<<<<<<< HEAD
+# Capstone-Catsy
+=======
 # Flask React Project
 
 This is the starter for the Flask React project.
@@ -146,3 +149,4 @@ your site just below the name of the Web Service at the top of the page.
 
 [Render.com]: https://render.com/
 [Dashboard]: https://dashboard.render.com/
+>>>>>>> 59c1b3964126e22ded978440b2400182f27d9aa9
