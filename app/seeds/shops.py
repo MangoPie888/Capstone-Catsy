@@ -5,28 +5,28 @@ def seed_shops():
     shop1= Shop(
         shop_name="kittyCat",
         shop_description= "Cats and Mushrooms made in LA.",
-        shop_img ="image.png",
+        shop_img ="https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/cute-cat-photos-1593441022.jpg?crop=0.670xw:1.00xh;0.167xw,0&resize=640:*",
         owner_id = 1
     )
 
     shop2= Shop(
         shop_name="KinokoCarnival",
         shop_description= "The Pampered Cat",
-        shop_img ="image.png",
+        shop_img ="https://static01.nyt.com/images/2019/10/01/science/00SCI-CATS1/00SCI-CATS1-facebookJumbo.jpg?year=2019&h=549&w=1050&s=a12758d1b750010957f6d8dcafd0fb707ac2f98675c4cd264adc01b93205d41e&k=ZQJBKqZ0VN",
         owner_id = 2
     )
 
     shop3= Shop(
         shop_name="happycatsfarm",
         shop_description= "Happy Cats Farm",
-        shop_img ="image.png",
+        shop_img ="https://th-thumbnailer.cdn-si-edu.com/bZAar59Bdm95b057iESytYmmAjI=/1400x1050/filters:focal(594x274:595x275)/https://tf-cmsv2-smithsonianmag-media.s3.amazonaws.com/filer/95/db/95db799b-fddf-4fde-91f3-77024442b92d/egypt_kitty_social.jpg",
         owner_id = 3
     )
 
     shop4= Shop(
         shop_name="MeowyJanes",
         shop_description= "Meow Meow Meow",
-        shop_img ="image.png",
+        shop_img ="https://www.freeportvet.com/sites/default/files/interesting-cat-facts.jpg",
         owner_id = 5
     )
 
