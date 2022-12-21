@@ -4,7 +4,7 @@ def seed_products():
     product1 = Product(
         name ="Made by Nacho Minced Wet Cat Food",
         price = 65,
-        description = "Made in the USA.Features sustainably caught salmon and sole.This minced meal is served with a hydrating bone broth.",
+        description = "Made in the USA.Features sustainably caught salmon and sole.",
         img = "https://image.chewy.com/is/image/catalog/554886_MAIN._AC_SL1200_V1657659533_.jpg",
         seller_id = 1,
         shop_id = 1
@@ -22,9 +22,9 @@ def seed_products():
     )
 
     product3 = Product(
-        name ="Dr. Elsey's Precious Cat Ultra Unscented Clumping Clay Cat Litter",
+        name ="Dr.Elsey's Precious Cat Ultra Unscented Clumping Clay Cat Litter",
         price = 19,
-        description = "99.9% dust free, hypo-allergenic natural litter to keep your surfaces clean and perfect for families who suffer from allergies.",
+        description = "99.9% dust free,hypo-allergenic natural litter to keep your surfaces clean and perfect for families who suffer from allergies.",
         img = "https://image.chewy.com/is/catalog/47183_MAIN._AC_SL1200_V1486131994_.jpg",
         seller_id = 2,
         shop_id = 2
@@ -44,7 +44,7 @@ def seed_products():
     product5 = Product(
         name ="Frisco Colorful Springs Cat Toy",
         price = 4.75,
-        description = "From Frisco by Chewy. Cat springs in a variety of colors are sure to be a playtime favorite for your spring-loaded kitty.",
+        description = "From Frisco by Chewy.Cat springs in a variety of colors are sure to be a playtime favorite for your spring-loaded kitty.",
         img = "https://image.chewy.com/is/image/catalog/161807_MAIN._AC_SL1200_V1565795955_.jpg",
         seller_id = 3,
         shop_id = 3
@@ -64,7 +64,7 @@ def seed_products():
     product7 = Product(
         name ="Frisco Eyelash Cat & Dog Bolster Bed",
         price = 19.99,
-        description = "From Frisco by Chewy. Round, eyelash cat and dog bolster is designed for pets who love snuggling up into a ball.",
+        description = "From Frisco by Chewy.Round,eyelash cat and dog bolster is designed for pets who love snuggling up into a ball.",
         img = "https://image.chewy.com/is/image/catalog/210135_MAIN._AC_SL1200_V1589289189_.jpg",
         seller_id = 5,
         shop_id = 4
@@ -74,7 +74,7 @@ def seed_products():
     product8 = Product(
         name ="Meowfia Premium Felt Cat Cave Bed",
         price = 39.99,
-        description = "Handcrafted from 100% New Zealand Merino wool by highly skilled artisans in Nepal; safe, eco-friendly process uses no chemicals or synthetics.",
+        description = "Handcrafted from 100% New Zealand Merino wool by highly skilled artisans in Nepal;",
         img = "https://image.chewy.com/is/image/catalog/329535_MAIN._AC_SL1200_V1631596580_.jpg",
         seller_id = 5,
         shop_id = 4
