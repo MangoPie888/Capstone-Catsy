@@ -10,7 +10,7 @@ product_routes = Blueprint("products",__name__)
 @product_routes.route("")
 def all_products():
     products = Product.query.all()
-   
+
 
     products_list = []
     for product in products:
