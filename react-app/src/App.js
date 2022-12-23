@@ -10,6 +10,8 @@ import User from './components/User';
 import { authenticate } from './store/session';
 import AllProducts from './components/products/AllProducts';
 import ProductDetail from './components/products/ProductDetail';
+import CreateProductForm from './components/products/CreateProductForm';
+import UserProducts from './components/products/UserProducts';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -42,6 +44,12 @@ function App() {
         <ProtectedRoute path='/users/:userId' exact={true} >
           <User />
         </ProtectedRoute>
+        <ProtectedRoute path='/myproducts' exact={true} >
+          <UserProducts />
+        </ProtectedRoute>
+        <Route path='/products/new' exact={true} >
+          <CreateProductForm />
+        </Route>
         <Route path='/products/:productId' exact={true} >
           <ProductDetail/>
         </Route>

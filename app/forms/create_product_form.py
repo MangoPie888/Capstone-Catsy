@@ -1,9 +1,11 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField,DateField 
-from wtforms.validators import DataRequired,ValidationError
+from wtforms import StringField,IntegerField
+from wtforms.validators import DataRequired,ValidationError,Length
 
 
 
 class CreateProductForm(FlaskForm):
-    name = StringField("name", validators=[DataRequired])
-    price = StringField
+    name = StringField("name", validators=[DataRequired()])
+    price = IntegerField("price", validators=[DataRequired()])
+    description = StringField("description",validators=[DataRequired()])
+    img=StringField("img", validators=[DataRequired()])

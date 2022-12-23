@@ -1,6 +1,8 @@
 from flask import Blueprint,jsonify,request
 from flask_login import login_required, current_user
 from app.models import Product,User, Shop, db
+from ..forms import CreateProductForm
+from .auth_routes import validation_errors_to_error_messages
 
 
 product_routes = Blueprint("products",__name__)
@@ -89,22 +91,57 @@ def product_detail(product_id):
 @login_required
 def create_product():
     userId = current_user.get_id()
-    shopId = Shop.query.filter(Shop.owner_id == userId).one()
-    name = request.get_data["name"]
-    price = request.get_data["price"]
-    description = request.get_data["description"]
-    img = request.get_data["img"]
+    print("userID from backend", userId)
+    shop= Shop.query.filter(Shop.owner_id == userId).one()
+    print("shop from the backend",shop)
+    shopId = shop.id
+    print("shoppppppppppppppppppid",shopId)
+    form = CreateProductForm()
+    form["csrf_token"].data = request.cookies["csrf_token"]
 
-    new_product = Product(
-        name,
-        price,
-        description,
-        img,
-        seller_id = userId,
-        shop_id = shopId 
-    )
+    print("form.data[name]&&&&&&&&&",form.data["name"])
+    print("&&&&&&&&&&&&&&&&&",form.data["description"])
+    if form.validate_on_submit():
+        new_product = Product(
+            name = form.data["name"],
+            price = form.data["price"],
+            description = form.data["description"],
+            img = form.data["img"],
+            seller_id = int(userId),
+            shop_id = shopId
+        )
 
-    db.session.add(new_product)
-    db.sesson.commt()
+        print("newwwwwwwwwwwwwwwwwww",new_product)
+        db.session.add(new_product)
+        db.session.commit()
 
-    return new_product.to_dict(),201
+        return {
+            "id":new_product.id,
+            "name":new_product.name,
+            "price":new_product.price,
+            "description":new_product.description,
+            "img":new_product.img,
+            "seller_id":new_product.seller_id,
+            "shop_id":new_product.shop_id
+        },200
+
+
+
+
+
+
+#Delete a product
+@product_routes.route("/<int:product_id>", methods=["DELETE"])
+@login_required
+def delete_product(product_id):
+    product = Product.query.filter(Product.id == product_id).one()
+
+    if not product:
+        return {'errors': f'product {product_id} not found!'}, 404
+
+    if product.seller_id != current_user.id:
+        return {'errors': 'Unauthorized!'}, 400
+
+    db.session.delete(product)
+    db.session.commit()
+    return {'message': f'Sucessfully deleted product {product_id}'}, 200
