@@ -1,6 +1,8 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { getAllProducts } from '../../store/products'
+import {Link} from 'react-router-dom'
+import "./AllProducts.css" 
 
 const AllProducts = () => {
     const dispatch = useDispatch()
@@ -14,15 +16,19 @@ const AllProducts = () => {
  },[dispatch])
 
   return (
-    <div>
+    <div className='product-container'>
         {productList && productList.map((product)=>{
             return(
-            <div>
-                <img src={product.img} />
-                <p>{product.name}</p>
-                <p>{product.description}</p>
+        
+            <div className='product-div' key={product.id}>
+              <Link to = {`/products/${product.id}`}>
+                <img src={product.img} alt="product" />
+                {/* <p>{product.name}</p> */}
+                <p>{product.price}</p>
+              </Link>
+            </div>
 
-            </div>)})}
+            )})}
       <p>hello</p>
     </div>
   )

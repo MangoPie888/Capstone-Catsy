@@ -3,12 +3,17 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { login } from '../../store/session';
 
+
 const LoginForm = () => {
   const [errors, setErrors] = useState([]);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
+
+
+
+
 
   const onLogin = async (e) => {
     e.preventDefault();
@@ -27,10 +32,17 @@ const LoginForm = () => {
   };
 
   if (user) {
+    
     return <Redirect to='/' />;
   }
 
+  const demonLogin=()=>{
+    setEmail("demo@aa.io");
+    setPassword("password");
+  }
+
   return (
+  <>
     <form onSubmit={onLogin}>
       <div>
         {errors.map((error, ind) => (
@@ -58,7 +70,11 @@ const LoginForm = () => {
         />
         <button type='submit'>Login</button>
       </div>
+      <br/>
+    <button type='submit' onClick={demonLogin}>Demo User</button>
     </form>
+    
+  </>
   );
 };
 

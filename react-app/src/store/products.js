@@ -10,6 +10,14 @@ const displayAllProducts=(data)=>{
 }
 
 
+const PRODUCT_DETAIL = "products/PRODUCT_DETAIL"
+const productDetail = (info)=>{
+    return {
+        type:PRODUCT_DETAIL,
+        info
+    }
+}
+
 
 
 
@@ -26,6 +34,18 @@ export const getAllProducts = ()=> async(dispatch) => {
         const data = await response.json();
         console.log("DATAAAAAAAAA from thunk", data.allProducts)
         dispatch(displayAllProducts(data.allProducts))
+    }
+}
+
+
+export const getProductDetail = (id)=> async(dispatch) =>{
+    console.log("productiddddd from thunk", id)
+    const response = await fetch(`/api/products/${id}`)
+
+    if(response.ok) {
+        const info = await response.json();
+        console.log("inforrrrr from thunk", info)
+        dispatch(productDetail(info))
     }
 }
 
@@ -54,5 +74,17 @@ const productsReducer = (state = initialState, action)=> {
     }
 }
 
+
+export const productDetailReducer = (state = initialState, action) =>{
+    let detailState
+    switch(action.type) {
+        case PRODUCT_DETAIL:
+            detailState = Object.assign({},state);
+            detailState[action.info.id] = action.info
+            return detailState
+        default:
+            return state
+    }
+}
 
 export default productsReducer

@@ -1,9 +1,13 @@
 
-import React from 'react';
+import React,{useState} from 'react';
 import { NavLink } from 'react-router-dom';
 import LogoutButton from './auth/LogoutButton';
+import "./NavBar.css"
 
 const NavBar = () => {
+  const [showModal, setShowModal] = useState(true)
+
+
   return (
     <nav>
       <ul>
@@ -13,8 +17,8 @@ const NavBar = () => {
           </NavLink>
         </li>
         <li>
-          <NavLink to='/login' exact={true} activeClassName='active'>
-            Login
+          <NavLink to='/login' exact={true} activeClassName='active' >
+          Sign in
           </NavLink>
         </li>
         <li>
