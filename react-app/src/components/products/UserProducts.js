@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import CreateProductForm from "./CreateProductForm"
-// import { getUserProduct } from '../../store/products'
+import { getUserProduct } from '../../store/products'
 import { deleteProduct } from '../../store/products'
 
 const UserProducts = () => {
@@ -16,21 +16,22 @@ const UserProducts = () => {
     }
     
 
-    const userProducts = useSelector(state=>state.products)
+    const userProducts = useSelector(state=>state.userProducts)
     console.log("userProducts",userProducts)
     const productList = Object.values(userProducts)
     console.log("productList",productList)
     const myProducts = productList.filter((product)=>product.seller_id === userId)
     console.log("myProducts",myProducts)
-    // useEffect(()=>{
-    //     dispatch(getUserProduct())
-    // },[])
+    useEffect(()=>{
+        dispatch(getUserProduct())
+    },[])
 
     const handleDelete=(e)=>{
         console.log("buttonid",e.target.id)
         const productId = e.target.id
         dispatch(deleteProduct(productId))
     }
+
 
 
 

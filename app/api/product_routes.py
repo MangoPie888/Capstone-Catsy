@@ -59,13 +59,15 @@ def curr_user_product():
 # get details of a product by its id.
 @product_routes.route("/<int:product_id>")
 def product_detail(product_id):
-    product = Product.query.filter(Product.id == product_id).all()
+    # product = Product.query.filter(Product.id == product_id).all()
+    product = Product.query.get(product_id)
     print("^^^^^^^^^^^^",product)
-    if len(product) == 0:
+    # if len(product) == 0:
+    if not product:
         return {
                 "message": "product couldn't be found",
                 "statusCode": 404
-            }
+            }, 404
 
     owner = User.query.filter(User.id == product[0].seller_id).one()
     print("11111111111111",owner)

@@ -28,13 +28,13 @@ const createProduct = (productInfo)=>{
 }
 
 
-// const USER_PRODUCT = "products/USER_PRODUCT"
-// const ownerProduct = (info) =>{
-//     return {
-//         type:USER_PRODUCT,
-//         info
-//     }
-// }  
+const USER_PRODUCT = "products/USER_PRODUCT"
+const ownerProduct = (info) =>{
+    return {
+        type:USER_PRODUCT,
+        info
+    }
+}  
 
 
 const REMOVE_PRODUCT = "products/REMOVE_PRODUCT"
@@ -88,15 +88,15 @@ export const addProduct = (info)=> async(dispatch)=>{
 }
 
 
-// export const getUserProduct = () => async(dispatch)=>{
-//     const response = await fetch("/api/products/current")
+export const getUserProduct = () => async(dispatch)=>{
+    const response = await fetch("/api/products/current")
 
-//     if(response.ok) {
-//         const data = await response.json()
-//         console.log("data current user'products", data.currentUserProducts)
-//         dispatch(ownerProduct(data.currentUserProducts))
-//     }
-// }
+    if(response.ok) {
+        const data = await response.json()
+        console.log("data current user'products", data.currentUserProducts)
+        dispatch(ownerProduct(data.currentUserProducts))
+    }
+}
 
 
 export const deleteProduct = (id)=> async(dispatch)=>{
@@ -154,22 +154,22 @@ export const productDetailReducer = (state = initialState, action) =>{
     }
 }
 
-// export const userProductReducer = (state = initialState, action)=> {
-//     let newState
-//     switch(action.type) {
-//         case USER_PRODUCT:
-//             newState = Object.assign({},state);
-//             action.info.forEach((product)=>{
-//                 newState[product.id] = product
-//             })
-//             return newState
-//         case REMOVE_PRODUCT:
-//             newState = {...state};
-//             delete newState[action.id];
-//             return newState;
-//         default:
-//             return state
-//     }
-// }
+export const userProductReducer = (state = initialState, action)=> {
+    let newState
+    switch(action.type) {
+        case USER_PRODUCT:
+            newState = Object.assign({},state);
+            action.info.forEach((product)=>{
+                newState[product.id] = product
+            })
+            return newState
+        case REMOVE_PRODUCT:
+            newState = {...state};
+            delete newState[action.id];
+            return newState;
+        default:
+            return state
+    }
+}
 
 export default productsReducer
