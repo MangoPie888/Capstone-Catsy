@@ -1,12 +1,13 @@
 
 import React,{useState} from 'react';
 import { useSelector } from 'react-redux';
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import LoginForm from './auth/LoginForm';
 import LogoutButton from './auth/LogoutButton';
 import ProfileMenu from './auth/ProfileMenu';
 import {Modal} from "./context/Modal"
 import "./NavBar.css"
+import logo from '../assets/catsyLogo.png'
 
 const NavBar = () => {
   const sessionUser = useSelector(state => state.session.user);
@@ -18,18 +19,38 @@ const NavBar = () => {
   if(sessionUser){
     sessionLink = (
       <>
-      <button onClick={()=>{setShowProfile(!showProfile)}} >
+      <ul className='profile-shop-cart'>
+      <li>
+      <Link to={'/myproducts'}><i class="fa-solid fa-store"></i></Link>
+      </li>
+      <li>
+      <button className='profile-button' onClick={()=>{setShowProfile(!showProfile)}} >
+      <div className='profile-button-div'>
       <i class="fa-solid fa-user"></i>
+      </div>
+      <i class="fa-solid fa-caret-down"></i>
       </button>
+      </li>
       {showProfile && 
         <ProfileMenu setShowProfile={setShowProfile}/>
       }
+      <li>
+      <i class="fa-solid fa-cart-shopping"></i>
+      </li>
+      </ul>
       </>
     )
   } else {
     sessionLink = (
       <>
-        <button onClick={()=>{setShowModal(true)}}>Sign in</button> 
+        <ul className='signin-shopping-list'>
+        <li>
+        <button className='signin-button' onClick={()=>{setShowModal(true)}}>Sign in</button>
+        </li>
+        <li>
+        <i class="fa-solid fa-cart-shopping"></i>
+        </li>
+        </ul>
           {showModal &&
             <Modal onClose={()=>{setShowModal(false)}}>
               <LoginForm setShowModal={setShowModal}/>
@@ -43,26 +64,9 @@ const NavBar = () => {
     <nav>
       
           <NavLink to='/' exact={true} activeClassName='active'>
-            Home
+            <img className='logo' src={logo} alt="logo"/>
           </NavLink>
-      
-       
           {sessionLink}
-      
-      
-          <LogoutButton />
-      
-        {/* <li>
-          <NavLink to='/sign-up' exact={true} activeClassName='active'>
-            Sign Up
-          </NavLink>
-        </li>
-        <li>
-          <NavLink to='/users' exact={true} activeClassName='active'>
-            Users
-          </NavLink>
-        </li>
-         */}
     
     </nav>
   );
