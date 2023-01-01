@@ -22,3 +22,15 @@ class Product(db.Model):
     cart = db.relationship("Cart", back_populates="products", cascade="all, delete",  
     passive_deletes=True)
     shop = db.relationship("Shop", back_populates="products")
+
+
+    def to_dict(self):
+        return {
+            "id":self.product.id,
+            "name":self.product.name,
+            "price":self.product.price,
+            "description":self.product.description,
+            "img":self.product.img,
+            "seller_id":self.product.seller_id,
+            "shop_id":self.product.shop_id
+        }

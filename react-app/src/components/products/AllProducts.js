@@ -29,7 +29,6 @@ const AllProducts = () => {
             </div>
 
             )})}
-      <p>hello</p>
     </div>
   )
 }

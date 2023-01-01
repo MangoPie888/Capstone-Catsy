@@ -3,7 +3,7 @@ from flask_login import login_required, current_user
 from app.models import Product,User, Shop, db
 from ..forms import CreateProductForm
 from .auth_routes import validation_errors_to_error_messages
-
+from ..forms import EditProductForm
 
 product_routes = Blueprint("products",__name__)
 
@@ -69,16 +69,16 @@ def product_detail(product_id):
                 "statusCode": 404
             }, 404
 
-    owner = User.query.filter(User.id == product[0].seller_id).one()
+    owner = User.query.filter(User.id == product.seller_id).one()
     print("11111111111111",owner)
 
-    return {"id":product[0].id,
-            "name":product[0].name,
-            "price":product[0].price,
-            "description":product[0].description,
-            "img":product[0].img,
-            "seller_id":product[0].seller_id,
-            "shop_id":product[0].shop_id,
+    return {"id":product.id,
+            "name":product.name,
+            "price":product.price,
+            "description":product.description,
+            "img":product.img,
+            "seller_id":product.seller_id,
+            "shop_id":product.shop_id,
             "Owner":{
                 "id":owner.id,
                 "firstName":owner.first_name,
@@ -131,6 +131,47 @@ def create_product():
 
 
 
+# Edit a product
+@product_routes.route("/<int:productId>", methods=["PUT"])
+@login_required
+def edit_product(productId):
+    print("productId backend",productId)
+    userId = current_user.get_id()
+    print("userId backend",userId)
+    product = Product.query.get(productId)
+    print("________product",product)
+
+    if not product:
+        return{"errors": f'Product {productId} not found'},404
+
+    form=EditProductForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+
+    if form.validate_on_submit():
+        product.id= productId
+        product.name = form.data["name"]
+        product.price = form.data["price"]
+        product.description = form.data["description"]
+        product.img = form.data["img"]
+        product.seller_id = int(userId)
+        product.shop_id = product.shop_id
+
+        db.session.add(product)
+        db.session.commit()
+
+        return {
+            "id":product.id,
+            "name":product.name,
+            "price":product.price,
+            "description":product.description,
+            "img":product.img,
+            "seller_id":product.seller_id,
+            "shop_id":product.shop_id
+        },200
+    else:
+        return{'errors': validation_errors_to_error_messages(form.errors)}, 400
+    
+    
 
 #Delete a product
 @product_routes.route("/<int:product_id>", methods=["DELETE"])

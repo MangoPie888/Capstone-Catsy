@@ -12,6 +12,8 @@ import AllProducts from './components/products/AllProducts';
 import ProductDetail from './components/products/ProductDetail';
 import CreateProductForm from './components/products/CreateProductForm';
 import UserProducts from './components/products/UserProducts';
+import EditProductForm from './components/products/EditProductForm';
+import DisplayShoppingCarts from './components/carts/DisplayShoppingCarts';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -47,8 +49,14 @@ function App() {
         <ProtectedRoute path='/myproducts' exact={true} >
           <UserProducts />
         </ProtectedRoute>
+        <ProtectedRoute path='/carts' exact={true} >
+          <DisplayShoppingCarts />
+        </ProtectedRoute>
         <Route path='/products/new' exact={true} >
           <CreateProductForm />
+        </Route>
+        <Route path='/products/edit' exact={true} >
+          <EditProductForm/>
         </Route>
         <Route path='/products/:productId' exact={true} >
           <ProductDetail/>

@@ -23,19 +23,21 @@ const NavBar = () => {
       <li>
       <Link to={'/myproducts'}><i class="fa-solid fa-store"></i></Link>
       </li>
-      <li>
-      <button className='profile-button' onClick={()=>{setShowProfile(!showProfile)}} >
-      <div className='profile-button-div'>
+      <li className='profile-li'>
+      {/* <button className='profile-button' onClick={()=>{setShowProfile(!showProfile)}} > */}
+      <div onClick={()=>{setShowProfile(!showProfile)}} className='profile-button-div'>
       <i class="fa-solid fa-user"></i>
       </div>
       <i class="fa-solid fa-caret-down"></i>
-      </button>
+      {/* </button> */}
       </li>
       {showProfile && 
         <ProfileMenu setShowProfile={setShowProfile}/>
       }
       <li>
+      <Link to={'/carts'}>
       <i class="fa-solid fa-cart-shopping"></i>
+      </Link>
       </li>
       </ul>
       </>
@@ -47,9 +49,9 @@ const NavBar = () => {
         <li>
         <button className='signin-button' onClick={()=>{setShowModal(true)}}>Sign in</button>
         </li>
-        <li>
+        {/* <li>
         <i class="fa-solid fa-cart-shopping"></i>
-        </li>
+        </li> */}
         </ul>
           {showModal &&
             <Modal onClose={()=>{setShowModal(false)}}>

@@ -37,6 +37,14 @@ const ownerProduct = (info) =>{
 }  
 
 
+const UPDATED_PRODUCT = "products/UPDATED_PRODUCT"
+const updateProduct =(data) =>{
+    return {
+        type:UPDATED_PRODUCT,
+        data
+    }
+}
+
 const REMOVE_PRODUCT = "products/REMOVE_PRODUCT"
 const removeProduct = (id) =>{
     return {
@@ -99,6 +107,24 @@ export const getUserProduct = () => async(dispatch)=>{
 }
 
 
+
+export const editSingleProduct = (data) => async(dispatch)=>{
+    console.log("data from thunk",data)
+    const {productId,name,price,description,img} = data
+    console.log("productId",productId)
+    const response = await fetch(`/api/products/${productId}`,{
+        method:"put",
+        headers:{
+            "Content-Type":"application/json"
+        },
+        body:JSON.stringify(data)
+    })
+    
+    const updatedProduct = await response.json();
+    console.log("updatedProduct from thunk",updatedProduct)
+    dispatch(updateProduct(updatedProduct))
+}
+
 export const deleteProduct = (id)=> async(dispatch)=>{
     const response = await fetch(`/api/products/${id}`,{
         method:"delete"
@@ -132,8 +158,11 @@ const productsReducer = (state = initialState, action)=> {
                 [action.productInfo.id]:action.productInfo
             }
             return productsState
+        case UPDATED_PRODUCT:
+            productsState = Object.assign({...state},{[action.data.id]: action.data})
+            return productDetail
         case REMOVE_PRODUCT:
-            productsState = {...state};
+            productsState ={...state};
             delete productsState[action.id];
             return productsState;
         default:

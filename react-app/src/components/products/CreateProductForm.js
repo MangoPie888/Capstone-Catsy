@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import { addProduct } from '../../store/products'
+import { getUserProduct } from '../../store/products'
 
 
 const CreateProductForm = () => {
@@ -17,6 +18,7 @@ const CreateProductForm = () => {
         console.log("all info for creating a product at frontend", "name:",name, "price:",price)
         e.preventDefault()
         dispatch(addProduct({name,price,description,img}))
+        dispatch(getUserProduct())
         history.push("/myproducts")
     }
 
