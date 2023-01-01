@@ -19,7 +19,9 @@ export const productsInCart=()=> async(dispatch)=>{
 
     if(response.ok) {
         const data = await response.json()
-        dispatch(displaycarts(data.product))
+        console.log("data.carts from thunk", data.carts)
+        dispatch(displaycarts(data.carts))
+        
     }
 }
 
@@ -32,7 +34,11 @@ const cartReducer = (state=initialState, action)=>{
     let cartState
     switch(action.type){
     case DISPLAY_CARTS:
-        return action.data
+        cartState = Object.assign({},state)
+        action.data.forEach((product)=>{
+            cartState[product.cart.id]=product
+        })
+        return cartState
     default:
         return state
     }

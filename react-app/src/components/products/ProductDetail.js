@@ -5,6 +5,7 @@ import {getProductDetail} from "../../store/products"
 import {Modal} from "../context/Modal"
 import {productsInCart} from "../../store/cart"
 import LoginForm from '../auth/LoginForm';
+import { Link } from 'react-router-dom';
 
 
 const ProductDetail = () => {
@@ -37,7 +38,7 @@ const ProductDetail = () => {
     // }
     const addCartButton =(e)=>{
         setShowModal(true)
-        dispatch(productsInCart(productId))
+        // dispatch(productsInCart(productId))
 
 
     }
@@ -59,7 +60,9 @@ const ProductDetail = () => {
                 {showModal && sessionUser &&
                     <Modal onClose={()=>{setShowModal(false)}}>
                         <p>Added to cart</p>
+                        <Link to={'/carts'}>
                         <button>Go to cart</button>
+                        </Link>
                     </Modal>
                 }
 

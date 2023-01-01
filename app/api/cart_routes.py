@@ -21,7 +21,7 @@ def display_carted_product():
         allProduct = Product.query.filter(Product.id == cart.product_id).all()
         print("allproduct_____________",allProduct)
         for product in allProduct:
-            whole_info["product"]={
+            whole_info={
                 "product":{"id":product.id,
                 "name":product.name,
                 "price":product.price,
@@ -43,7 +43,7 @@ def display_carted_product():
     print("..............",product_lst)
 
 
-    return whole_info
+    return {"carts":product_lst}
  
 
 
@@ -52,18 +52,18 @@ def display_carted_product():
 
 
 
-# add product to cart
-@cart_routes.route("")
-def add_product_to_cart(productId):
-    product = Product.query.get(productId)
+# # add product to cart
+# @cart_routes.route("")
+# def add_product_to_cart(productId):
+#     product = Product.query.get(productId)
 
-    return {
-        "id":product.id,
-        "name":product.name,
-        "price":product.price,
-        "description":product.description,
-        "img":product.img,
-        "seller_id":product.seller_id,
-        "shop_id":product.shop_id,
-    }
+#     return {
+#         "id":product.id,
+#         "name":product.name,
+#         "price":product.price,
+#         "description":product.description,
+#         "img":product.img,
+#         "seller_id":product.seller_id,
+#         "shop_id":product.shop_id,
+#     }
 
