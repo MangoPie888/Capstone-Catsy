@@ -4,7 +4,7 @@ import {useParams} from 'react-router-dom';
 import {getProductDetail} from "../../store/products" 
 import {Modal} from "../context/Modal"
 import {productsInCart} from "../../store/cart"
-
+import LoginForm from '../auth/LoginForm';
 
 
 const ProductDetail = () => {
@@ -14,6 +14,7 @@ const ProductDetail = () => {
 
     const [showModal, setShowModal] = useState(false)
 
+    const sessionUser = useSelector(state=>state.session.user)
     const product = useSelector(state => state.productDetail[productId])
     console.log("product",product)
     // console.log(product.productId)
@@ -55,12 +56,18 @@ const ProductDetail = () => {
                 <input required type='number' min={1} max={100} defaultValue={1} ></input>
                 </label>
                 <button onClick={addCartButton}>Add to cart</button>
-                {showModal &&
-            <Modal onClose={()=>{setShowModal(false)}}>
-                <p>Added to cart</p>
-                <button>Go to cart</button>
-         </Modal>
-          }
+                {showModal && sessionUser &&
+                    <Modal onClose={()=>{setShowModal(false)}}>
+                        <p>Added to cart</p>
+                        <button>Go to cart</button>
+                    </Modal>
+                }
+
+                {showModal && sessionUser === null && 
+                    <Modal onClose={()=>{setShowModal(false)}}>
+                        <LoginForm/>
+                    </Modal>
+                }
             </div>
         </div>
     )
