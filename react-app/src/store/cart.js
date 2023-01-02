@@ -52,14 +52,16 @@ export const addProductInCart=(info)=>async(dispatch)=>{
 
 
 
-export const deleteProductInCart = (productId)=> async(dispatch)=>{
-    const response = await fetch(`/api/carts/${productId}`, {
+export const deleteProductInCart = (cardId)=> async(dispatch)=>{
+    const response = await fetch(`/api/carts/${cardId}`, {
         method:'delete'
     })
 
     const data = await response.json()
     console.log("deleted data from thunk",data)
-    dispatch(deleteCart(productId))
+    console.log("product Id at thunk", cardId)
+    dispatch(deleteCart(cardId))
+
     
     
     return response
@@ -79,7 +81,10 @@ const cartReducer = (state=initialState, action)=>{
         return cartState
     case REMOVE_CARTS:
         cartState = {...state};
+        console.log("Cartstate at reducer", cartState)
+        console.log("cartState with id item",cartState[action.id])
         delete cartState[action.id]
+        console.log("after delete the item from cart, cart reducer", cartState)
         return cartState
     default:
         return state

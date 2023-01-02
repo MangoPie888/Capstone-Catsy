@@ -106,20 +106,20 @@ def add_product_to_cart():
 
 
 # delete product from carts
-@cart_routes.route("/<int:product_id>", methods=["DELETE"])
+@cart_routes.route("/<int:cart_id>", methods=["DELETE"])
 @login_required
-def delete_product(product_id):
+def delete_product(cart_id):
     userId = current_user.get_id()
-    cart_id = Cart.query.filter((Cart.product_id == product_id)and(Cart.user_id ==userId)).one()
+    cart = Cart.query.get(cart_id)
     
     print("??????????????????CART_ID",cart_id)
-    if not cart_id:
-        return {'errors': f'product {product_id} not found!'}, 404
+    if not cart:
+        return {'errors': f'product {cart} not found!'}, 404
 
     # if Cart.user_id != current_user.id:
     #     return {'errors': 'Unauthorized!'}, 400
     
-    db.session.delete(cart_id)
+    db.session.delete(cart)
     db.session.commit()
     
-    return {'message': f'Sucessfully deleted product {product_id} from cart'}, 200
+    return {'message': f'Sucessfully deleted product {cart} from cart'}, 200

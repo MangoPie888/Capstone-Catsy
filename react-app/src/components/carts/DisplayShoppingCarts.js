@@ -13,12 +13,11 @@ const DisplayShoppingCarts = () => {
 
   const handlingDelete= async(e)=>{
     e.preventDefault()
-    const productId = e.target.id
-    console.log("productId",productId)
-    const res = await dispatch(deleteProductInCart(productId))
-    if(res.ok){
+    const cartId = e.target.id
+    console.log("cartId",cartId)
+      dispatch(deleteProductInCart(cartId))
       dispatch(productsInCart())
-    }
+  
   }
 
 
@@ -34,7 +33,7 @@ const DisplayShoppingCarts = () => {
       <input type='number' min={1} placeholder={pro.cart.quantity}></input>
       </label>
       <p>Price: ${pro.product.price} each</p>
-      <button id={pro.product.id} onClick={handlingDelete}>Remove</button>
+      <button id={pro.cart.id} onClick={handlingDelete}>Remove</button>
       </div>) }
       <p>This is shopping cart page</p>
 
