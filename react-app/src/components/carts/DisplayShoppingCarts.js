@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { productsInCart } from '../../store/cart'
+import { deleteProductInCart } from '../../store/cart'
 
 const DisplayShoppingCarts = () => {
   const dispatch = useDispatch()
@@ -8,6 +9,18 @@ const DisplayShoppingCarts = () => {
   useEffect(()=>{
     dispatch(productsInCart())
   },[])
+
+
+  const handlingDelete= async(e)=>{
+    e.preventDefault()
+    const productId = e.target.id
+    console.log("productId",productId)
+    const res = await dispatch(deleteProductInCart(productId))
+    if(res.ok){
+      dispatch(productsInCart())
+    }
+  }
+
 
   const products = useSelector(state=>state.carts)
   const proList = Object.values(products)
@@ -20,8 +33,8 @@ const DisplayShoppingCarts = () => {
       <label>Quantity
       <input type='number' min={1} placeholder={pro.cart.quantity}></input>
       </label>
-      <p>Price: ${pro.product.price}</p>
-      <button>Remove</button>
+      <p>Price: ${pro.product.price} each</p>
+      <button id={pro.product.id} onClick={handlingDelete}>Remove</button>
       </div>) }
       <p>This is shopping cart page</p>
 

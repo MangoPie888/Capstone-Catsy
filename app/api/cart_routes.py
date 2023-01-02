@@ -4,6 +4,7 @@ from app.models import Product, User,Cart, Shop,db
 from ..forms import AddShoppingCartForm
 from flask_login import login_required, current_user
 from flask import request
+from sqlalchemy import and_
 
 
 cart_routes = Blueprint("carts", __name__)
@@ -71,19 +72,54 @@ def add_product_to_cart():
         number_quantity = form.data["quantity"]
         productId =form.data["productId"]
     
-    print(">>>>>>>>>>>>>>quantity",number_quantity)
-    print(">>>>>>>>>>>>>>>productId",productId)
+        print(">>>>>>>>>>>>>>quantity",number_quantity)
+        print(">>>>>>>>>>>>>>>productId",productId)
     
-    new_cart = Cart(quantity=number_quantity,user_id=userId,product_id=productId)
+        existProduct = Cart.query.filter(and_(Cart.user_id == userId, Cart.product_id == productId)).all()
+        print("existProduct=============",existProduct)
+        if existProduct:
+            print("number of quantity from backend-------------",number_quantity)
+            existProduct[0].id = existProduct[0].id
+            existProduct[0].quantity = existProduct[0].quantity + number_quantity
+            existProduct[0].user_id = userId
+            existProduct[0].product_id = productId
+            db.session.add(existProduct[0])
+            db.session.commit()
 
-    db.session.add(new_cart)
+            return {
+                "id":existProduct[0].id,
+                "quantity":existProduct[0].quantity,
+                "userId":existProduct[0].user_id,
+                "productId":existProduct[0].product_id
+                }
+        if not existProduct:
+            new_cart = Cart(quantity=number_quantity,user_id=userId,product_id=productId)
+            db.session.add(new_cart)
+            db.session.commit()
+
+            return {
+                "id":new_cart.id,
+                "quantity":new_cart.quantity,
+                "userId":new_cart.user_id,
+                "productId":new_cart.product_id
+                }
+
+
+# delete product from carts
+@cart_routes.route("/<int:product_id>", methods=["DELETE"])
+@login_required
+def delete_product(product_id):
+    userId = current_user.get_id()
+    cart_id = Cart.query.filter((Cart.product_id == product_id)and(Cart.user_id ==userId)).one()
+    
+    print("??????????????????CART_ID",cart_id)
+    if not cart_id:
+        return {'errors': f'product {product_id} not found!'}, 404
+
+    # if Cart.user_id != current_user.id:
+    #     return {'errors': 'Unauthorized!'}, 400
+    
+    db.session.delete(cart_id)
     db.session.commit()
-
-    print("LLLLLLLLLLLLbefore backend return")
-    return {
-       "id":new_cart.id,
-       "quantity":new_cart.quantity,
-       "userId":new_cart.user_id,
-       "productId":new_cart.product_id
-    }
-
+    
+    return {'message': f'Sucessfully deleted product {product_id} from cart'}, 200

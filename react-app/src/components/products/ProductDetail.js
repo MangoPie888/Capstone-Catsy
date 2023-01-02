@@ -21,26 +21,23 @@ const ProductDetail = () => {
     const sessionUser = useSelector(state=>state.session.user)
     const product = useSelector(state => state.productDetail[productId])
     console.log("product",product)
+
+    const productsInCart = useSelector(state=>state.carts)
+    console.log("productsInCart",productsInCart)
     // console.log(product.productId)
     
+
 
     useEffect(()=>{
         console.log("useEffect productId", productId)
         dispatch(getProductDetail(productId))
     },[])
 
-
-    // const handleCartButton =()=>{
-    //    return(
-    //     <div>
-    //     <Modal>
-    //         <p>Product added to the cart</p>
-    //     </Modal>
-    //     </div>
-    //    ) 
-    // }
+    
+ 
     const addCartButton =(e)=>{
         e.preventDefault()
+
         console.log("productId before dispatch at frontend",productId)
         console.log("product quantity",quantity)
         dispatch(addProductInCart({productId, quantity}))
@@ -64,7 +61,7 @@ const ProductDetail = () => {
                 <form onSubmit={addCartButton}>
                 <input type='hidden' name='productId' value={productId} required></input>
                 <label>Quantity
-                <input required type='number' name='quantity' min={1} max={100} Value={quantity} onChange={(e)=>setQuantity(e.target.value)} ></input>
+                <input required type='number' name='quantity' min={1} max={100} value={quantity} onChange={(e)=>setQuantity(e.target.value)} ></input>
                 </label>
                 <button type='submit'>Add to cart</button>
                 </form>

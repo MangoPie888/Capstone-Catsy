@@ -8,6 +8,13 @@ const displaycarts = (data) =>{
 }
 
 
+const REMOVE_CARTS="carts/REMOVE_CARTS"
+const deleteCart = (id) =>{
+    return {
+        type:REMOVE_CARTS,
+        id
+    }
+}
 
 
 
@@ -37,11 +44,26 @@ export const addProductInCart=(info)=>async(dispatch)=>{
     })
 
     const data = await response.json()
-    if(data){
-        dispatch(productsInCart())
-    }
+    console.log("addproduct data from thunk",data)
+    // if(data){
+    //     dispatch(productsInCart())
+    // }
 }
 
+
+
+export const deleteProductInCart = (productId)=> async(dispatch)=>{
+    const response = await fetch(`/api/carts/${productId}`, {
+        method:'delete'
+    })
+
+    const data = await response.json()
+    console.log("deleted data from thunk",data)
+    dispatch(deleteCart(productId))
+    
+    
+    return response
+}
 
 
 // reducer
@@ -54,6 +76,10 @@ const cartReducer = (state=initialState, action)=>{
         action.data.forEach((product)=>{
             cartState[product.cart.id]=product
         })
+        return cartState
+    case REMOVE_CARTS:
+        cartState = {...state};
+        delete cartState[action.id]
         return cartState
     default:
         return state
