@@ -1,6 +1,9 @@
 from flask import Blueprint,request
 from flask_login import login_required, current_user
 from app.models import Product, User,Cart, Shop,db
+from ..forms import AddShoppingCartForm
+from flask_login import login_required, current_user
+from flask import request
 
 
 cart_routes = Blueprint("carts", __name__)
@@ -52,18 +55,35 @@ def display_carted_product():
 
 
 
-# # add product to cart
-# @cart_routes.route("")
-# def add_product_to_cart(productId):
-#     product = Product.query.get(productId)
+# add product to cart
+@cart_routes.route("",methods=["POST"])
+@login_required
+def add_product_to_cart():
+    print("???????????????hited backend route")
+    form = AddShoppingCartForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
 
-#     return {
-#         "id":product.id,
-#         "name":product.name,
-#         "price":product.price,
-#         "description":product.description,
-#         "img":product.img,
-#         "seller_id":product.seller_id,
-#         "shop_id":product.shop_id,
-#     }
+    
+    userId = current_user.get_id()
+    print(",,,,,,,,,,,,,,,backend userId",userId)
+
+    if form.validate_on_submit():
+        number_quantity = form.data["quantity"]
+        productId =form.data["productId"]
+    
+    print(">>>>>>>>>>>>>>quantity",number_quantity)
+    print(">>>>>>>>>>>>>>>productId",productId)
+    
+    new_cart = Cart(quantity=number_quantity,user_id=userId,product_id=productId)
+
+    db.session.add(new_cart)
+    db.session.commit()
+
+    print("LLLLLLLLLLLLbefore backend return")
+    return {
+       "id":new_cart.id,
+       "quantity":new_cart.quantity,
+       "userId":new_cart.user_id,
+       "productId":new_cart.product_id
+    }
 

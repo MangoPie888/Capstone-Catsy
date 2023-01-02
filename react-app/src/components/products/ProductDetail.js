@@ -6,12 +6,15 @@ import {Modal} from "../context/Modal"
 import {productsInCart} from "../../store/cart"
 import LoginForm from '../auth/LoginForm';
 import { Link } from 'react-router-dom';
-
+import { addProductInCart } from '../../store/cart';
 
 const ProductDetail = () => {
     const dispatch = useDispatch()
     const {productId} = useParams()
     console.log("productId from frontend",productId)
+
+    const [quantity, setQuantity] = useState(1)
+    console.log("quantity after create state",quantity)
 
     const [showModal, setShowModal] = useState(false)
 
@@ -37,7 +40,12 @@ const ProductDetail = () => {
     //    ) 
     // }
     const addCartButton =(e)=>{
+        e.preventDefault()
+        console.log("productId before dispatch at frontend",productId)
+        console.log("product quantity",quantity)
+        dispatch(addProductInCart({productId, quantity}))
         setShowModal(true)
+
         // dispatch(productsInCart(productId))
 
 
@@ -53,10 +61,13 @@ const ProductDetail = () => {
             </>
             }
             <div>
+                <form onSubmit={addCartButton}>
+                <input type='hidden' name='productId' value={productId} required></input>
                 <label>Quantity
-                <input required type='number' min={1} max={100} defaultValue={1} ></input>
+                <input required type='number' name='quantity' min={1} max={100} Value={quantity} onChange={(e)=>setQuantity(e.target.value)} ></input>
                 </label>
-                <button onClick={addCartButton}>Add to cart</button>
+                <button type='submit'>Add to cart</button>
+                </form>
                 {showModal && sessionUser &&
                     <Modal onClose={()=>{setShowModal(false)}}>
                         <p>Added to cart</p>

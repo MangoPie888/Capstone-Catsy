@@ -26,6 +26,22 @@ export const productsInCart=()=> async(dispatch)=>{
 }
 
 
+export const addProductInCart=(info)=>async(dispatch)=>{
+    console.log("productId from thunk", info)
+    const response = await fetch("/api/carts",{
+        method:"post",
+        headers:{
+            "Content-Type":"application/json"
+        },
+        body:JSON.stringify(info)
+    })
+
+    const data = await response.json()
+    if(data){
+        dispatch(productsInCart())
+    }
+}
+
 
 
 // reducer
