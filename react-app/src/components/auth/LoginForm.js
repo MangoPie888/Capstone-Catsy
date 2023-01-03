@@ -3,9 +3,12 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { login } from '../../store/session';
 import { productsInCart } from '../../store/cart'
+import {Modal} from "../context/Modal"
+import SignUpForm from './SignUpForm';
 
 
 const LoginForm = ({setShowModal}) => {
+  const [openModal, setOpenModal] = useState(false)
   const [errors, setErrors] = useState([]);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -44,6 +47,19 @@ const LoginForm = ({setShowModal}) => {
     setPassword("password");
   }
 
+  // const handleRegister=()=>{
+  //   setOpenModal(true)
+  //   return(
+  //   <>
+  //   {openModal &&
+  //     <Modal onClose={()=>{setOpenModal(false)}}>
+  //       <SignUpForm setOpenModal={setOpenModal}/>
+  //     </Modal>
+  //   }
+  //   </>
+  //   )
+  // }
+
   return (
   <>
     <form onSubmit={onLogin}>
@@ -76,6 +92,14 @@ const LoginForm = ({setShowModal}) => {
       <br/>
     <button type='submit' onClick={demonLogin}>Demo User</button>
     </form>
+    <br/>
+    <button onClick={()=>setOpenModal(true)}>Register</button>
+
+    {openModal &&
+      <Modal onClose={()=>{setOpenModal(false)}}>
+        <SignUpForm setOpenModal={setOpenModal}/>
+      </Modal>
+    }
     
   </>
   );

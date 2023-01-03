@@ -11,11 +11,13 @@ const DisplayShoppingCarts = () => {
 
   let [quantity, setQuantity] = useState()
   let [productId, setProductId] = useState()
-  let [cardId, setCardId] = useState()
+  let [cart, setCart] = useState([])
+  let [cartId, setCartId] = useState()
 
   useEffect(()=>{
     dispatch(productsInCart())
-  },[])
+
+  },[quantity])
 
 
   const handlingDelete=(cartId)=>{
@@ -27,33 +29,24 @@ const DisplayShoppingCarts = () => {
   
   }
 
-  const changeQuantity=(e)=>{
+  const changeQuantity=async(e)=>{
     quantity = e.target.value
-    productId = e.target.id
- 
-    console.log("productId from changeQuantity function", productId)
+    cartId = e.target.id
+    console.log("cartId from changeQuantity function", cartId)
     console.log("quantity from changeQuantity function", quantity)
+    
+    let res = await dispatch(EditProductInCart({quantity,cartId}))
+    .then(dispatch(productsInCart()))
+    
+    
   
-    let submitBtn = document.getElementById("submitBtn")
-    submitBtn.click()
-    console.log("cardId",cardId)
 
-  
+
 
   }
 
-  const submitForm =(e) =>{
-    console.log("hitted submitForm fucntion")
-    e.preventDefault()
-    cardId = e.target.id
-    console.log("cartId from changeQuantity function", cardId)
-    dispatch(EditProductInCart({productId,quantity,cardId}))
-  }
 
-  const handleDecreaseCart=(id)=>{
-      dispatch(decreseCart(id))
 
-  }
   const products = useSelector(state=>state.carts)
   console.log("products",products)
   const proList = Object.values(products)
@@ -97,13 +90,15 @@ const DisplayShoppingCarts = () => {
               </div>
                 <div className='cart-product-price'> ${pro.product.price}</div>
                 <div className='cart-product-quantity'>
-                  <button onClick={()=>{handleDecreaseCart(pro.cart.id)}}>-</button>
+
+                <input type='number' min={1} max={100}  defaultValue={pro.cart.quantity} id={pro.cart.id} key={pro.product.price} onChange={(e)=>{changeQuantity(e)}}></input>
+                  {/* <button onClick={()=>{handleDecreaseCart(pro.cart.id)}}>-</button>
                   <div className='count'>{pro.cart.quantity}</div>
-                  <button>+</button>
+                  <button>+</button> */}
                 </div>
 
                 <div className='cart-product-total-price'>
-                  ${pro.product.price * pro.cart.quantity}
+                  <p id='total-price'>${pro.product.price * pro.cart.quantity}</p>
                 </div>
 
             </div>)}

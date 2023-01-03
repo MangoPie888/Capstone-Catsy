@@ -37,6 +37,7 @@ export const productsInCart=()=> async(dispatch)=>{
         const data = await response.json()
         console.log("data.carts from thunk", data.carts)
         dispatch(displaycarts(data.carts))
+        return data.carts
         
     }
 }
@@ -63,9 +64,9 @@ export const addProductInCart=(info)=>async(dispatch)=>{
 
 export const EditProductInCart = (info) => async(dispatch)=>{
     console.log("info from editproduct thunk")
-    const {cardId, quantity} = info
-    console.log("cardId from thunk", cardId)
-    const response = await fetch(`/api/carts/${cardId}`,{
+    const {cartId, quantity} = info
+    console.log("cardId from thunk", cartId)
+    const response = await fetch(`/api/carts/${cartId}`,{
         method:'put',
         headers:{
             "Content-Type":"application/json"
@@ -105,6 +106,9 @@ const cartReducer = (state=initialState, action)=>{
             cartState[product.cart.id]=product
         })
         return cartState
+    case DECREASE_CART:
+
+
     case REMOVE_CARTS:
         cartState = {...state};
         console.log("Cartstate at reducer", cartState)
@@ -112,17 +116,6 @@ const cartReducer = (state=initialState, action)=>{
         delete cartState[action.id]
         console.log("after delete the item from cart, cart reducer", cartState)
         return cartState
-    case DECREASE_CART:
-        // const itemIndex = state.carts.findIndex(
-        //     cartItem => cartItem.cart.id === action.id
-        // )
-
-        // if(state.carts[itemIndex].quantity > 1){
-        //     state.cartItem[itemIndex].quantity -= 1
-
-        // } else if(state.carts[itemIndex].quantity === 1){
-        //     state.cartItem[itemIndex].quantity = 1
-        // }
     default:
         return state
     }

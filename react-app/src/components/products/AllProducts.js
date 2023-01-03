@@ -20,18 +20,20 @@ const AllProducts = () => {
     <div className='products'>
         {productList && productList.map((product)=>{
             return(
-        
+              <>
+              <Link to = {`/products/${product.id}`}>
             <div className='product' key={product.id}>
               
-              <Link to = {`/products/${product.id}`}>
+             
                 <img src={product.img} alt="product" />
-              </Link>
+              
               <div className='details'>
                 {/* <h3>{product.name}</h3> */}
                 <span>${product.price}</span>
               </div>
             </div>
-
+            </Link>
+            </>
             )})}
     </div>
     </div>
