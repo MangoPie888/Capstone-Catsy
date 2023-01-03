@@ -52,6 +52,23 @@ export const addProductInCart=(info)=>async(dispatch)=>{
 
 
 
+export const EditProductInCart = (info) => async(dispatch)=>{
+    console.log("info from editproduct thunk")
+    const {cardId, quantity} = info
+    console.log("cardId from thunk", cardId)
+    const response = await fetch(`/api/carts/${cardId}`,{
+        method:'put',
+        headers:{
+            "Content-Type":"application/json"
+        },
+        body:JSON.stringify(info)
+    })
+
+    const updatedCart = await response.json()
+    console.log("updated cart from thunk", updatedCart)
+    
+}
+
 export const deleteProductInCart = (cardId)=> async(dispatch)=>{
     const response = await fetch(`/api/carts/${cardId}`, {
         method:'delete'

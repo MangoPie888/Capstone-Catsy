@@ -1,7 +1,7 @@
 from flask import Blueprint,request
 from flask_login import login_required, current_user
 from app.models import Product, User,Cart, Shop,db
-from ..forms import AddShoppingCartForm
+from ..forms import AddShoppingCartForm, EditCartForm
 from flask_login import login_required, current_user
 from flask import request
 from sqlalchemy import and_
@@ -103,6 +103,36 @@ def add_product_to_cart():
                 "userId":new_cart.user_id,
                 "productId":new_cart.product_id
                 }
+
+
+# Edit product in cart
+@cart_routes.route("/<int:cart_id>", methods=["PUT"])
+@login_required
+def edit_cart(cart_id):
+    cart = Cart.query.get(cart_id)
+
+    if not cart:
+        return {'errors': f'product {cart} not found!'}, 404
+
+    form = EditCartForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    
+    if form.validate_on_submit():
+        number_quantity = form.data["quantity"]
+
+        
+        cart.quantity = number_quantity
+        
+        db.session.add(cart)
+        db.session.commit()
+
+        return {
+                "id":cart.id,
+                "quantity":cart.quantity,
+                "userId":cart.user_id,
+                "productId":cart.product_id
+                }
+
 
 
 # delete product from carts
