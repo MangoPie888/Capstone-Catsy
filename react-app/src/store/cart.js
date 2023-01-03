@@ -25,6 +25,12 @@ export const decreseCart = (id) =>{
     }
 }
 
+const REMOVE_CART = 'session/REMOVE_CART'
+export const removeCart = ()=>({
+    type:REMOVE_CART,
+  })
+  
+
 
 
 
@@ -116,6 +122,9 @@ const cartReducer = (state=initialState, action)=>{
         delete cartState[action.id]
         console.log("after delete the item from cart, cart reducer", cartState)
         return cartState
+    
+    case REMOVE_CART:
+        return initialState
     default:
         return state
     }

@@ -53,6 +53,10 @@ const removeProduct = (id) =>{
     }
 }
 
+const REMOVE_PRODUCTS = 'session/REMOVE_PRODUCTS'
+export const removeUserProducts=()=>({
+    type:REMOVE_PRODUCTS,
+  })
 
 
 
@@ -196,6 +200,8 @@ export const userProductReducer = (state = initialState, action)=> {
             newState = {...state};
             delete newState[action.id];
             return newState;
+        case REMOVE_PRODUCTS:
+            return initialState
         default:
             return state
     }

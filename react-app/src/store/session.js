@@ -1,6 +1,11 @@
+import { removeUserProducts } from "./products";
+import {removeCart} from './cart'
+
 // constants
 const SET_USER = 'session/SET_USER';
 const REMOVE_USER = 'session/REMOVE_USER';
+
+
 
 const setUser = (user) => ({
   type: SET_USER,
@@ -10,6 +15,11 @@ const setUser = (user) => ({
 const removeUser = () => ({
   type: REMOVE_USER,
 })
+
+
+
+
+
 
 const initialState = { user: null };
 
@@ -66,6 +76,8 @@ export const logout = () => async (dispatch) => {
 
   if (response.ok) {
     dispatch(removeUser());
+    dispatch(removeUserProducts());
+    dispatch(removeCart())
   }
 };
 
