@@ -4,6 +4,7 @@ import { EditProductInCart, productsInCart } from '../../store/cart'
 import { deleteProductInCart } from '../../store/cart'
 import { Link } from 'react-router-dom'
 import { decreseCart } from '../../store/cart'
+import UpdateCart from './UpdateCart'
 import "./Cart.css"
 
 const DisplayShoppingCarts = () => {
@@ -50,6 +51,7 @@ const DisplayShoppingCarts = () => {
   const products = useSelector(state=>state.carts)
   console.log("products",products)
   const proList = Object.values(products)
+  const total = proList.reduce((totalPrice,pro)=>totalPrice + pro.product.price * pro.cart.quantity ,0)
   console.log("product list",proList)
 
   return (
@@ -90,16 +92,14 @@ const DisplayShoppingCarts = () => {
               </div>
                 <div className='cart-product-price'> ${pro.product.price}</div>
                 <div className='cart-product-quantity'>
-
-                <input type='number' min={1} max={100}  defaultValue={pro.cart.quantity} id={pro.cart.id} key={pro.product.price} onChange={(e)=>{changeQuantity(e)}}></input>
-                  {/* <button onClick={()=>{handleDecreaseCart(pro.cart.id)}}>-</button>
-                  <div className='count'>{pro.cart.quantity}</div>
-                  <button>+</button> */}
+                    <UpdateCart pro={pro}/>
+                {/* <input type='number' min={1} max={100}  defaultValue={pro.cart.quantity} id={pro.cart.id} key={pro.product.price} onChange={(e)=>{changeQuantity(e)}}></input> */}
+                
                 </div>
-
+{/* 
                 <div className='cart-product-total-price'>
                   <p id='total-price'>${pro.product.price * pro.cart.quantity}</p>
-                </div>
+                </div> */}
 
             </div>)}
         </div>
@@ -109,7 +109,7 @@ const DisplayShoppingCarts = () => {
           <div className='cart-checkout'>
             <div className='subtotal'>
               <span>subtotal</span>
-              <span className='amount'>$11</span>
+              <span className='amount'>${total}</span>
             </div>
             <button>Check out</button>
             <div className='continue-shopping'>

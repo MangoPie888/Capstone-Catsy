@@ -17,10 +17,10 @@ const deleteCart = (id) =>{
 }
 
 
-const DECREASE_CART='carts/DECREASE_CARTS'
-export const decreseCart = (id) =>{
+const UPDATE_CARTS = "carts/UPDATE_CARTS"
+const updateCart = (id) =>{
     return {
-        type:DECREASE_CART,
+        type:UPDATE_CARTS,
         id
     }
 }
@@ -82,7 +82,7 @@ export const EditProductInCart = (info) => async(dispatch)=>{
 
     const updatedCart = await response.json()
     console.log("updated cart from thunk", updatedCart)
-    
+    dispatch(productsInCart())
 }
 
 export const deleteProductInCart = (cardId)=> async(dispatch)=>{
@@ -112,9 +112,8 @@ const cartReducer = (state=initialState, action)=>{
             cartState[product.cart.id]=product
         })
         return cartState
-    case DECREASE_CART:
-
-
+    // case UPDATE_CARTS:
+    //     return Object.assign({...state},{[action.carts.id]:action.cart})
     case REMOVE_CARTS:
         cartState = {...state};
         console.log("Cartstate at reducer", cartState)
