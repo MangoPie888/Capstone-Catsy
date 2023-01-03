@@ -17,6 +17,15 @@ const deleteCart = (id) =>{
 }
 
 
+const DECREASE_CART='carts/DECREASE_CARTS'
+export const decreseCart = (id) =>{
+    return {
+        type:DECREASE_CART,
+        id
+    }
+}
+
+
 
 
 
@@ -103,6 +112,17 @@ const cartReducer = (state=initialState, action)=>{
         delete cartState[action.id]
         console.log("after delete the item from cart, cart reducer", cartState)
         return cartState
+    case DECREASE_CART:
+        // const itemIndex = state.carts.findIndex(
+        //     cartItem => cartItem.cart.id === action.id
+        // )
+
+        // if(state.carts[itemIndex].quantity > 1){
+        //     state.cartItem[itemIndex].quantity -= 1
+
+        // } else if(state.carts[itemIndex].quantity === 1){
+        //     state.cartItem[itemIndex].quantity = 1
+        // }
     default:
         return state
     }

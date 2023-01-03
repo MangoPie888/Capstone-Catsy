@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { EditProductInCart, productsInCart } from '../../store/cart'
 import { deleteProductInCart } from '../../store/cart'
 import { Link } from 'react-router-dom'
+import { decreseCart } from '../../store/cart'
 import "./Cart.css"
 
 const DisplayShoppingCarts = () => {
@@ -49,6 +50,10 @@ const DisplayShoppingCarts = () => {
     dispatch(EditProductInCart({productId,quantity,cardId}))
   }
 
+  const handleDecreaseCart=(id)=>{
+      dispatch(decreseCart(id))
+
+  }
   const products = useSelector(state=>state.carts)
   console.log("products",products)
   const proList = Object.values(products)
@@ -92,7 +97,7 @@ const DisplayShoppingCarts = () => {
               </div>
                 <div className='cart-product-price'> ${pro.product.price}</div>
                 <div className='cart-product-quantity'>
-                  <button>-</button>
+                  <button onClick={()=>{handleDecreaseCart(pro.cart.id)}}>-</button>
                   <div className='count'>{pro.cart.quantity}</div>
                   <button>+</button>
                 </div>

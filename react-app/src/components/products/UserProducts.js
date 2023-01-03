@@ -47,7 +47,7 @@ const UserProducts = () => {
         </div>
         {myProducts && 
             myProducts.map(product=>(
-            <div key={product.id}>
+            <div key={product.id} className="my-product">
             <img src={product.img}/>
             <p>{product.name}</p>
             <div>

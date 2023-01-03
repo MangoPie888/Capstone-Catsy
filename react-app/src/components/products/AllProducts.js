@@ -16,19 +16,24 @@ const AllProducts = () => {
  },[dispatch])
 
   return (
-    <div className='product-container'>
+    <div className='home-container'>
+    <div className='products'>
         {productList && productList.map((product)=>{
             return(
         
-            <div className='product-div' key={product.id}>
+            <div className='product' key={product.id}>
+              
               <Link to = {`/products/${product.id}`}>
                 <img src={product.img} alt="product" />
-                {/* <p>{product.name}</p> */}
-                <p>{product.price}</p>
               </Link>
+              <div className='details'>
+                {/* <h3>{product.name}</h3> */}
+                <span>${product.price}</span>
+              </div>
             </div>
 
             )})}
+    </div>
     </div>
   )
 }
