@@ -1,7 +1,7 @@
 nav {
     margin: 0;
     padding: 0;
-    background-color:rgb(253, 235,210);
+    background-color:white;
     display: flex;
     justify-content:space-between;
     align-items: center;
@@ -103,3 +103,47 @@ nav {
     width: 45px;
     background-color: #FFFFFF;
 }
+
+.search {
+    width: 70%;
+    position: relative;
+    display: flex;
+    margin-left: 20px;
+  }
+  
+  .searchTerm {
+    width: 100%;
+    border: 0.1rem solid black;
+    background-color: rgba(211,211,211,0.5);
+    border-right: none;
+    padding: 5px;
+    height: 20px;
+    border-radius: 20px 0 0 20px;
+    outline: none;
+    color:gray;
+  }
+  
+  .searchTerm:focus{
+    color:black
+  }
+  
+  .searchButton {
+    width: 40px;
+    height: 33.2px;
+    border: 0.1rem solid black;
+    border-left: 0;
+    background: rgba(211,211,211,0.5);
+    text-align: center;
+    color:black;
+    border-radius: 0 20px 20px 0;
+    cursor: pointer;
+    font-size: 20px;
+    padding-left: 10px;
+    padding-right: 30px;
+    
+  }
+
+  .searchButton:hover{
+    background: rgba(211,211,211,0.8);
+  }
+  

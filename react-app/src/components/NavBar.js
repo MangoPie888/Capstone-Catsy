@@ -8,12 +8,21 @@ import ProfileMenu from './auth/ProfileMenu';
 import {Modal} from "./context/Modal"
 import "./NavBar.css"
 import logo from '../assets/catsyLogo.png'
+import { useHistory } from 'react-router-dom';
 
 const NavBar = () => {
+  const history = useHistory()
+
   const sessionUser = useSelector(state => state.session.user);
 
   const [showModal, setShowModal] = useState(false)
   const [showProfile, setShowProfile] = useState(false)
+
+
+  const handleDeadBtn=()=>{
+    history.push('/future')
+  }
+
 
   let sessionLink;
   if(sessionUser){
@@ -63,14 +72,23 @@ const NavBar = () => {
   }
 
   return (
+    <>
     <nav>
-      
+
           <NavLink to='/' exact={true} activeClassName='active'>
             <img className='logo' src={logo} alt="logo"/>
           </NavLink>
+          
+          <div className="search">
+            <input type="text" className="searchTerm" placeholder="Search for anything" />
+            <button type="submit" className="searchButton" onClick={handleDeadBtn}>
+            <i class="fa fa-search"></i>
+            </button>
+          </div>
           {sessionLink}
     
     </nav>
+    </>
   );
 }
 

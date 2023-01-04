@@ -14,6 +14,7 @@ import CreateProductForm from './components/products/CreateProductForm';
 import UserProducts from './components/products/UserProducts';
 import EditProductForm from './components/products/EditProductForm';
 import DisplayShoppingCarts from './components/carts/DisplayShoppingCarts';
+import Future from './components/Future';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -52,6 +53,9 @@ function App() {
         <ProtectedRoute path='/carts' exact={true} >
           <DisplayShoppingCarts />
         </ProtectedRoute>
+        <Route path='/future' exact={true} >
+          <Future/>
+        </Route>
         <Route path='/products/new' exact={true} >
           <CreateProductForm />
         </Route>
@@ -64,6 +68,7 @@ function App() {
         <Route path='' exact={true} >
           <AllProducts/>
         </Route>
+      
       </Switch>
     </BrowserRouter>
   );
