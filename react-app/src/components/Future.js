@@ -5,7 +5,7 @@ import "./Future.css"
 const Future = () => {
   return (
     <div className='future-container'>
-      <p>The future feature will come soon ...</p>
+      <p>This feature will come soon ...</p>
       <Link to={''}>Go back to shopping</Link>
     </div>
   )

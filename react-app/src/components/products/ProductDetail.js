@@ -8,6 +8,8 @@ import LoginForm from '../auth/LoginForm';
 import { Link } from 'react-router-dom';
 import { addProductInCart } from '../../store/cart';
 
+import "./ProductDetail.css"
+
 const ProductDetail = () => {
     const dispatch = useDispatch()
     const {productId} = useParams()
