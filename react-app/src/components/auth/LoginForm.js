@@ -29,7 +29,7 @@ const LoginForm = ({setShowModal}) => {
       setErrors(data);
     }
     else{
-      setShowModal(false)
+      // setShowModal(false)
       dispatch(productsInCart())
     }
     

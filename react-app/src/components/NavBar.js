@@ -86,8 +86,15 @@ const NavBar = () => {
             </button>
           </div>
           {sessionLink}
-    
+
+          
     </nav>
+    {/* <div className='top-categry-list'>
+            <ul>
+              <li>Cat Favorites</li>
+              <li></li>
+            </ul>
+          </div> */}
     </>
   );
 }

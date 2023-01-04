@@ -24,8 +24,8 @@ const ProductDetail = () => {
     const product = useSelector(state => state.productDetail[productId])
     console.log("product",product)
 
-    const productsInCart = useSelector(state=>state.carts)
-    console.log("productsInCart",productsInCart)
+    const cartProducts = useSelector(state=>state.carts)
+    console.log("cartProducts",cartProducts)
     // console.log(product.productId)
     
 
@@ -43,6 +43,7 @@ const ProductDetail = () => {
         console.log("productId before dispatch at frontend",productId)
         console.log("product quantity",quantity)
         dispatch(addProductInCart({productId, quantity}))
+        dispatch(productsInCart())
         setShowModal(true)
 
         // dispatch(productsInCart(productId))
@@ -51,28 +52,47 @@ const ProductDetail = () => {
     }
 
     return (
-        <div>
+        <div className='main-container'>
+        <div className='product-detail-container'>
+            
             {product && 
-            <>
-                <img src={product.img} alt="product"/>
+            <div className='detail-info'>
+                
+                
+                <img className='product-detail-img' src={product.img} alt="product"/>
+             
+
+
+                <div className='text-info'>
+                <p>Seller: {product.Owner.firstName}</p>
                 <p>{product.name}</p>
-                <p>{product.description}</p>
-            </>
-            }
-            <div>
-                <form onSubmit={addCartButton}>
+                <p className='description'>Description:</p>
+                <p className='detail-description'>{product.description}</p>
+                <p className='price'>$ {product.price}</p>
+
+                <form className='add-to-cart-form' onSubmit={addCartButton}>
                 <input type='hidden' name='productId' value={productId} required></input>
-                <label>Quantity
-                <input required type='number' name='quantity' min={1} max={100} value={quantity} onChange={(e)=>setQuantity(e.target.value)} ></input>
-                </label>
-                <button type='submit'>Add to cart</button>
+                <label >Quantity</label>
+                <input className='quantity-input' required type='number' name='quantity' min={1} max={100} value={quantity} onChange={(e)=>setQuantity(e.target.value)} ></input>
+                
+                <button className='add-to-cart-btn' type='submit'>Add to cart</button>
                 </form>
                 {showModal && sessionUser &&
                     <Modal onClose={()=>{setShowModal(false)}}>
-                        <p>Added to cart</p>
+                     <div className='pop-up-div'>
+                        <img src={product.img} className='pop-up-modal-img'/>
+                        <p className='product-name'>{product.name}</p>
+                        <p> is added to your shopping cart</p>
                         <Link to={'/carts'}>
-                        <button>Go to cart</button>
+                        <button className='go-to-cart-btn'>Go to cart</button>
                         </Link>
+
+                        <div className='continue-shopping-div'>
+                        <i className="fa-solid fa-arrow-left"></i>
+                        <Link className='continue-link' to={""} >continue shopping</Link>
+                        </div>
+
+                    </div>
                     </Modal>
                 }
 
@@ -81,7 +101,16 @@ const ProductDetail = () => {
                         <LoginForm/>
                     </Modal>
                 }
+                </div>
+            
             </div>
+            }   
+        </div>
+
+
+        
+        
+                
         </div>
     )
 }
