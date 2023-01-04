@@ -9,7 +9,7 @@ class Cart(db.Model):
         __table_args__ = {'schema': SCHEMA}
 
     
-    id = db.Column(db.Integer, primary_key=True)
+    id = db.Column(db.Integer,primary_key=True)
     quantity = db.Column(db.Integer, nullable=False, default=1)
     created_at = db.Column(db.DateTime, default = db.func.now())
 

@@ -1,0 +1,149 @@
+nav {
+    margin: 0;
+    padding: 0;
+    background-color:white;
+    display: flex;
+    justify-content:space-between;
+    align-items: center;
+    padding: 12px 36px 12px 36px;
+    height: 48px;
+}
+
+.logo {
+    cursor: pointer;
+    margin-right: auto;
+    height: 40px;
+    width: 80px;
+}
+
+.signin-button {
+   padding: 9px 25px;
+   background: rgba(241,100,30);
+   border: none;
+   border-radius: 50px;
+   cursor: pointer;
+   transition: all 03.s ease 0s; 
+}
+
+.signin-button:hover {
+    background-color: rgba(241,100,30, 0.8);
+}
+
+.signin-shopping-list{
+    display: flex;
+    align-items: center;
+    list-style-type: none;
+   
+}
+
+.signin-shopping-list li{
+    padding: 10px;
+}
+
+.profile-shop-cart{
+    display: flex;
+    align-items: center;
+    list-style-type: none;
+}
+
+.profile-shop-cart li{
+    padding: 15px;
+ 
+   
+    
+    
+}
+
+.profile-shop-cart li:hover{
+    border-radius: 30px;
+    background-color:rgba(211,211,211,0.5); 
+
+}
+
+.profile-button-div{
+    border-style: none;
+    height: 20px;
+    width: 20px;
+    border-radius: 30px;
+    background-color: #d3d3d3;
+
+}
+
+.fa-user{
+    color:#919191 ;
+    margin:auto;
+    padding-top: 3px;
+    display: block;
+
+    
+    
+}
+
+.fa-caret-down{
+    color: gray;
+    margin-left: 3px
+    
+
+}
+
+.fa-store {
+    color:rgb(34,34,34);
+}
+
+.fa-cart-shopping {
+    color:rgb(34,34,34)
+}
+
+.profile-li{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-style: none;
+    height: 30px;
+    width: 45px;
+    background-color: #FFFFFF;
+}
+
+.search {
+    width: 70%;
+    position: relative;
+    display: flex;
+    margin-left: 20px;
+  }
+  
+  .searchTerm {
+    width: 100%;
+    border: 0.1rem solid black;
+    background-color: rgba(211,211,211,0.5);
+    border-right: none;
+    padding: 5px;
+    height: 20px;
+    border-radius: 20px 0 0 20px;
+    outline: none;
+    color:gray;
+  }
+  
+  .searchTerm:focus{
+    color:black
+  }
+  
+  .searchButton {
+    width: 40px;
+    height: 33.2px;
+    border: 0.1rem solid black;
+    border-left: 0;
+    background: rgba(211,211,211,0.5);
+    text-align: center;
+    color:black;
+    border-radius: 0 20px 20px 0;
+    cursor: pointer;
+    font-size: 20px;
+    padding-left: 10px;
+    padding-right: 30px;
+    
+  }
+
+  .searchButton:hover{
+    background: rgba(211,211,211,0.8);
+  }
+  

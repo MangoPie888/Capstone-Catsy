@@ -1,0 +1,171 @@
+.sign-in-form{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+.login-form-div {
+    display: flex;
+    flex-direction: column;
+   /* height: 100px; */
+   margin-left:17px;
+   gap: 5px;
+}
+
+.Sign-in-sign {
+    margin-left: 6%;
+    padding-right: 125px;
+    font-weight: 540;
+}
+
+.top-line-sign-in{
+    display: flex;
+    margin-top: 5%;
+    margin-bottom: 10px;
+}
+
+.register-btn{
+    text-align: center;
+    font-size: 10px;
+    font-weight: 500;
+    border-radius: 15px;
+    border-style: solid;
+    border-color: black;
+    height: 25px;
+    width: 60px;
+    background-color: #FFFFFF;
+    cursor: pointer;
+    border-width: 0.1rem;
+
+}
+
+.register-btn:hover{
+    transform: scale(1.02);
+}
+
+
+.email-div label{
+    font-size: 8px;
+    font-weight: 550;
+    height: auto;
+}
+
+.email-div input{
+    height: 28px;
+    border-radius: 5px;
+    border-width: thin;
+    border-color: white;
+    box-shadow: inset 0.1em 0.1em rgba(236, 239, 240, 0.7),
+    0.1em 0.1em rgba(236, 239, 240, 0.7)
+    ;
+}
+
+.email-div input:hover{
+    transform: scale(1.02);
+}
+
+.password-div input{
+    height: 28px;
+    border-radius: 5px;
+    border-width: thin;
+    border-color: white;
+    box-shadow: inset 0.1em 0.1em rgba(236, 239, 240, 0.7),
+    0.1em 0.1em rgba(236, 239, 240, 0.7)
+    ;
+}
+
+.password-div input:hover{
+    transform: scale(1.02);
+}
+
+.password-div label{
+    font-size: 8px;
+    font-weight: 550;
+    height: auto;
+    margin-top: 0;
+}
+
+.sign-in-btn-div{
+    padding-top: 40px;
+    text-align: center;
+}
+
+.sign-in-btn-div button {
+   
+    width: 240px;
+    height: 35px;
+    border-radius: 25px;
+    color: #FFFFFF;
+    background-color: black;
+    cursor: pointer;
+}
+
+.trouble-sign-in-div{
+    text-align: center;
+}
+
+.trouble-sign-in-div a{
+    font-size:8px;
+    color: gray;
+}
+
+
+.divider{
+    margin-top: 5px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    font-size: 10px;
+    color: gray;
+}
+
+.divider::after,
+.divider::before{
+    content:"";
+    border:solid rgba(236, 239, 240, 0.7) 0.1px;
+    flex: 1;
+}
+
+.divider:not(:empty)::before{
+    margin-right: 0.8em;
+}
+
+.divider:not(:empty)::after{
+    margin-left: 0.8em;
+}
+
+.demo-user-div{
+    margin-top: 30px;
+    text-align: center;
+    align-items: center;
+}
+
+.demo-user-div button{
+    width: 240px;
+    height: 35px;
+    border-radius: 25px;
+    color: black;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 13px;
+    border-width: 0.1rem;
+    cursor: pointer;
+   
+}
+
+.demo-user-div button:hover{
+    transform: scale(1.02);
+    
+}
+
+.sign-in-btn-div button:hover{
+    transform: scale(1.02);
+    
+}
+
+.demo-user-div img{
+    float: inline-start;
+    margin-right: 0.5rem;
+    height: 20px;
+    width: 20px;
+}
+
