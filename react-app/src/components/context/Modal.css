@@ -34,7 +34,11 @@
 #modal-close{
     cursor: pointer;
     margin-left: 250px;
-    padding-top: 2%;
+    padding-top:0;
+    margin-top: 0;
   
     
+}
+#modal-content i{
+    padding-top: 5px;
 }
