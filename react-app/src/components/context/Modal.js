@@ -30,7 +30,11 @@ export function Modal({onClose,children}) {
     return ReactDom.createPortal(
         <div id="modal">
         <div id="modal-background" onClick={onClose} />
+           
             <div id="modal-content">
+                <div id="modal-close" onClick={onClose}>
+                <i class="fa-solid fa-xmark"></i>
+                </div>
                 {children}
             </div>
         </div>,

@@ -16,7 +16,7 @@ const SignUpForm = () => {
   const onSignUp = async (e) => {
     e.preventDefault();
     if (password === repeatPassword) {
-      const data = await dispatch(signUp(firstName, email, password));
+      const data = await dispatch(signUp(firstName,lastName, email, password));
       if (data) {
         setErrors(data)
       }
@@ -77,7 +77,8 @@ const SignUpForm = () => {
       <div>
         <label>Email</label>
         <input
-          type='text'
+          required
+          type='email'
           name='email'
           onChange={updateEmail}
           value={email}
@@ -86,6 +87,7 @@ const SignUpForm = () => {
       <div>
         <label>Password</label>
         <input
+          required
           type='password'
           name='password'
           onChange={updatePassword}

@@ -2,8 +2,6 @@ from flask import Blueprint,request
 from flask_login import login_required, current_user
 from app.models import Product, User,Cart, Shop,db
 from ..forms import AddShoppingCartForm, EditCartForm
-from flask_login import login_required, current_user
-from flask import request
 from sqlalchemy import and_
 
 

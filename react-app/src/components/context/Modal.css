@@ -16,13 +16,25 @@
     right: 0;
     left: 0;
     bottom: 0;
-    background-color: rgba(0, 0, 0, 0.7);
+    background-color: rgba(0, 0, 0, 0.6);
+    
 }
 
 #modal-content {
-    height: 300px;
-    width: 300px;
-    border-radius: 10px;
+    height: 500px;
+    width: 270px;
+    border-radius: 15px;
     position: absolute;
-    background-color: white;
+    background-color: #FFFFFF;
+   
+
+
+}
+
+#modal-close{
+    cursor: pointer;
+    margin-left: 250px;
+    padding-top: 2%;
+  
+    
 }

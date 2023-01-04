@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Redirect } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import { login } from '../../store/session';
 import { productsInCart } from '../../store/cart'
 import {Modal} from "../context/Modal"
 import SignUpForm from './SignUpForm';
+import "./LoginForm.css"
+import demoImg from '../../assets/demo.png'
 
 
 const LoginForm = ({setShowModal}) => {
@@ -26,7 +28,12 @@ const LoginForm = ({setShowModal}) => {
     if (data) {
       setErrors(data);
     }
-    dispatch(productsInCart())
+    else{
+      setShowModal(false)
+      dispatch(productsInCart())
+    }
+    
+    
   };
 
   const updateEmail = (e) => {
@@ -62,38 +69,76 @@ const LoginForm = ({setShowModal}) => {
 
   return (
   <>
-    <form onSubmit={onLogin}>
-      <div>
+  
+    <form className='sign-in-form' onSubmit={onLogin}>
         {errors.map((error, ind) => (
-          <div key={ind}>{error}</div>
+          <div key={ind} className="login-error-container">{error}</div>
         ))}
+      
+ 
+      <div className='top-line-sign-in'>
+        <div className='Sign-in-sign'>Sign in</div>
+        <button className='register-btn' onClick={()=>setOpenModal(true)}>Register</button>
       </div>
+      
+      <div className='login-form-div'>
+        <div className='email-div'>
+          <label htmlFor='email'>Email address</label>
+            <input
+            required
+            name='email'
+            type='text'
+            value={email}
+            size={30}
+            onChange={updateEmail}
+            />
+          </div>
+        
+        
+          <div className='password-div'>
+          <label htmlFor='password'>Password</label>
+            <input
+              required
+              name='password'
+              type='password'
+              value={password}
+              size={30} 
+              onChange={updatePassword}
+            />
+          </div>
+        
+      </div>
+
+
+     
+      <div className='sign-in-btn-div'>
+      <button type='submit'>Sign in</button>
+      </div>
+      
+      <div className='trouble-sign-in-div'>
+        <a href="https://help.etsy.com/hc/en-us/articles/115015410188">Trouble signing in?</a>
+      </div>
+
+      <div className='divider'>OR</div>
+
+      <div className='demo-user-div'>
+      
+        <button type='submit' onClick={demonLogin}>
+        <div>
+        <img src={demoImg} alt="demo img"/>
+        </div>
+        <div>
+        Demo User
+        </div>
+        </button>
+      </div>
+
       <div>
-        <label htmlFor='email'>Email</label>
-        <input
-          name='email'
-          type='text'
-          placeholder='Email'
-          value={email}
-          onChange={updateEmail}
-        />
+
       </div>
-      <div>
-        <label htmlFor='password'>Password</label>
-        <input
-          name='password'
-          type='password'
-          placeholder='Password'
-          value={password}
-          onChange={updatePassword}
-        />
-        <button type='submit'>Login</button>
-      </div>
-      <br/>
-    <button type='submit' onClick={demonLogin}>Demo User</button>
     </form>
-    <br/>
-    <button onClick={()=>setOpenModal(true)}>Register</button>
+ 
+    
 
     {openModal &&
       <Modal onClose={()=>{setOpenModal(false)}}>
