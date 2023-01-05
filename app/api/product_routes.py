@@ -102,7 +102,7 @@ def create_product():
     form["csrf_token"].data = request.cookies["csrf_token"]
 
     print("form.data[name]&&&&&&&&&",form.data["name"])
-    print("&&&&&&&&&&&&&&&&&",form.data["description"])
+    print("&&&&&&&&&&&&&&&&&description",form.data["description"])
     if form.validate_on_submit():
         new_product = Product(
             name = form.data["name"],
@@ -126,6 +126,9 @@ def create_product():
             "seller_id":new_product.seller_id,
             "shop_id":new_product.shop_id
         },200
+    
+    else:
+        return{'errors': validation_errors_to_error_messages(form.errors)}, 400
 
 
 

@@ -1,3 +1,4 @@
+import { getAllProducts } from "./products"
 // action
 const DISPLAY_CARTS = "carts/DISPLAY_CARTS"
 const displaycarts = (data) =>{
@@ -31,6 +32,13 @@ export const removeCart = ()=>({
   })
   
 
+
+const REMOVE_ALL_PRODUCTS = 'carts/REMOVE_ALL_PRODUCTS'
+const clearPurchase = () =>{
+    return {
+        type:REMOVE_ALL_PRODUCTS
+    }
+}
 
 
 
@@ -100,6 +108,19 @@ export const deleteProductInCart = (cardId)=> async(dispatch)=>{
     return response
 }
 
+export const deleteAllProducts =() => async(dispatch)=>{
+    const response = await fetch(`api/carts`, {
+        method:'delete'
+    })
+
+    const data = await response.json()
+    console.log("data from thunk:",data)
+    dispatch(clearPurchase())
+    
+    return data
+
+}
+
 
 // reducer
 let initialState = {}
@@ -123,6 +144,10 @@ const cartReducer = (state=initialState, action)=>{
         return cartState
     
     case REMOVE_CART:
+        return initialState
+
+
+    case REMOVE_ALL_PRODUCTS:
         return initialState
     default:
         return state

@@ -41,9 +41,9 @@ useEffect(()=>{
         
         </div>
 
-            <div className='cart-product-total-price'>
+        <div className='cart-product-total-price'>
                   <p id='total-price'>${pro.product.price * quantity}</p>
-            </div> 
+                </div> 
    
         </>
     )

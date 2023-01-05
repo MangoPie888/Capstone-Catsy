@@ -1,0 +1,10 @@
+.errors-edit-form{
+    text-align: center;
+    
+}
+
+.errors-text{
+    display: flex;
+    flex-direction: column;
+    color: red;
+}

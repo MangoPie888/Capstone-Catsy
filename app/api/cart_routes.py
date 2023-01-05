@@ -137,8 +137,10 @@ def edit_cart(cart_id):
 @cart_routes.route("/<int:cart_id>", methods=["DELETE"])
 @login_required
 def delete_product(cart_id):
-    userId = current_user.get_id()
+    
     cart = Cart.query.get(cart_id)
+
+    print(".................cart:",cart)
     
     print("??????????????????CART_ID",cart_id)
     if not cart:
@@ -151,3 +153,21 @@ def delete_product(cart_id):
     db.session.commit()
     
     return {'message': f'Sucessfully deleted product {cart} from cart'}, 200
+
+
+
+# delete all products from carts
+@cart_routes.route("", methods=["DELETE"])
+@login_required
+def clearCarts():
+    userId = current_user.get_id()
+    Allproducts = Cart.query.filter(Cart.user_id == userId).all()
+    print(">>>>>>>>>>>>>>>>allCarts",Allproducts)
+
+   
+    for product in Allproducts:
+        db.session.delete(product)
+        db.session.commit()
+
+        print("allproducts))))))))))))))))", Allproducts)
+        return {'message':"Sucessfully deleted all products in cart"}
