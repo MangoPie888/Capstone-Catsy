@@ -79,7 +79,7 @@ const DisplayShoppingCarts = () => {
       <div className='cart-empty'>
         <p>Your cart is current empty</p>
         <div className='start-shopping'>
-          <Link to={''}>
+          <Link className='cart-empty-link' to={''}>
             <i class="fa-solid fa-arrow-left"></i>
             <span>Start Shopping</span>
           </Link>
@@ -87,7 +87,7 @@ const DisplayShoppingCarts = () => {
       </div>
       }
 
-      {proList &&
+      {proList.length !==0 &&
       <div>
         <div className='titles'>
           <h3 className='product-title'>Product</h3>

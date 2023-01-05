@@ -166,8 +166,9 @@ def clearCarts():
 
    
     for product in Allproducts:
+        print("produtinnnnnnnnnnnnnnn",product)
         db.session.delete(product)
         db.session.commit()
 
         print("allproducts))))))))))))))))", Allproducts)
-        return {'message':"Sucessfully deleted all products in cart"}
+    return {'message':"Sucessfully deleted all products in cart"}
