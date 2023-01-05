@@ -117,16 +117,35 @@ export const editSingleProduct = (data) => async(dispatch)=>{
     const {productId,name,price,description,img} = data
     console.log("productId",productId)
     const response = await fetch(`/api/products/${productId}`,{
-        method:"put",
+        method:"PUT",
         headers:{
             "Content-Type":"application/json"
         },
-        body:JSON.stringify(data)
+        body:JSON.stringify({
+            productId,
+            name,
+            price,
+            description,
+            img
+        })
     })
     
-    const updatedProduct = await response.json();
-    console.log("updatedProduct from thunk",updatedProduct)
-    dispatch(updateProduct(updatedProduct))
+    if(response.ok){
+        const updatedProduct = await response.json();
+        console.log("updatedProduct from thunk",updatedProduct)
+        dispatch(updateProduct(updatedProduct))
+        return null
+    }else if(response.status < 500){
+        const data = await response.json()
+        if(data.errors){
+            console.log("return error data from thunk", data)
+            return data;
+        }
+    }
+    else{
+        return {"error":"something just happened, please try again"}
+    }
+    
 }
 
 export const deleteProduct = (id)=> async(dispatch)=>{

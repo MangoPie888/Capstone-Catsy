@@ -55,7 +55,7 @@ const CreateProductForm = () => {
         <label>Description<span>*</span>
         <p>Start with a brief overview that describes your product's great features. Shoppers will only see the first few lines of your description, so make it count!</p>
         </label>
-        <textarea maxlength="500"  placeholder='description(limit:500 characters)' name='description' type='text' value={description} onChange={(e)=>setDescription(e.target.value)} required >    
+        <textarea maxlength="500"  placeholder='description(limit:1000 characters)' name='description' type='text' value={description} onChange={(e)=>setDescription(e.target.value)} required >    
         </textarea>
         </div>
 
