@@ -120,11 +120,11 @@ const DisplayShoppingCarts = () => {
         </div>
 
         <div className='cart-summary'>
-          <button className='clear-cart'>Clear Cart</button>
+          <button onClick={clearOut} className='clear-cart'>Clear Cart</button>
           <div className='cart-checkout'>
             <div className='subtotal'>
               <span>subtotal</span>
-              <span className='amount'>${total}</span>
+              <span className='amount'>${total.toFixed(2)}</span>
             </div>
             <button id='checkoutBtn' onClick={checkout}>Check out</button>
             <div className='continue-shopping'>
