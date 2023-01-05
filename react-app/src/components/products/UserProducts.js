@@ -13,6 +13,8 @@ const UserProducts = () => {
         dispatch(getUserProduct())
     },[])
 
+        const [productId, setProductId] =useState()
+
     const products = useSelector(state=>state.userProducts)
     // console.log("userProducts",products)
     const myProducts = Object.values(products)
@@ -20,8 +22,9 @@ const UserProducts = () => {
 
 
     const handleDelete=(e)=>{
-        console.log("buttonid",e.target.id)
-        const productId = e.target.id
+        e.preventDefault()
+        console.log("buttonid",productId)
+        
         dispatch(deleteProduct(productId))
     }
 
@@ -76,9 +79,12 @@ const UserProducts = () => {
             <i class="fa-solid fa-pen"></i>
             </button>
             </Link>
-            <button className='listing-delete-button' onClick={handleDelete} id={product.id}>
+
+            <form onSubmit={handleDelete}>
+            <button type='submit' className='listing-delete-button' onClick={()=>{setProductId(product.id)}} >
             <i class="fa-solid fa-x"></i>
             </button>
+            </form>
             </div>
 
             </div>
