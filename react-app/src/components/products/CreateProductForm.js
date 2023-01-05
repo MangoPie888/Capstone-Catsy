@@ -15,23 +15,47 @@ const CreateProductForm = () => {
     const [price, setPrice] = useState()
     const [description, setDescription] = useState("")
     const [img, setImg] = useState("")
+    const [errors, setErrors] = useState([])
 
-    const productFormSubmission=(e)=>{
+    const productFormSubmission=async(e)=>{
         console.log("all info for creating a product at frontend", "name:",name, "price:",price)
         e.preventDefault()
-        dispatch(addProduct({name,price,description,img}))
-        dispatch(getUserProduct())
-        history.push("/myproducts")
+        try{
+          const data= await dispatch(addProduct({name,price,description,img}))
+          console.log("returned data from frontend", data)
+          if(data){
+            setErrors(data.errors);
+            console.log("errorss from frontend",errors)
+          } else{
+            console.log("successed")
+            history.push("/myproducts")
+          }
+        } catch(error){
+            console.log(error)
+        }
+
+        
+        
+        // dispatch(getUserProduct())
+        
     }
 
   return (
-    <div className='listing-container'>
+    <div >
 
       <div className='title-div'>
         <h3>Listing information</h3>
         <p>Tell the world all about your product and why they'll love it</p>
         <img src={listingCat} alt="listing-cat-img"/>
       </div>
+
+      <div className='errors-edit-form'>
+                {errors && (
+                    <div className='errors-text'>
+                    {errors.map((singleError) =><p>{singleError}</p>)}
+                    </div>
+                )}
+        </div>
 
       <form className='create-product-form' onSubmit={productFormSubmission} >
         

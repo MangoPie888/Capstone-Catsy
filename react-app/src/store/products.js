@@ -95,8 +95,21 @@ export const addProduct = (info)=> async(dispatch)=>{
         body:JSON.stringify(info)
     });
 
-    const newProduct = await response.json();
-    dispatch(createProduct(newProduct))
+    if(response.ok){
+        const newProduct = await response.json();
+        dispatch(createProduct(newProduct))
+        return null
+    }else if(response.status < 500){
+        const data = await response.json()
+        if(data.errors){
+            console.log("return error data from thunk", data)
+            return data;
+        }
+    }
+    else{
+        return {"error":"something just happened, please try again"}
+    }
+    
 }
 
 
