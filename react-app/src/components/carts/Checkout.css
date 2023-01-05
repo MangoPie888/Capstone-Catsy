@@ -1,0 +1,12 @@
+.checkout-div{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-top: 50px;
+}
+
+.checkout-div img{
+    height: 200px;
+    width: 200px;
+}

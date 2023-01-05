@@ -2,13 +2,22 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { EditProductInCart, productsInCart } from '../../store/cart'
 import { deleteProductInCart } from '../../store/cart'
-import { Link } from 'react-router-dom'
-import { decreseCart } from '../../store/cart'
+import { Link, useHistory } from 'react-router-dom'
 import UpdateCart from './UpdateCart'
+import { removeCart } from '../../store/cart'
+import { deleteAllProducts } from '../../store/cart'
+import { getAllProducts } from '../../store/products'
+
 import "./Cart.css"
+
 
 const DisplayShoppingCarts = () => {
   const dispatch = useDispatch()
+  const history = useHistory()
+
+
+  const userId = useSelector(state=>state.session.user.id)
+  console.log("userIdddddddd",userId)
 
   let [quantity, setQuantity] = useState()
   let [productId, setProductId] = useState()
@@ -19,6 +28,7 @@ const DisplayShoppingCarts = () => {
     dispatch(productsInCart())
 
   },[quantity])
+
 
 
   const handlingDelete=(cartId)=>{
@@ -39,12 +49,19 @@ const DisplayShoppingCarts = () => {
     let res = await dispatch(EditProductInCart({quantity,cartId}))
     .then(dispatch(productsInCart()))
     
-    
-  
-
-
-
   }
+
+  const checkout=()=>{
+    history.push("/success")
+    dispatch(deleteAllProducts())
+  
+  }
+
+  const clearOut=()=>{
+    dispatch(deleteAllProducts())
+  
+  }
+
 
 
 
@@ -91,15 +108,13 @@ const DisplayShoppingCarts = () => {
                 </div>
               </div>
                 <div className='cart-product-price'> ${pro.product.price}</div>
-                <div className='cart-product-quantity'>
+                
                     <UpdateCart pro={pro}/>
                 {/* <input type='number' min={1} max={100}  defaultValue={pro.cart.quantity} id={pro.cart.id} key={pro.product.price} onChange={(e)=>{changeQuantity(e)}}></input> */}
                 
-                </div>
-{/* 
-                <div className='cart-product-total-price'>
-                  <p id='total-price'>${pro.product.price * pro.cart.quantity}</p>
-                </div> */}
+                
+                
+                
 
             </div>)}
         </div>
@@ -111,10 +126,10 @@ const DisplayShoppingCarts = () => {
               <span>subtotal</span>
               <span className='amount'>${total}</span>
             </div>
-            <button>Check out</button>
+            <button id='checkoutBtn' onClick={checkout}>Check out</button>
             <div className='continue-shopping'>
               <Link to={''}>
-              <i class="fa-solid fa-arrow-left"></i>
+              {/* <i class="fa-solid fa-arrow-left"></i> */}
               <span>Continue Shopping</span>
               </Link>
             </div>

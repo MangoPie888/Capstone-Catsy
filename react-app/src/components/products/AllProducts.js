@@ -77,8 +77,8 @@ const AllProducts = () => {
         {productList && productList.map((product)=>{
             return(
               <>
-              <Link className='Link' to = {`/products/${product.id}`}>
-            <div className='product' key={product.id}>
+              <Link key={product.id} className='Link' to = {`/products/${product.id}`}>
+            <div className='product' >
               
              
                 <img src={product.img} alt="product" />
