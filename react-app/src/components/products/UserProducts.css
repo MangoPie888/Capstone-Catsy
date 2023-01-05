@@ -15,3 +15,54 @@
     border-radius: 15px;
     box-shadow: -5px -5px 10px rgba(253,235, 210, 0.5), 2px 2px 5px rgba(241, 100,30, 0.3);
 }
+
+.add-listing-link-div{
+    color: black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+   border: 2px solid rgba(253,235, 210, 0.5), 2px 2px 5px rgba(241, 100,30, 0.3);
+    background-color: rgb(253,235,210);
+    height:80px 
+   
+};
+
+
+.Link-Link{
+    text-decoration:none;
+    color: black;
+}
+
+
+
+.edit-delete-btn-div{
+    display: flex;
+    justify-content: space-between;
+} 
+
+.edit-delete-btn-div button{
+    background-color: white;
+    border: none;
+    cursor: pointer;
+}
+
+
+.go-to-detail-div img{
+    height: 100px;
+    width: 150px;
+}
+
+
+.my-product Link{
+    text-decoration: none;
+}
+
+.go-to-detail-link{
+    text-decoration: none;
+    color: black;
+}
+
+.go-to-detail-div p{
+    margin-top: 10px;
+}
+

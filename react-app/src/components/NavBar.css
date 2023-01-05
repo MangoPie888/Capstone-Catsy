@@ -6,14 +6,15 @@ nav {
     justify-content:space-between;
     align-items: center;
     padding: 12px 36px 12px 36px;
-    height: 48px;
+    height: 60px;
+    border-bottom: 2px solid rgba(211,211,211,0.5)
 }
 
 .logo {
     cursor: pointer;
     margin-right: auto;
-    height: 40px;
-    width: 80px;
+    height: 50px;
+    width: 90px;
 }
 
 .signin-button {
@@ -54,34 +55,35 @@ nav {
     
 }
 
-.profile-shop-cart li:hover{
+/* .profile-shop-cart li:hover{
     border-radius: 30px;
     background-color:rgba(211,211,211,0.5); 
 
-}
+} */
 
-.profile-button-div{
+/* .profile-button-div{
     border-style: none;
     height: 20px;
     width: 20px;
     border-radius: 30px;
-    background-color: #d3d3d3;
+    background-color:blue;
 
-}
+
+} */
 
 .fa-user{
-    color:#919191 ;
-    margin:auto;
-    padding-top: 3px;
-    display: block;
+    
+    padding: 0;
+    margin: 0;
 
     
     
 }
 
 .fa-caret-down{
-    color: gray;
-    margin-left: 3px
+    color: black;
+    padding: 0;
+    margin: 0;
     
 
 }
@@ -108,7 +110,7 @@ nav {
     width: 70%;
     position: relative;
     display: flex;
-    margin-left: 20px;
+    margin-left: 10px;
   }
   
   .searchTerm {
@@ -147,3 +149,61 @@ nav {
     background: rgba(211,211,211,0.8);
   }
   
+
+
+/* dropdown menu */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-menu {
+    position: absolute;
+    background-color:white;
+    right: 1%;
+    padding: .75rem;
+    border-radius: .25rem;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .3);
+    border-radius: 15px;
+    display: none;
+    z-index: 1;
+    pointer-events: auto;
+    width:100px;
+    font-size: 12-px;
+    text-align: left;
+   
+}
+
+ .dropdown:hover .dropdown-menu {
+    display: block;
+  box-shadow:2px 2px 2px 1px rgba(0, 0, 0, 0.2); 
+        border-radius: 15px;} 
+
+.dropdown-button {
+    display: flex;
+    background-color:white;
+    color:black;
+    padding: 3px 6px 3px 10px;
+    font-size: 16px;
+    border:none
+
+
+}
+.dropdown-button:hover {
+    cursor: pointer;
+}
+
+.dropdown-menu ul{
+    list-style: none;
+    font-size: 12px;
+    padding: 0;
+    margin: 0;
+}
+
+.dropdown-menu li{
+    padding: 0;
+    margin-bottom: 5px;
+}
+
+
+

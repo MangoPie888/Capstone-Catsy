@@ -10,7 +10,7 @@
 
 .products{
     display: flex;
-    justify-content: space-between;
+    justify-content: space-evenly;
     flex-wrap: wrap;
     margin-top: 2rem;
 }
@@ -26,6 +26,10 @@
     /* padding: 1rem; */
     border-radius: 15px;
     box-shadow: -5px -5px 10px rgba(253,235, 210, 0.5), 2px 2px 5px rgba(241, 100,30, 0.3);
+}
+
+.product:hover{
+    transform: scale(1.1);
 }
 
 .product img{

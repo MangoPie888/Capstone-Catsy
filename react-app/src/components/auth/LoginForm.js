@@ -29,7 +29,7 @@ const LoginForm = ({setShowModal}) => {
       setErrors(data);
     }
     else{
-      setShowModal(false)
+      // setShowModal(false)
       dispatch(productsInCart())
     }
     
@@ -54,18 +54,10 @@ const LoginForm = ({setShowModal}) => {
     setPassword("password");
   }
 
-  // const handleRegister=()=>{
-  //   setOpenModal(true)
-  //   return(
-  //   <>
-  //   {openModal &&
-  //     <Modal onClose={()=>{setOpenModal(false)}}>
-  //       <SignUpForm setOpenModal={setOpenModal}/>
-  //     </Modal>
-  //   }
-  //   </>
-  //   )
-  // }
+  const handleRegisterBtn=()=>{
+    setOpenModal(true)
+  
+  }
 
   return (
   <>
@@ -78,8 +70,16 @@ const LoginForm = ({setShowModal}) => {
  
       <div className='top-line-sign-in'>
         <div className='Sign-in-sign'>Sign in</div>
-        <button className='register-btn' onClick={()=>setOpenModal(true)}>Register</button>
+        <button className='register-btn' onClick={handleRegisterBtn}>Register</button>
       </div>
+
+      {openModal &&
+      <Modal onClose={()=>{setShowModal(false)}}>
+        <SignUpForm />
+      </Modal>
+    }
+      
+    
       
       <div className='login-form-div'>
         <div className='email-div'>
@@ -140,11 +140,6 @@ const LoginForm = ({setShowModal}) => {
  
     
 
-    {openModal &&
-      <Modal onClose={()=>{setOpenModal(false)}}>
-        <SignUpForm setOpenModal={setOpenModal}/>
-      </Modal>
-    }
     
   </>
   );

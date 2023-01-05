@@ -19,6 +19,7 @@ const NavBar = () => {
   const [showProfile, setShowProfile] = useState(false)
 
 
+
   const handleDeadBtn=()=>{
     history.push('/future')
   }
@@ -32,17 +33,31 @@ const NavBar = () => {
       <li>
       <Link to={'/myproducts'}><i class="fa-solid fa-store"></i></Link>
       </li>
-      <li className='profile-li'>
+
+      <li >
       {/* <button className='profile-button' onClick={()=>{setShowProfile(!showProfile)}} > */}
-      <div onClick={()=>{setShowProfile(!showProfile)}} className='profile-button-div'>
+      <div className="dropdown">
+      <button className="dropdown-button" >
       <i class="fa-solid fa-user"></i>
-      </div>
       <i class="fa-solid fa-caret-down"></i>
+      </button>
+
+      <div className="dropdown-menu">
+      <ul>
+        <p>First Name:</p>
+        <li>{sessionUser.first_name}</li>
+        <p>Email address:</p>
+        <li>{sessionUser.email}</li>
+        <LogoutButton />
+      </ul>
+      </div>
+
+      </div>
       {/* </button> */}
       </li>
-      {showProfile && 
-        <ProfileMenu setShowProfile={setShowProfile}/>
-      }
+   
+  
+      
       <li>
       <Link to={'/carts'}>
       <i class="fa-solid fa-cart-shopping"></i>
@@ -86,8 +101,15 @@ const NavBar = () => {
             </button>
           </div>
           {sessionLink}
-    
+
+          
     </nav>
+    {/* <div className='top-categry-list'>
+            <ul>
+              <li>Cat Favorites</li>
+              <li></li>
+            </ul>
+          </div> */}
     </>
   );
 }
