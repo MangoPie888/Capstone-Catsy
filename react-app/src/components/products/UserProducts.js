@@ -37,20 +37,26 @@ const UserProducts = () => {
 
 
     return (
-    <div className='listing-container'>
-        {/* <CreateProductForm /> */}
-        <div>
-            <Link to={'/products/new'}>
-            <p>+</p>
-            <p>Add a listing</p>
+        <>
+        <div className='add-listing-link-div'>
+            <Link className='Link-Link' to={'/products/new'}>
+            + Add a listing
             </Link>
         </div>
+
+
+        <div className='listing-container'>
+        {/* <CreateProductForm /> */}
+       
         {myProducts && 
             myProducts.map(product=>(
             <div key={product.id} className="my-product">
             <img src={product.img}/>
             <p>{product.name}</p>
+            <p>$ {product.price}</p>
             <div>
+
+            <div className='edit-delete-btn-div'>
             <Link to={{
             pathname:'/products/edit',
             state: {
@@ -58,9 +64,15 @@ const UserProducts = () => {
                     }
             }}
             >
-            <button id={product.id} onClick={handleEdit}>Edit</button>
+            <button className='listing-edit-button' id={product.id} onClick={handleEdit}>
+            <i class="fa-solid fa-pen"></i>
+            </button>
             </Link>
-            <button onClick={handleDelete} id={product.id}>Delete</button>
+            <button className='listing-delete-button' onClick={handleDelete} id={product.id}>
+            <i class="fa-solid fa-x"></i>
+            </button>
+            </div>
+
             </div>
             </div>
         ))
@@ -69,6 +81,7 @@ const UserProducts = () => {
 
 
     </div>
+    </>
     )
 }
 
