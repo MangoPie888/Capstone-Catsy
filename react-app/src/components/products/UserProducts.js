@@ -50,10 +50,18 @@ const UserProducts = () => {
        
         {myProducts && 
             myProducts.map(product=>(
+            
             <div key={product.id} className="my-product">
+
+            <Link className='go-to-detail-link' to={`/products/${product.id}`}>
+            <div className='go-to-detail-div'>
             <img src={product.img}/>
             <p>{product.name}</p>
             <p>$ {product.price}</p>
+            </div>
+            </Link>
+
+
             <div>
 
             <div className='edit-delete-btn-div'>

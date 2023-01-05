@@ -45,3 +45,24 @@
     border: none;
     cursor: pointer;
 }
+
+
+.go-to-detail-div img{
+    height: 100px;
+    width: 150px;
+}
+
+
+.my-product Link{
+    text-decoration: none;
+}
+
+.go-to-detail-link{
+    text-decoration: none;
+    color: black;
+}
+
+.go-to-detail-div p{
+    margin-top: 10px;
+}
+
