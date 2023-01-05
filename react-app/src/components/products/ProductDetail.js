@@ -73,7 +73,7 @@ const ProductDetail = () => {
                 <form className='add-to-cart-form' onSubmit={addCartButton}>
                 <input type='hidden' name='productId' value={productId} required></input>
                 <label >Quantity</label>
-                <input className='quantity-input' required type='number' name='quantity' min={1} max={100} value={quantity} onChange={(e)=>setQuantity(e.target.value)} ></input>
+                <input onKeyDown="return false" className='quantity-input' required type='number' name='quantity' min={1} max={10} value={quantity} onChange={(e)=>setQuantity(e.target.value)} ></input>
                 
                 <button className='add-to-cart-btn' type='submit'>Add to cart</button>
                 </form>

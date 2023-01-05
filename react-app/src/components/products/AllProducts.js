@@ -27,9 +27,10 @@ const AllProducts = () => {
     console.log("Alllllllllproducts at frontend", products)
     const productList = Object.values(products)
     console.log("produ Listtttttt",productList)
- useEffect(()=>{
+
+  useEffect(()=>{
     dispatch(getAllProducts())
- },[dispatch])
+  },[dispatch])
 
   return (
     <>
@@ -80,7 +81,7 @@ const AllProducts = () => {
               <Link key={product.id} className='Link' to = {`/products/${product.id}`}>
             <div className='product' >
               
-             
+
                 <img src={product.img} alt="product" />
               
               
