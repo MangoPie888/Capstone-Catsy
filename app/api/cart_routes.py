@@ -79,6 +79,7 @@ def add_product_to_cart():
             print("number of quantity from backend-------------",number_quantity)
             existProduct[0].id = existProduct[0].id
             existProduct[0].quantity = existProduct[0].quantity + number_quantity
+            print("added on quantity ------------------", existProduct[0].quantity + number_quantity)
             existProduct[0].user_id = userId
             existProduct[0].product_id = productId
             db.session.add(existProduct[0])

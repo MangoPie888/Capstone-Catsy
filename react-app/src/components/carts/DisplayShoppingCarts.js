@@ -68,7 +68,8 @@ const DisplayShoppingCarts = () => {
   const products = useSelector(state=>state.carts)
   console.log("products",products)
   const proList = Object.values(products)
-  const total = proList.reduce((totalPrice,pro)=>totalPrice + pro.product.price * pro.cart.quantity ,0)
+  const total1 = proList.reduce((totalPrice,pro)=>totalPrice + pro.product.price * pro.cart.quantity ,0)
+  const total = total1.toFixed(2)
   console.log("product list",proList)
 
   return (
@@ -124,7 +125,7 @@ const DisplayShoppingCarts = () => {
           <div className='cart-checkout'>
             <div className='subtotal'>
               <span>subtotal</span>
-              <span className='amount'>${total.toFixed(2)}</span>
+              <span className='amount'>${total}</span>
             </div>
             <button id='checkoutBtn' onClick={checkout}>Check out</button>
             <div className='continue-shopping'>

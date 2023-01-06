@@ -33,7 +33,7 @@ const ProductDetail = () => {
     useEffect(()=>{
         console.log("useEffect productId", productId)
         dispatch(getProductDetail(productId))
-    },[])
+    },[dispatch])
 
     
  
