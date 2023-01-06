@@ -82,7 +82,9 @@ const AllProducts = () => {
             <div className='product' >
               
 
-                <img src={product.img} alt="product" />
+                <img src={product.img} alt="product" 
+                  onError={e=>{e.currentTarget.src ='https://cdn.xxl.thumbs.canstockphoto.com/image-not-available-written-in-chalk-on-a-blackboard-stock-image_csp8317846.jpg'}}
+                />
               
               
                 {/* <h3>{product.name}</h3> */}

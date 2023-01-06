@@ -59,7 +59,9 @@ const ProductDetail = () => {
             <div className='detail-info'>
                 
                 
-                <img className='product-detail-img' src={product.img} alt="product"/>
+                <img className='product-detail-img' src={product.img} alt="product"
+                    onError={e=>{e.currentTarget.src ='https://cdn.xxl.thumbs.canstockphoto.com/image-not-available-written-in-chalk-on-a-blackboard-stock-image_csp8317846.jpg'}}
+                />
              
 
 

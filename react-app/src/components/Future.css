@@ -2,3 +2,13 @@
     align-items: center;
     text-align: center;
 }
+
+.future-container img{
+    height: 300px;
+    width: 300px;
+    border-radius: 55px;
+}
+
+.future-container p{
+    margin-top: 20px;
+}
