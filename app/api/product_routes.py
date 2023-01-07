@@ -93,11 +93,11 @@ def product_detail(product_id):
 @login_required
 def create_product():
     userId = current_user.get_id()
-    print("userID from backend", userId)
+    print("userID from backend++++++++++++++++", userId)
     shop= Shop.query.filter(Shop.owner_id == userId).one()
-    print("shop from the backend",shop)
+    print("shop from the backend__________",shop)
     shopId = shop.id
-    print("shoppppppppppppppppppid",shopId)
+    print("shoppppppppppppppppppid++++++++++++",shopId)
     form = CreateProductForm()
     form["csrf_token"].data = request.cookies["csrf_token"]
 

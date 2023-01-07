@@ -17,6 +17,7 @@ import DisplayShoppingCarts from './components/carts/DisplayShoppingCarts';
 import Future from './components/Future';
 import Checkout from './components/carts/Checkout';
 import Footer from './components/Footer';
+import CreateShop from './components/shop/CreateShop';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -57,6 +58,9 @@ function App() {
         </ProtectedRoute>
         <ProtectedRoute path='/success' exact={true} >
           <Checkout />
+        </ProtectedRoute>
+        <ProtectedRoute path='/createShop' exact={true} >
+          <CreateShop />
         </ProtectedRoute>
         <Route path='/future' exact={true} >
           <Future/>

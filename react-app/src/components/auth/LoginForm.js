@@ -7,6 +7,7 @@ import {Modal} from "../context/Modal"
 import SignUpForm from './SignUpForm';
 import "./LoginForm.css"
 import demoImg from '../../assets/demo.png'
+import { displayStore } from '../../store/shop';
 
 
 const LoginForm = ({setShowModal}) => {
@@ -31,6 +32,7 @@ const LoginForm = ({setShowModal}) => {
     else{
       
       dispatch(productsInCart())
+      dispatch(displayStore())
       setShowModal(false)
     }
     

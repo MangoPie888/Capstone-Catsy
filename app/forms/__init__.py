@@ -4,3 +4,4 @@ from .create_product_form import CreateProductForm
 from .edit_product_form import EditProductForm
 from .add_shopping_cart_form import AddShoppingCartForm
 from .edit_cart_form import EditCartForm
+from .create_new_store_form import CreateStoreForm
