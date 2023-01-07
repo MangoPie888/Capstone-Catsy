@@ -69,9 +69,9 @@ export const addProductInCart=(info)=>async(dispatch)=>{
 
     const data = await response.json()
     console.log("addproduct data from thunk",data)
-    // if(data){
-    //     dispatch(productsInCart())
-    // }
+    if(data){
+        dispatch(productsInCart())
+    }
 }
 
 

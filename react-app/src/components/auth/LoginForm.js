@@ -29,8 +29,9 @@ const LoginForm = ({setShowModal}) => {
       setErrors(data);
     }
     else{
-      // setShowModal(false)
+      
       dispatch(productsInCart())
+      setShowModal(false)
     }
     
     
@@ -56,6 +57,7 @@ const LoginForm = ({setShowModal}) => {
 
   const handleRegisterBtn=()=>{
     setOpenModal(true)
+   
   
   }
 

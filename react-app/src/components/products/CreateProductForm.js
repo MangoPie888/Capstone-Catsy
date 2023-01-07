@@ -62,7 +62,7 @@ const CreateProductForm = () => {
         <div className='product-info-div'>
         <label>Name<span>*</span>
         <p>Naming your product, including keywords that buyers would use to search for your items</p>
-        <input placeholder='product name' name='name' type='text' value={name} onChange={(e)=>setName(e.target.value)} required >    
+        <input placeholder='product name(limit 255 characters)' name='name' type='text' value={name} onChange={(e)=>setName(e.target.value)} required >    
         </input>
         </label>
         </div>

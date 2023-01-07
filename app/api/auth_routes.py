@@ -80,6 +80,8 @@ def sign_up():
         db.session.commit()
         login_user(user)
         return user.to_dict()
+    
+    print("hitttttttttted ending error")
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 

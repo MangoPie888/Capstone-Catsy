@@ -5,6 +5,8 @@ import { getUserProduct } from '../../store/products'
 import { deleteProduct } from '../../store/products'
 import "./UserProducts.css" 
 import { Link } from 'react-router-dom'
+import noImg from "../../assets/noImg.jpg"
+
 
 const UserProducts = () => {
     const dispatch = useDispatch()
@@ -58,7 +60,10 @@ const UserProducts = () => {
 
             <Link className='go-to-detail-link' to={`/products/${product.id}`}>
             <div className='go-to-detail-div'>
-            <img src={product.img}/>
+            <img src={product.img}
+                alt="product-img"
+                onError={e=>{e.currentTarget.src ='https://cdn.xxl.thumbs.canstockphoto.com/image-not-available-written-in-chalk-on-a-blackboard-stock-image_csp8317846.jpg'}}
+            />
             <p>{product.name}</p>
             <p>$ {product.price}</p>
             </div>

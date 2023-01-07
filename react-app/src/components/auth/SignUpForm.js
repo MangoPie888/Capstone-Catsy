@@ -17,7 +17,7 @@ const SignUpForm = () => {
   const onSignUp = async (e) => {
     e.preventDefault();
     if(password !==repeatPassword){
-      errors.push("password and confirmed password doesn't match")
+      setErrors(["password and confirmed password doesn't match"])
     }
 
     if (password === repeatPassword) {

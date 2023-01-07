@@ -42,7 +42,7 @@ useEffect(()=>{
         </div>
 
         <div className='cart-product-total-price'>
-                  <p id='total-price'>${pro.product.price * quantity}</p>
+                  <p id='total-price'>${(pro.product.price * quantity).toFixed(2)}</p>
                 </div> 
    
         </>

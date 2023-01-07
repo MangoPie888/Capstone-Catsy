@@ -33,18 +33,21 @@ const ProductDetail = () => {
     useEffect(()=>{
         console.log("useEffect productId", productId)
         dispatch(getProductDetail(productId))
-    },[])
+    },[dispatch])
 
     
- 
+   
+   
     const addCartButton =(e)=>{
         e.preventDefault()
-
+  
         console.log("productId before dispatch at frontend",productId)
         console.log("product quantity",quantity)
         dispatch(addProductInCart({productId, quantity}))
         dispatch(productsInCart())
         setShowModal(true)
+        
+        
 
         // dispatch(productsInCart(productId))
 
@@ -59,7 +62,9 @@ const ProductDetail = () => {
             <div className='detail-info'>
                 
                 
-                <img className='product-detail-img' src={product.img} alt="product"/>
+                <img className='product-detail-img' src={product.img} alt="product"
+                    onError={e=>{e.currentTarget.src ='https://cdn.xxl.thumbs.canstockphoto.com/image-not-available-written-in-chalk-on-a-blackboard-stock-image_csp8317846.jpg'}}
+                />
              
 
 
@@ -73,7 +78,21 @@ const ProductDetail = () => {
                 <form className='add-to-cart-form' onSubmit={addCartButton}>
                 <input type='hidden' name='productId' value={productId} required></input>
                 <label >Quantity</label>
-                <input className='quantity-input' required type='number' name='quantity' min={1} max={100} value={quantity} onChange={(e)=>setQuantity(e.target.value)} ></input>
+                <select className='quantity-input' name="quantity" onChange={(e)=>setQuantity(e.target.value)}
+                value={quantity} 
+            >
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+            <option>5</option>
+            <option>6</option>
+            <option>7</option>
+            <option>8</option>
+            <option>9</option>
+            <option>10</option>
+            </select>
+
                 
                 <button className='add-to-cart-btn' type='submit'>Add to cart</button>
                 </form>

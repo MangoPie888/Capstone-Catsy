@@ -16,6 +16,7 @@ import EditProductForm from './components/products/EditProductForm';
 import DisplayShoppingCarts from './components/carts/DisplayShoppingCarts';
 import Future from './components/Future';
 import Checkout from './components/carts/Checkout';
+import Footer from './components/Footer';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -74,6 +75,7 @@ function App() {
         </Route>
       
       </Switch>
+      <Footer />
     </BrowserRouter>
   );
 }

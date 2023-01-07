@@ -8,6 +8,22 @@
     text-align: center;
 }
 
+.cart-empty{
+    display: flex;
+}
+
+.cart-empty i{
+    padding-top: 0;
+}
+
+.cart-empty-link{
+    text-decoration: none;
+}
+
+.cart-empty span{
+    text-decoration: underline;
+}
+
 .cart-container .titles{
     margin: 2rem 0 1rem 0;
 }
