@@ -57,6 +57,7 @@ const LoginForm = ({setShowModal}) => {
 
   const handleRegisterBtn=()=>{
     setOpenModal(true)
+   
   
   }
 

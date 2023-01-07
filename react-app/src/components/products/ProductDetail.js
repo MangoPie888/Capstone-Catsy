@@ -36,15 +36,18 @@ const ProductDetail = () => {
     },[dispatch])
 
     
- 
+   
+   
     const addCartButton =(e)=>{
         e.preventDefault()
-
+  
         console.log("productId before dispatch at frontend",productId)
         console.log("product quantity",quantity)
         dispatch(addProductInCart({productId, quantity}))
         dispatch(productsInCart())
         setShowModal(true)
+        
+        
 
         // dispatch(productsInCart(productId))
 

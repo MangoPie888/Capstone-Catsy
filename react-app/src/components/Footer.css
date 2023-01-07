@@ -1,0 +1,17 @@
+.footer-container{
+    margin: 0;
+    padding: 0;
+    background-color:rgb(47,70,108);
+ 
+    padding: 12px 36px 12px 36px;
+    height: 80px;
+    border-bottom: 2px solid rgba(211,211,211,0.5);
+    text-align: center;
+}
+
+.footer-container img{
+    width: 30px;
+    height: 30px;
+    margin-top: 3px;
+    color: white;
+}
