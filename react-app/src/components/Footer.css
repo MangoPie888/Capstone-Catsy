@@ -1,3 +1,7 @@
+
+.home-container {
+    margin-bottom: 120px;
+}
 .footer-container{
     margin: 0;
     padding: 0;
@@ -7,6 +11,11 @@
     height: 80px;
     border-bottom: 2px solid rgba(211,211,211,0.5);
     text-align: center;
+
+    bottom: 0; left: 0; right: 0;
+    margin-top: 50px;
+    position: inherit;
+    bottom: 0px;
 }
 
 .footer-container img{
@@ -15,3 +24,4 @@
     margin-top: 3px;
     color: white;
 }
+

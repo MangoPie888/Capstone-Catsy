@@ -96,6 +96,7 @@ export const addProduct = (info)=> async(dispatch)=>{
     });
 
     if(response.ok){
+        console.log("getting response back in thunk")
         const newProduct = await response.json();
         dispatch(createProduct(newProduct))
         return null

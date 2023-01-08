@@ -4,6 +4,7 @@ import { getAllProducts } from '../../store/products'
 import {Link} from 'react-router-dom'
 import { useHistory } from 'react-router-dom'
 import "./AllProducts.css" 
+import { displayStore } from '../../store/shop'
 
 // images
 import food from '../../assets/catFood.jpg'
@@ -12,6 +13,7 @@ import toy from '../../assets/catToy.jpg'
 import litter from '../../assets/litter.webp'
 import feeder from "../../assets/feeder.jpg"
 import grooming from "../../assets/grooming.jpg"
+import Footer from '../Footer'
 
 const AllProducts = () => {
   const history = useHistory()
@@ -28,8 +30,11 @@ const AllProducts = () => {
     const productList = Object.values(products)
     console.log("produ Listtttttt",productList)
 
+    const store = useSelector((state)=>state.shop)
+
   useEffect(()=>{
     dispatch(getAllProducts())
+    // dispatch(displayStore())
   },[dispatch])
 
   return (
@@ -97,7 +102,7 @@ const AllProducts = () => {
             )})}
             </div>
     </div>
-   
+    <Footer />
     </>
   )
 }

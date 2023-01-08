@@ -5,7 +5,7 @@ import { getUserProduct } from '../../store/products'
 import { deleteProduct } from '../../store/products'
 import "./UserProducts.css" 
 import { Link } from 'react-router-dom'
-import noImg from "../../assets/noImg.jpg"
+import empty from "../../assets/empty.png"
 
 
 const UserProducts = () => {
@@ -52,7 +52,12 @@ const UserProducts = () => {
 
         <div className='listing-container'>
         {/* <CreateProductForm /> */}
-       
+        {myProducts.length === 0 &&
+        <div className='empty-shop-div'>
+        <img src={empty} />
+        <p className='shop-empty-p'>Your shop is empty!</p>
+        </div>
+        }
         {myProducts && 
             myProducts.map(product=>(
             
@@ -65,7 +70,7 @@ const UserProducts = () => {
                 onError={e=>{e.currentTarget.src ='https://cdn.xxl.thumbs.canstockphoto.com/image-not-available-written-in-chalk-on-a-blackboard-stock-image_csp8317846.jpg'}}
             />
             <p>{product.name}</p>
-            <p>$ {product.price}</p>
+            <p className='user-product-price'>$ {product.price}</p>
             </div>
             </Link>
 

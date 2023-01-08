@@ -1,6 +1,9 @@
 .listing-container{
     padding: 2rem 4rem;
     display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
 }
 
 .my-product{
@@ -66,3 +69,15 @@
     margin-top: 10px;
 }
 
+.user-product-price{
+    padding-bottom: 0;
+    margin-bottom: 0;
+}
+
+.Link-Link{
+    color: black;
+}
+
+.shop-empty-p{
+    text-align: center;
+}

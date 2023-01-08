@@ -7,6 +7,7 @@ import {Modal} from "../context/Modal"
 import SignUpForm from './SignUpForm';
 import "./LoginForm.css"
 import demoImg from '../../assets/demo.png'
+import { displayStore } from '../../store/shop';
 
 
 const LoginForm = ({setShowModal}) => {
@@ -24,6 +25,7 @@ const LoginForm = ({setShowModal}) => {
 
   const onLogin = async (e) => {
     e.preventDefault();
+    console.log('On login form =========')
     const data = await dispatch(login(email, password));
     if (data) {
       setErrors(data);
@@ -31,6 +33,7 @@ const LoginForm = ({setShowModal}) => {
     else{
       
       dispatch(productsInCart())
+      dispatch(displayStore())
       setShowModal(false)
     }
     
@@ -57,19 +60,14 @@ const LoginForm = ({setShowModal}) => {
 
   const handleRegisterBtn=()=>{
     setOpenModal(true)
+    // setShowModal(false)
    
   
   }
 
   return (
   <>
-  
-    <form className='sign-in-form' onSubmit={onLogin}>
-        {errors.map((error, ind) => (
-          <div key={ind} className="login-error-container">{error}</div>
-        ))}
-      
- 
+
       <div className='top-line-sign-in'>
         <div className='Sign-in-sign'>Sign in</div>
         <button className='register-btn' onClick={handleRegisterBtn}>Register</button>
@@ -77,11 +75,14 @@ const LoginForm = ({setShowModal}) => {
 
       {openModal &&
       <Modal onClose={()=>{setShowModal(false)}}>
-        <SignUpForm />
+        <SignUpForm setShowModal={setShowModal} />
       </Modal>
     }
-      
-    
+  
+    <form className='sign-in-form' onSubmit={onLogin}>
+        {errors.map((error, ind) => (
+          <div key={ind} className="login-error-container">{error}</div>
+        ))}
       
       <div className='login-form-div'>
         <div className='email-div'>

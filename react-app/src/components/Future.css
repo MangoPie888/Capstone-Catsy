@@ -12,3 +12,8 @@
 .future-container p{
     margin-top: 20px;
 }
+
+.empty-shop-div img{
+    height: 100px;
+    width: 150px;
+}

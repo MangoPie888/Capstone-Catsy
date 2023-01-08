@@ -9,11 +9,15 @@ import {Modal} from "./context/Modal"
 import "./NavBar.css"
 import logo from '../assets/catsyLogo.png'
 import { useHistory } from 'react-router-dom';
+import { displayStore } from '../store/shop';
 
 const NavBar = () => {
   const history = useHistory()
 
   const sessionUser = useSelector(state => state.session.user);
+  const userStore = useSelector(state =>state.shop)
+
+  console.log("userSTOREEEEEEEEEE",userStore)
 
   const [showModal, setShowModal] = useState(false)
   const [showProfile, setShowProfile] = useState(false)
@@ -24,6 +28,14 @@ const NavBar = () => {
     history.push('/future')
   }
 
+  const checkStore=()=>{
+    if(Object.keys(userStore).length === 0) {
+      history.push('/createShop')
+    }
+    else{
+      history.push('/myproducts')
+    }
+  }
 
   let sessionLink;
   if(sessionUser){
@@ -31,7 +43,7 @@ const NavBar = () => {
       <>
       <ul className='profile-shop-cart'>
       <li>
-      <Link to={'/myproducts'}><i class="fa-solid fa-store"></i></Link>
+      <button onClick={checkStore} className="shop-button"><i class="fa-solid fa-store"></i></button>
       </li>
 
       <li >
