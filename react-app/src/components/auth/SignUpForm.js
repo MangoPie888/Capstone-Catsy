@@ -4,7 +4,7 @@ import { Redirect } from 'react-router-dom';
 import { signUp } from '../../store/session';
 import "./SignUpForm.css"
 
-const SignUpForm = () => {
+const SignUpForm = ({setShowModal} ) => {
   const [errors, setErrors] = useState([]);
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
@@ -16,6 +16,7 @@ const SignUpForm = () => {
 
   const onSignUp = async (e) => {
     e.preventDefault();
+    setShowModal(false)
     if(password !==repeatPassword){
       setErrors(["password and confirmed password doesn't match"])
     }
@@ -25,10 +26,16 @@ const SignUpForm = () => {
       console.log("??????????????lastName",lastName)
       console.log("??????????????Email",email)
      
+      /*
       const data = await dispatch(signUp(firstName,lastName, email, password));
       if (data) {                                                                                                                                                                 
         setErrors(data)
-      }
+      }*/
+
+      dispatch(signUp(firstName, lastName, email, password));
+
+
+      console.log('onSignUP  done')
     }
   };
 

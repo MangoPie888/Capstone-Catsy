@@ -78,7 +78,12 @@ def sign_up():
 
         db.session.add(user)
         db.session.commit()
-        login_user(user)
+
+        
+
+        newUser = User.query.filter(User.email == form.data['email']).first()
+        print('newUserrrrrrrrrrr from backend', newUser)
+        login_user(newUser)
         return user.to_dict()
     
     print("hitttttttttted ending error")

@@ -13,6 +13,7 @@ import toy from '../../assets/catToy.jpg'
 import litter from '../../assets/litter.webp'
 import feeder from "../../assets/feeder.jpg"
 import grooming from "../../assets/grooming.jpg"
+import Footer from '../Footer'
 
 const AllProducts = () => {
   const history = useHistory()
@@ -101,7 +102,7 @@ const AllProducts = () => {
             )})}
             </div>
     </div>
-   
+    <Footer />
     </>
   )
 }
