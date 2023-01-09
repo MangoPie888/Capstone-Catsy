@@ -49,7 +49,7 @@ export const productsInCart=()=> async(dispatch)=>{
 
     if(response.ok) {
         const data = await response.json()
-        console.log("data.carts from thunk", data.carts)
+   
         dispatch(displaycarts(data.carts))
         return data.carts
         
@@ -58,7 +58,7 @@ export const productsInCart=()=> async(dispatch)=>{
 
 
 export const addProductInCart=(info)=>async(dispatch)=>{
-    console.log("productId from thunk", info)
+   
     const response = await fetch("/api/carts",{
         method:"post",
         headers:{
@@ -68,18 +68,17 @@ export const addProductInCart=(info)=>async(dispatch)=>{
     })
 
     const data = await response.json()
-    console.log("addproduct data from thunk",data)
+  
     if(data){
         dispatch(productsInCart())
     }
 }
 
 
-
 export const EditProductInCart = (info) => async(dispatch)=>{
-    console.log("info from editproduct thunk")
+
     const {cartId, quantity} = info
-    console.log("cardId from thunk", cartId)
+ 
     const response = await fetch(`/api/carts/${cartId}`,{
         method:'put',
         headers:{
@@ -89,7 +88,7 @@ export const EditProductInCart = (info) => async(dispatch)=>{
     })
 
     const updatedCart = await response.json()
-    console.log("updated cart from thunk", updatedCart)
+
     dispatch(productsInCart())
 }
 
@@ -99,8 +98,7 @@ export const deleteProductInCart = (cardId)=> async(dispatch)=>{
     })
 
     const data = await response.json()
-    console.log("deleted data from thunk",data)
-    console.log("product Id at thunk", cardId)
+
     dispatch(deleteCart(cardId))
 
     
@@ -114,7 +112,7 @@ export const deleteAllProducts =() => async(dispatch)=>{
     })
 
     const data = await response.json()
-    console.log("data from thunk:",data)
+ 
     dispatch(clearPurchase())
     
     return data
@@ -137,10 +135,9 @@ const cartReducer = (state=initialState, action)=>{
     //     return Object.assign({...state},{[action.carts.id]:action.cart})
     case REMOVE_CARTS:
         cartState = {...state};
-        console.log("Cartstate at reducer", cartState)
-        console.log("cartState with id item",cartState[action.id])
+  
         delete cartState[action.id]
-        console.log("after delete the item from cart, cart reducer", cartState)
+     
         return cartState
     
     case REMOVE_CART:

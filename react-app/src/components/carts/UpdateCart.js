@@ -7,12 +7,12 @@ import { EditProductInCart, productsInCart } from '../../store/cart'
 const UpdateCart = ({pro}) => {
     const dispatch = useDispatch()
     const [quantity, setQuantity] = useState(pro.cart.quantity)
-    console.log(quantity)
+
     const [cartId, setCartId] = useState(pro.cart.id)
-    console.log("cartId",cartId)
+   
 
 useEffect(()=>{
-    console.log("cartId from useEffect", cartId)
+  
     dispatch(EditProductInCart({cartId,quantity}))
 
 },[quantity])

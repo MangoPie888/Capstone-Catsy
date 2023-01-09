@@ -11,17 +11,16 @@ const EditProductForm = () => {
     const history = useHistory()
     const dispatch = useDispatch()
     const location= useLocation();
-    console.log("location",location)
+
     const state = location.state
-    console.log("state",state)
+
     const productId = state.productId
-    console.log("productId",productId)
+
 
 
     const product = useSelector(state=>state.userProducts)
     const singleProduct = product[productId]
-    console.log("product",product)
-    console.log("singleProduct",singleProduct)
+ 
    
     let [name, setName] = useState(singleProduct.name)
     let [price, setPrice] = useState(singleProduct.price)
@@ -31,15 +30,15 @@ const EditProductForm = () => {
 
     const handleEdit=async(e)=>{
         e.preventDefault()
-        console.log("all infor from the edit form","productId",productId,"name",name,"price",price)
+       
         try{
           const data= await dispatch(editSingleProduct({productId,name,price,description,img}))
-          console.log("returned data from frontend", data)
+       
           if(data){
             setErrors(data.errors);
-            console.log("errorss from frontend",errors)
+        
           } else{
-            console.log("successed")
+          
             history.push('/myproducts')
           }
         } catch(error){

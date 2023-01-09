@@ -18,14 +18,14 @@ const UserProducts = () => {
         const [productId, setProductId] =useState()
 
     const products = useSelector(state=>state.userProducts)
-    // console.log("userProducts",products)
+  
     const myProducts = Object.values(products)
-    // console.log("myproductslist",myProducts)
+   
 
 
     const handleDelete=(e)=>{
         e.preventDefault()
-        console.log("buttonid",productId)
+       
         
         dispatch(deleteProduct(productId))
     }

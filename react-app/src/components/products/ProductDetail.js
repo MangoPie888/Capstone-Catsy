@@ -13,56 +13,55 @@ import "./ProductDetail.css"
 const ProductDetail = () => {
     const dispatch = useDispatch()
     const {productId} = useParams()
-    console.log("productId from frontend",productId)
+
 
     const [quantity, setQuantity] = useState(1)
-    console.log("quantity after create state",quantity)
+  
 
     const [showModal, setShowModal] = useState(false)
 
     const sessionUser = useSelector(state=>state.session.user)
     const product = useSelector(state => state.productDetail[productId])
-    console.log("product",product)
+ 
 
     const cartProducts = useSelector(state=>state.carts)
-    console.log("cartProducts",cartProducts)
-    // console.log(product.productId)
+
     
 
 
     useEffect(()=>{
-        console.log("useEffect productId", productId)
+      
         dispatch(getProductDetail(productId))
     },[dispatch])
 
     
     const shoppingCarts = useSelector(state=>state.carts)
-    console.log("shopppppingCart",shoppingCarts)
+
     const carts = Object.values(shoppingCarts)
-    console.log('cartsssssssss',carts)
+   
 
     const isExist = carts.find(singleCart => singleCart.product.id == productId)
-    console.log("isExits",isExist)
    
-    const addCartButton =(e)=>{
+   
+    const addCartButton =async(e)=>{
         e.preventDefault()
         if(!isExist){
-        console.log("productId before dispatch at frontend",productId)
-        console.log("product quantity",quantity)
-        dispatch(addProductInCart({productId, quantity}))
-        dispatch(productsInCart())}
-        else{
-            const totalQuantity = (Number(quantity)+isExist.cart.quantity)
-            console.log("quantittttttttttt",quantity)
-            if(totalQuantity > 10) {
-                return alert("limited quantities for purchasing is 10 ")
+         
+            dispatch(addProductInCart({productId, quantity}))
+            dispatch(productsInCart())}
+            else{
+                const totalQuantity = (Number(quantity)+isExist.cart.quantity)
+               
+                if(totalQuantity > 10) {
+                    return alert("limited quantities for purchasing is 10 ")
             }
-            else {
+                else {
                 dispatch(addProductInCart({productId, quantity}))
                 dispatch(productsInCart())
             }
         }
         setShowModal(true)
+    
         
         
 
@@ -92,7 +91,7 @@ const ProductDetail = () => {
                 <p className='detail-description'>{product.description}</p>
                 <p className='price'>$ {product.price}</p>
 
-                <form className='add-to-cart-form' onSubmit={addCartButton}>
+            <form className='add-to-cart-form' > 
                 <input type='hidden' name='productId' value={productId} required></input>
                 <label >Quantity</label>
                 <select className='quantity-input' name="quantity" onChange={(e)=>setQuantity(e.target.value)}
@@ -111,7 +110,8 @@ const ProductDetail = () => {
             </select>
 
                 
-                <button className='add-to-cart-btn' type='submit'>Add to cart</button>
+
+            <button className='add-to-cart-btn' onClick={addCartButton}>Add to cart</button>
                 {showModal && sessionUser &&
                     <Modal onClose={()=>{setShowModal(false)}}>
                      <div className='pop-up-div'>

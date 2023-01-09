@@ -21,12 +21,12 @@ const CreateShop = () => {
         e.preventDefault()
         try{
         const data = await dispatch(createNewStore({name, description,img}))
-        console.log("returned data from frontend", data)
+    
         if(data){
             setErrors(data.errors);
-            console.log("errorss from frontend",errors)
+      
         } else{
-            console.log("successed")
+           
             history.push("/myproducts")
         }
         } catch(error){
