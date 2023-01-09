@@ -67,26 +67,26 @@ export const getAllProducts = ()=> async(dispatch) => {
 
     if(response.ok) {
         const data = await response.json();
-        console.log("DATAAAAAAAAA from thunk", data.allProducts)
+      
         dispatch(displayAllProducts(data.allProducts))
     }
 }
 
 
 export const getProductDetail = (id)=> async(dispatch) =>{
-    console.log("productiddddd from thunk", id)
+   
     const response = await fetch(`/api/products/${id}`)
 
     if(response.ok) {
         const info = await response.json();
-        console.log("inforrrrr from thunk", info)
+      
         dispatch(productDetail(info))
     }
 }
 
 
 export const addProduct = (info)=> async(dispatch)=>{
-    console.log("create produc infor from thunk", info)
+   
     const response = await fetch("/api/products",{
         method:"post",
         headers:{
@@ -96,14 +96,14 @@ export const addProduct = (info)=> async(dispatch)=>{
     });
 
     if(response.ok){
-        console.log("getting response back in thunk")
+  
         const newProduct = await response.json();
         dispatch(createProduct(newProduct))
         return null
     }else if(response.status < 500){
         const data = await response.json()
         if(data.errors){
-            console.log("return error data from thunk", data)
+  
             return data;
         }
     }
@@ -119,7 +119,7 @@ export const getUserProduct = () => async(dispatch)=>{
 
     if(response.ok) {
         const data = await response.json()
-        console.log("data current user'products", data.currentUserProducts)
+     
         dispatch(ownerProduct(data.currentUserProducts))
     }
 }
@@ -127,9 +127,9 @@ export const getUserProduct = () => async(dispatch)=>{
 
 
 export const editSingleProduct = (data) => async(dispatch)=>{
-    console.log("data from thunk",data)
+ 
     const {productId,name,price,description,img} = data
-    console.log("productId",productId)
+
     const response = await fetch(`/api/products/${productId}`,{
         method:"PUT",
         headers:{
@@ -146,13 +146,13 @@ export const editSingleProduct = (data) => async(dispatch)=>{
     
     if(response.ok){
         const updatedProduct = await response.json();
-        console.log("updatedProduct from thunk",updatedProduct)
+  
         dispatch(updateProduct(updatedProduct))
         return null
     }else if(response.status < 500){
         const data = await response.json()
         if(data.errors){
-            console.log("return error data from thunk", data)
+ 
             return data;
         }
     }
@@ -167,7 +167,7 @@ export const deleteProduct = (id)=> async(dispatch)=>{
         method:"delete"
     })
     const data = await response.json()
-    console.log("deleted data from thunk",data)
+   
     dispatch(removeProduct(id))
     return response
 }

@@ -16,9 +16,7 @@ const NavBar = () => {
 
   const sessionUser = useSelector(state => state.session.user);
   const userStore = useSelector(state =>state.shop)
-
-  console.log("userSTOREEEEEEEEEE",userStore)
-
+  
   const [showModal, setShowModal] = useState(false)
   const [showProfile, setShowProfile] = useState(false)
 

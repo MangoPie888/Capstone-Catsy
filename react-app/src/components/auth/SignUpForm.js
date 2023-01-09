@@ -23,13 +23,7 @@ const SignUpForm = ({setShowModal} ) => {
     }
 
     if (password === repeatPassword) {
-      console.log("-------firstName",firstName)
-      console.log("??????????????lastName",lastName)
-      console.log("??????????????Email",email)
-     
-      
       const data = await dispatch(signUp(firstName,lastName, email, password));
-      console.log("signup form data", data)
       if (data) {                                                                                                                                                                 
         setErrors(data)
       }

@@ -26,9 +26,9 @@ const AllProducts = () => {
   
 
     const products = useSelector((state)=>state.products)
-    console.log("Alllllllllproducts at frontend", products)
+
     const productList = Object.values(products)
-    console.log("produ Listtttttt",productList)
+ 
 
     const store = useSelector((state)=>state.shop)
 

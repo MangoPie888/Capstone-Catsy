@@ -26,13 +26,13 @@ export const displayStore = ()=>async(dispatch)=>{
 
     if(response.ok) {
         const data = await response.json()
-        console.log("shop data from thunk:",data)
+   
         dispatch(addStore(data))
     }
 }
 
 export const createNewStore = (info)=> async(dispatch)=>{
-    console.log("create store's infor from thunk", info)
+
 
     const response = await fetch('/api/shop',{
     method:"post",
@@ -44,14 +44,14 @@ export const createNewStore = (info)=> async(dispatch)=>{
     })
 
     if(response.ok){
-        console.log("getting response back in thunk")
+ 
         const newStore = await response.json();
         dispatch(displayStore())
         return null
     }else if(response.status < 500){
         const data = await response.json()
         if(data.errors){
-            console.log("return error data from thunk", data)
+          
             return data;
         }
     }

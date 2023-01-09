@@ -13,47 +13,45 @@ import "./ProductDetail.css"
 const ProductDetail = () => {
     const dispatch = useDispatch()
     const {productId} = useParams()
-    console.log("productId from frontend",productId)
+
 
     const [quantity, setQuantity] = useState(1)
-    console.log("quantity after create state",quantity)
+  
 
     const [showModal, setShowModal] = useState(false)
 
     const sessionUser = useSelector(state=>state.session.user)
     const product = useSelector(state => state.productDetail[productId])
-    console.log("product",product)
+ 
 
     const cartProducts = useSelector(state=>state.carts)
-    console.log("cartProducts",cartProducts)
-    // console.log(product.productId)
+
     
 
 
     useEffect(()=>{
-        console.log("useEffect productId", productId)
+      
         dispatch(getProductDetail(productId))
     },[dispatch])
 
     
     const shoppingCarts = useSelector(state=>state.carts)
-    console.log("shopppppingCart",shoppingCarts)
+
     const carts = Object.values(shoppingCarts)
-    console.log('cartsssssssss',carts)
+   
 
     const isExist = carts.find(singleCart => singleCart.product.id == productId)
-    console.log("isExits",isExist)
+   
    
     const addCartButton =async(e)=>{
         e.preventDefault()
         if(!isExist){
-            console.log("productId before dispatch at frontend",productId)
-            console.log("product quantity",quantity)
+         
             dispatch(addProductInCart({productId, quantity}))
             dispatch(productsInCart())}
             else{
                 const totalQuantity = (Number(quantity)+isExist.cart.quantity)
-                console.log("quantittttttttttt",quantity)
+               
                 if(totalQuantity > 10) {
                     return alert("limited quantities for purchasing is 10 ")
             }

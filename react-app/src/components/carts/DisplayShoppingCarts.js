@@ -17,7 +17,7 @@ const DisplayShoppingCarts = () => {
 
 
   const userId = useSelector(state=>state.session.user.id)
-  console.log("userIdddddddd",userId)
+
 
   let [quantity, setQuantity] = useState()
   let [productId, setProductId] = useState()
@@ -32,19 +32,15 @@ const DisplayShoppingCarts = () => {
 
 
   const handlingDelete=(cartId)=>{
-  
-    // const cartId = e.target.id
-    console.log("cartId",cartId)
       dispatch(deleteProductInCart(cartId))
-      // dispatch(productsInCart())
+  
   
   }
 
   const changeQuantity=async(e)=>{
     quantity = e.target.value
     cartId = e.target.id
-    console.log("cartId from changeQuantity function", cartId)
-    console.log("quantity from changeQuantity function", quantity)
+
     
     let res = await dispatch(EditProductInCart({quantity,cartId}))
     .then(dispatch(productsInCart()))
@@ -66,11 +62,11 @@ const DisplayShoppingCarts = () => {
 
 
   const products = useSelector(state=>state.carts)
-  console.log("products",products)
+
   const proList = Object.values(products)
   const total1 = proList.reduce((totalPrice,pro)=>totalPrice + pro.product.price * pro.cart.quantity ,0)
   const total = total1.toFixed(2)
-  console.log("product list",proList)
+ 
 
   return (
   
