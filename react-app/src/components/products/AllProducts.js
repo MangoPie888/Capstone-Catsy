@@ -4,7 +4,7 @@ import { getAllProducts } from '../../store/products'
 import {Link} from 'react-router-dom'
 import { useHistory } from 'react-router-dom'
 import "./AllProducts.css" 
-import { productsInCart } from '../../store/cart'
+
 
 // images
 import food from '../../assets/catFood.jpg'
@@ -34,7 +34,7 @@ const AllProducts = () => {
 
   useEffect(()=>{
     dispatch(getAllProducts())
-    dispatch(productsInCart())
+
   },[dispatch])
 
   return (

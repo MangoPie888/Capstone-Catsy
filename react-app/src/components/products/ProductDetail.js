@@ -112,7 +112,6 @@ const ProductDetail = () => {
 
                 
                 <button className='add-to-cart-btn' type='submit'>Add to cart</button>
-                </form>
                 {showModal && sessionUser &&
                     <Modal onClose={()=>{setShowModal(false)}}>
                      <div className='pop-up-div'>
@@ -134,9 +133,12 @@ const ProductDetail = () => {
 
                 {showModal && sessionUser === null && 
                     <Modal onClose={()=>{setShowModal(false)}}>
-                        <LoginForm/>
+                        <LoginForm setShowModal={setShowModal}/>
                     </Modal>
                 }
+
+                </form>
+                
                 </div>
             
             </div>
