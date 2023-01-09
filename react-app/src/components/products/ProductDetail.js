@@ -44,25 +44,26 @@ const ProductDetail = () => {
     const isExist = carts.find(singleCart => singleCart.product.id == productId)
     console.log("isExits",isExist)
    
-    const addCartButton =(e)=>{
+    const addCartButton =async(e)=>{
         e.preventDefault()
         if(!isExist){
-        console.log("productId before dispatch at frontend",productId)
-        console.log("product quantity",quantity)
-        dispatch(addProductInCart({productId, quantity}))
-        dispatch(productsInCart())}
-        else{
-            const totalQuantity = (Number(quantity)+isExist.cart.quantity)
-            console.log("quantittttttttttt",quantity)
-            if(totalQuantity > 10) {
-                return alert("limited quantities for purchasing is 10 ")
+            console.log("productId before dispatch at frontend",productId)
+            console.log("product quantity",quantity)
+            dispatch(addProductInCart({productId, quantity}))
+            dispatch(productsInCart())}
+            else{
+                const totalQuantity = (Number(quantity)+isExist.cart.quantity)
+                console.log("quantittttttttttt",quantity)
+                if(totalQuantity > 10) {
+                    return alert("limited quantities for purchasing is 10 ")
             }
-            else {
+                else {
                 dispatch(addProductInCart({productId, quantity}))
                 dispatch(productsInCart())
             }
         }
         setShowModal(true)
+    
         
         
 
@@ -92,7 +93,7 @@ const ProductDetail = () => {
                 <p className='detail-description'>{product.description}</p>
                 <p className='price'>$ {product.price}</p>
 
-                <form className='add-to-cart-form' onSubmit={addCartButton}>
+            <form className='add-to-cart-form' > 
                 <input type='hidden' name='productId' value={productId} required></input>
                 <label >Quantity</label>
                 <select className='quantity-input' name="quantity" onChange={(e)=>setQuantity(e.target.value)}
@@ -111,7 +112,8 @@ const ProductDetail = () => {
             </select>
 
                 
-                <button className='add-to-cart-btn' type='submit'>Add to cart</button>
+
+            <button className='add-to-cart-btn' onClick={addCartButton}>Add to cart</button>
                 {showModal && sessionUser &&
                     <Modal onClose={()=>{setShowModal(false)}}>
                      <div className='pop-up-div'>

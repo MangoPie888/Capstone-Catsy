@@ -16,11 +16,6 @@ const removeUser = () => ({
   type: REMOVE_USER,
 })
 
-
-
-
-
-
 const initialState = { user: null };
 
 export const authenticate = () => async (dispatch) => {
@@ -100,8 +95,6 @@ export const signUp = (firstName,lastName, email, password) => async (dispatch) 
     }),
   });
   
-  console.log('response = ', response)
-
   if (response.ok) {
     const data = await response.json();
     console.log('response data ', data)

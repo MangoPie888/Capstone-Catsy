@@ -68,12 +68,11 @@ export const addProductInCart=(info)=>async(dispatch)=>{
     })
 
     const data = await response.json()
-    console.log("addproduct data from thunk",data)
+    console.log("addproduct data from thunk", info,data)
     if(data){
         dispatch(productsInCart())
     }
 }
-
 
 
 export const EditProductInCart = (info) => async(dispatch)=>{

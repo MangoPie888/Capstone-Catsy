@@ -29,14 +29,13 @@ const SignUpForm = ({setShowModal} ) => {
      
       
       const data = await dispatch(signUp(firstName,lastName, email, password));
+      console.log("signup form data", data)
       if (data) {                                                                                                                                                                 
         setErrors(data)
       }
       else{
         setShowModal(false)
       }
-
-    
     }
   };
 
