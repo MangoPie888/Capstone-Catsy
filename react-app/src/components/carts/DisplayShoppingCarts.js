@@ -100,8 +100,11 @@ const DisplayShoppingCarts = () => {
         <div className='cart-items'>
           {proList.map((pro)=>
             <div className='cart-item' key={pro.cart.id}>
+            
               <div className='cart-product'>
+                <Link to={`/products/${pro.product.id}`}>
                 <img src={pro.product.img} alt={pro.product.name}></img>
+                </Link>
                 <div>
                     <h3>{pro.product.name}</h3>
                     <p>{pro.product.description}</p>

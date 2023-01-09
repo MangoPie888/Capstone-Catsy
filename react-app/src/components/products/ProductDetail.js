@@ -36,15 +36,32 @@ const ProductDetail = () => {
     },[dispatch])
 
     
-   
+    const shoppingCarts = useSelector(state=>state.carts)
+    console.log("shopppppingCart",shoppingCarts)
+    const carts = Object.values(shoppingCarts)
+    console.log('cartsssssssss',carts)
+
+    const isExist = carts.find(singleCart => singleCart.product.id == productId)
+    console.log("isExits",isExist)
    
     const addCartButton =(e)=>{
         e.preventDefault()
-  
+        if(!isExist){
         console.log("productId before dispatch at frontend",productId)
         console.log("product quantity",quantity)
         dispatch(addProductInCart({productId, quantity}))
-        dispatch(productsInCart())
+        dispatch(productsInCart())}
+        else{
+            const totalQuantity = (Number(quantity)+isExist.cart.quantity)
+            console.log("quantittttttttttt",quantity)
+            if(totalQuantity > 10) {
+                return alert("limited quantities for purchasing is 10 ")
+            }
+            else {
+                dispatch(addProductInCart({productId, quantity}))
+                dispatch(productsInCart())
+            }
+        }
         setShowModal(true)
         
         
@@ -95,7 +112,6 @@ const ProductDetail = () => {
 
                 
                 <button className='add-to-cart-btn' type='submit'>Add to cart</button>
-                </form>
                 {showModal && sessionUser &&
                     <Modal onClose={()=>{setShowModal(false)}}>
                      <div className='pop-up-div'>
@@ -117,9 +133,12 @@ const ProductDetail = () => {
 
                 {showModal && sessionUser === null && 
                     <Modal onClose={()=>{setShowModal(false)}}>
-                        <LoginForm/>
+                        <LoginForm setShowModal={setShowModal}/>
                     </Modal>
                 }
+
+                </form>
+                
                 </div>
             
             </div>
