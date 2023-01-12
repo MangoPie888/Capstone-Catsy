@@ -40,7 +40,7 @@ const AllProducts = () => {
   return (
     <>
     <div className='categray-container'>
-    <h2>Explore one-of-a-kind finds from independent makers</h2>
+    <h1>Explore best cat products from all over the worlds</h1>
     </div>
 
     <div className='categary-img-container'>

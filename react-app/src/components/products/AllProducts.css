@@ -58,14 +58,14 @@
 .categray-container{
     background-color: rgb(253, 235, 210);
     width: 100%;
-    margin: 0;
-    padding: 0;
     display: block;
     text-align: center;
-    height: 130px;
+    height: 160px;
+    padding-top: 20px;
+   
 }
 
-.categray-container h2{
+.categray-container h1{
     padding-top: 20px;
     font-weight: 400;
 }
@@ -81,9 +81,9 @@
 }
 
 .categary-img-container img{
-    height: 80px;
-    width: 80px;
-    border-radius: 50px;
+    height: 140px;
+    width: 140px;
+    border-radius: 70px;
 }
 
 .search-img-and-text p{

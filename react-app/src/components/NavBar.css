@@ -6,7 +6,7 @@ nav {
     justify-content:space-between;
     align-items: center;
     padding: 12px 36px 12px 36px;
-    height: 60px;
+    /* height: 60px; */
     border-bottom: 2px solid rgba(211,211,211,0.5)
 }
 
