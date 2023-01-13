@@ -14,6 +14,8 @@ class Product(db.Model):
     price = db.Column(db.Integer, nullable = False)
     description = db.Column(db.String(1000), nullable = False)
     img = db.Column(db.String(1000), nullable= False)
+    category = db.Column(db.String(255), nullable = False)
+    inventory = db.Column(db.Integer, nullable = False)
 
     seller_id =db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("users.id"), ondelete="CASCADE"))
     shop_id =db.Column(db.Integer,db.ForeignKey(add_prefix_for_prod("shops.id"),ondelete="CASCADE") )

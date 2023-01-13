@@ -14,6 +14,7 @@ import litter from '../../assets/litter.webp'
 import feeder from "../../assets/feeder.jpg"
 import grooming from "../../assets/grooming.jpg"
 import Footer from '../Footer'
+import catFurniture from '../../assets/catFurniture.avif'
 
 const AllProducts = () => {
   const history = useHistory()
@@ -73,7 +74,12 @@ const AllProducts = () => {
         <div className='search-img-and-text'onClick={handleFuture}>
         <img src={grooming} alt="cat-grooming-img"/>
         <p>Grooming <br/> Supplies</p>
-        </div>`
+        </div>
+
+        <div className='search-img-and-text'onClick={handleFuture}>
+        <img src={catFurniture} alt="cat-furniture"/>
+        <p>Cat Furnitures</p>
+        </div>
     </div>
 
     <div className='home-container'>

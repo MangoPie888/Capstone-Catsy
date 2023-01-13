@@ -30,11 +30,19 @@ def seed_shops():
         owner_id = 5
     )
 
+    shop5= Shop(
+        shop_name="Love Cats",
+        shop_description= "We all love cats",
+        shop_img ="https://www.freewebheaders.com/wp-content/uploads/cute-sleepy-kitten.jpg",
+        owner_id = 7
+    )
+
 
     db.session.add(shop1)
     db.session.add(shop2)
     db.session.add(shop3)
     db.session.add(shop4)
+    db.session.add(shop5)
     db.session.commit()
 
 
