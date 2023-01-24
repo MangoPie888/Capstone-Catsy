@@ -30,6 +30,9 @@ const AllProducts = () => {
 
     const productList = Object.values(products)
  
+    console.log("productsssssssssssss", productList)
+    const popularArray = productList.slice(0,5)
+    console.log("popularrrrrrrrr",popularArray)
 
     const store = useSelector((state)=>state.shop)
 
@@ -53,7 +56,7 @@ const AllProducts = () => {
       
         <div className='search-img-and-text' onClick={handleFuture}>
         <img src={toy} alt="cat-toy-img"/>
-        <p>Toy</p>
+        <p>Toys</p>
         </div>
       
         <div className='search-img-and-text' onClick={handleFuture}>
@@ -81,6 +84,16 @@ const AllProducts = () => {
         <p>Cat Furnitures</p>
         </div>
     </div>
+
+    {/* <div className='top-toys-section-div'>
+      <h2>Popular cat products</h2>
+      <div className='popular-grid-div'>
+       {popularArray && 
+       <image />}
+
+      </div>
+    </div> */}
+
 
     <div className='home-container'>
 

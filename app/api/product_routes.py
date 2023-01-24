@@ -110,7 +110,9 @@ def create_product():
             description = form.data["description"],
             img = form.data["img"],
             seller_id = int(userId),
-            shop_id = shopId
+            shop_id = shopId,
+            inventory = form.data["inventory"],
+            category = form.data["category"]
         )
 
         print("newwwwwwwwwwwwwwwwwww",new_product)
@@ -124,7 +126,9 @@ def create_product():
             "description":new_product.description,
             "img":new_product.img,
             "seller_id":new_product.seller_id,
-            "shop_id":new_product.shop_id
+            "shop_id":new_product.shop_id,
+            "inventory":new_product.inventory,
+            "category":new_product.category
         },200
     
     else:

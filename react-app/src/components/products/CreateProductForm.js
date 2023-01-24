@@ -15,13 +15,16 @@ const CreateProductForm = () => {
     const [price, setPrice] = useState()
     const [description, setDescription] = useState("")
     const [img, setImg] = useState("")
+    const [category, setCategory] = useState("Food")
+    const [inventory, setInventory] = useState()
     const [errors, setErrors] = useState([])
 
     const productFormSubmission=async(e)=>{
-     
         e.preventDefault()
+        console.log(category)
+        console.log(inventory)
         try{
-          const data= await dispatch(addProduct({name,price,description,img}))
+          const data= await dispatch(addProduct({name,price,description,img,category,inventory}))
          
           if(data){
             setErrors(data.errors);
@@ -75,6 +78,22 @@ const CreateProductForm = () => {
         </input>
         </div>
 
+
+        <div className='product-info-div'>
+        <label>Category<span>*</span>
+        <p>Please choose a category </p>
+        </label>
+        <select name='category' onChange={(e)=>{setCategory(e.target.value)}} >
+          <option value="Food">Food</option>
+          <option value="Litter & Litter Boxes">Litter & Litter Boxes</option>
+          <option value="Toys">Toys</option>
+          <option value="Cat Furnitures">Cat Furnitures</option>
+          <option value="Health">Health</option>
+          <option value="Bowls & Feeders">Bowls & Feeders</option>
+        </select>
+        </div>
+
+
         <div className='product-info-div'>
         <label>Description<span>*</span>
         <p>Start with a brief overview that describes your product's great features. Shoppers will only see the first few lines of your description, so make it count!</p>
@@ -82,6 +101,15 @@ const CreateProductForm = () => {
         <textarea maxlength="500"  placeholder='description(limit:1000 characters)' name='description' type='text' value={description} onChange={(e)=>setDescription(e.target.value)} required >    
         </textarea>
         </div>
+
+        <div className='product-info-div'>
+        <label>Inventory<span>*</span>
+        <p>How many products do you have for selling? Please enter a number below.</p>
+        </label>
+        <input placeholder='inventory' name='inventory' min={1} type='number' value={inventory} onChange={(e)=>setInventory(e.target.value)} required >    
+        </input>
+        </div>
+
 
         <div className='product-info-div'>
         <label>Image

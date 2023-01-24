@@ -2,15 +2,19 @@
     font-family: 'Times New Roman', Times, serif;
 }
 
+.top-toys-section-div h2{
+    margin-left: 13%;
 
-
+}
 
 
 .products{
     display: flex;
-    justify-content: space-evenly;
+    justify-content: flex-start;
     flex-wrap: wrap;
-   
+    gap: 35px;
+    margin-left: 15%;
+    margin-right: 12%;
    
 }
 
@@ -78,6 +82,8 @@
     flex-direction: row;
     justify-content: space-around;
     cursor: pointer;
+    margin-left: 11%;
+    margin-right: 12%;
 }
 
 .categary-img-container img{
@@ -87,7 +93,7 @@
 }
 
 .search-img-and-text p{
-    font-size: 11px;
+    font-size: 14px;
     text-align: center;
     font-weight: 550;
     
