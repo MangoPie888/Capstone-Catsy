@@ -128,7 +128,7 @@ export const getUserProduct = () => async(dispatch)=>{
 
 export const editSingleProduct = (data) => async(dispatch)=>{
  
-    const {productId,name,price,description,img} = data
+    const {productId,name,price,description,img,inventory, category} = data
 
     const response = await fetch(`/api/products/${productId}`,{
         method:"PUT",
@@ -140,7 +140,9 @@ export const editSingleProduct = (data) => async(dispatch)=>{
             name,
             price,
             description,
-            img
+            img,
+            inventory,
+            category
         })
     })
     

@@ -48,7 +48,9 @@ def curr_user_product():
             "description":product.description,
             "img":product.img,
             "seller_id":product.seller_id,
-            "shop_id":product.shop_id
+            "shop_id":product.shop_id,
+            "inventory":product.inventory,
+            "category":product.category
         }
         product_lst.append(product_dict)
     return {"currentUserProducts":product_lst}
@@ -162,6 +164,8 @@ def edit_product(productId):
         product.img = form.data["img"]
         product.seller_id = int(userId)
         product.shop_id = product.shop_id
+        product.inventory = form.data["inventory"]
+        product.category = form.data["category"]
 
         db.session.add(product)
         db.session.commit()
@@ -173,7 +177,9 @@ def edit_product(productId):
             "description":product.description,
             "img":product.img,
             "seller_id":product.seller_id,
-            "shop_id":product.shop_id
+            "shop_id":product.shop_id,
+            "inventory":product.inventory,
+            "category":product.category
         },200
     else:
         return{'errors': validation_errors_to_error_messages(form.errors)}, 400

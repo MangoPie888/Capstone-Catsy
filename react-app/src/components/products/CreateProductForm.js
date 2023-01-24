@@ -15,7 +15,7 @@ const CreateProductForm = () => {
     const [price, setPrice] = useState()
     const [description, setDescription] = useState("")
     const [img, setImg] = useState("")
-    const [category, setCategory] = useState("Food")
+    const [category, setCategory] = useState("")
     const [inventory, setInventory] = useState()
     const [errors, setErrors] = useState([])
 
@@ -83,7 +83,8 @@ const CreateProductForm = () => {
         <label>Category<span>*</span>
         <p>Please choose a category </p>
         </label>
-        <select name='category' onChange={(e)=>{setCategory(e.target.value)}} >
+        <select placeholder='Please select a category' name='category' onChange={(e)=>{setCategory(e.target.value)}} required>
+          <option value="" disabled selected hidden>Please select a category</option>
           <option value="Food">Food</option>
           <option value="Litter & Litter Boxes">Litter & Litter Boxes</option>
           <option value="Toys">Toys</option>
