@@ -1,6 +1,6 @@
 from flask import Blueprint,jsonify,request
 from flask_login import login_required, current_user
-from app.models import Product,User, Shop, db
+from app.models import Product,User, Shop, db,Image
 from ..forms import CreateProductForm
 from .auth_routes import validation_errors_to_error_messages
 from ..forms import EditProductForm
@@ -12,20 +12,24 @@ product_routes = Blueprint("products",__name__)
 @product_routes.route("")
 def all_products():
     products = Product.query.all()
+    images = Image.query.filter(Image.preview == True).all()
 
+    
 
     products_list = []
     for product in products:
-        product_dict={
-            "id":product.id,
-            "name":product.name,
-            "price":product.price,
-            "description":product.description,
-            "img":product.img,
-            "seller_id":product.seller_id,
-            "shop_id":product.shop_id
-        }
-        products_list.append(product_dict)
+        for image in images:
+            if(image.product_id == product.id):
+                product_dict={
+                    "id":product.id,
+                    "name":product.name,
+                    "price":product.price,
+                    "description":product.description,
+                    "img":image.img,
+                    "seller_id":product.seller_id,
+                    "shop_id":product.shop_id
+                }
+                products_list.append(product_dict)
     print("productssssss",products_list)
     return {"allProducts":products_list}
 
@@ -39,20 +43,24 @@ def curr_user_product():
     products = Product.query.filter(Product.seller_id == userId).all()
     print("%%%%%%%%%%%%",products)
 
+    images = Image.query.filter(Image.preview == True).all()
+
     product_lst =[]
     for product in products:
-        product_dict={
-            "id":product.id,
-            "name":product.name,
-            "price":product.price,
-            "description":product.description,
-            "img":product.img,
-            "seller_id":product.seller_id,
-            "shop_id":product.shop_id,
-            "inventory":product.inventory,
-            "category":product.category
-        }
-        product_lst.append(product_dict)
+        for image in images:
+            if(image.product_id == product.id):
+                product_dict={
+                    "id":product.id,
+                    "name":product.name,
+                    "price":product.price,
+                    "description":product.description,
+                    "img":image.img,
+                    "seller_id":product.seller_id,
+                    "shop_id":product.shop_id,
+                    "inventory":product.inventory,
+                    "category":product.category
+                }
+                product_lst.append(product_dict)
     return {"currentUserProducts":product_lst}
 
 

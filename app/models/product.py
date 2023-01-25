@@ -13,7 +13,7 @@ class Product(db.Model):
     name = db.Column(db.String(255), nullable = False)
     price = db.Column(db.Integer, nullable = False)
     description = db.Column(db.String(1000), nullable = False)
-    img = db.Column(db.String(1000), nullable= False)
+    # img = db.Column(db.String(1000), nullable= False)
     category = db.Column(db.String(255))
     inventory = db.Column(db.Integer)
 
@@ -24,6 +24,7 @@ class Product(db.Model):
     cart = db.relationship("Cart", back_populates="products", cascade="all, delete",  
     passive_deletes=True)
     shop = db.relationship("Shop", back_populates="products")
+    images =db.relationship("Image", back_populates="products")
 
 
     def to_dict(self):
@@ -32,7 +33,7 @@ class Product(db.Model):
             "name":self.product.name,
             "price":self.product.price,
             "description":self.product.description,
-            "img":self.product.img,
+            # "img":self.product.img,
             "seller_id":self.product.seller_id,
             "shop_id":self.product.shop_id,
             "category":self.product.category,
