@@ -18,6 +18,7 @@ import Future from './components/Future';
 import Checkout from './components/carts/Checkout';
 import Footer from './components/Footer';
 import CreateShop from './components/shop/CreateShop';
+import UploadPicture from './components/products/AddImages';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -73,6 +74,9 @@ function App() {
         </Route>
         <Route path='/products/:productId' exact={true} >
           <ProductDetail/>
+        </Route>
+        <Route path='/images' exact={true} >
+          <UploadPicture/>
         </Route>
         <Route path='' exact={true} >
           <AllProducts/>
