@@ -50,7 +50,7 @@ const UploadPicture = ()=>{
                 onChange={updateImage}
             />
 
-            <p>Is this picture a preview picture?</p>
+            {/* <p>Is this picture a preview picture?</p>
             
             <input
                 type="radio"
@@ -70,7 +70,7 @@ const UploadPicture = ()=>{
                 checked
 
             />
-            <label>No</label>
+            <label>No</label> */}
 
             <input type="number"
                 hidden

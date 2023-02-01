@@ -99,7 +99,7 @@ export const addProduct = (info)=> async(dispatch)=>{
   
         const newProduct = await response.json();
         dispatch(createProduct(newProduct))
-        return null
+        return newProduct
     }else if(response.status < 500){
         const data = await response.json()
         if(data.errors){

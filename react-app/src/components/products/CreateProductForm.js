@@ -6,6 +6,7 @@ import { getUserProduct } from '../../store/products'
 import "./CreateProduct.css"
 import listingCat from '../../assets/listing.png'
 
+import UploadPicture from './AddImages'
 
 const CreateProductForm = () => {
     const history = useHistory()
@@ -14,24 +15,62 @@ const CreateProductForm = () => {
     const [name, setName] = useState("")
     const [price, setPrice] = useState()
     const [description, setDescription] = useState("")
-    const [img, setImg] = useState("")
+    // const [img, setImg] = useState("")
     const [category, setCategory] = useState("")
     const [inventory, setInventory] = useState()
     const [errors, setErrors] = useState([])
+
+
+    //image
+    const [image, setImage] = useState(null);
+    // const [imageLoading, setImageLoading] = useState(false);
+    const [preview, setPreview] = useState(0);
+    const [productId,setProductId] = useState();
 
     const productFormSubmission=async(e)=>{
         e.preventDefault()
         console.log(category)
         console.log(inventory)
         try{
-          const data= await dispatch(addProduct({name,price,description,img,category,inventory}))
+          const data= await dispatch(addProduct({name,price,description,/*img,*/category,inventory}))
+          console.log("dataaaaaaaaaaa",data)
          
-          if(data){
+          if(data.errors){
             setErrors(data.errors);
        
           } else{
-          
-            history.push("/myproducts")
+            console.log("correcttttttttttt")
+            setProductId(data.id)
+            console.log("productIdddddddddd",data.id)
+            console.log("preview",preview)
+            const formData = new FormData();
+          formData.append("image", image);
+          formData.append("productId",productId)
+          formData.append("preview",preview)
+
+      // setImageLoading(true);
+
+      const res = await fetch("/api/images" ,{
+          method:"POST",
+          body:formData
+      });
+
+      if(res.ok) {
+          await res.json();
+          // setImageLoading(false);
+          // history.push("/images");
+          console.log("image ok part")
+      }
+      else{
+          // setImageLoading(false)
+          console.log("error")
+      }
+            // button.click()
+            
+            console.log("end of submit")
+            
+           
+            // history.push("/myproducts")
           }
         } catch(error){
  
@@ -42,6 +81,49 @@ const CreateProductForm = () => {
         // dispatch(getUserProduct())
         
     }
+
+
+  //   const handleSubmit = async(e) =>{
+  //     e.preventDefault();
+  //     console.log("preview",preview)
+  //     const formData = new FormData();
+  //     formData.append("image", image);
+  //     formData.append("productId",productId)
+  //     formData.append("preview",preview)
+
+  //     // setImageLoading(true);
+
+  //     const res = await fetch("/api/images" ,{
+  //         method:"POST",
+  //         body:formData
+  //     });
+
+  //     if(res.ok) {
+  //         await res.json();
+  //         // setImageLoading(false);
+  //         // history.push("/images");
+  //         console.log("image ok part")
+  //     }
+  //     else{
+  //         // setImageLoading(false)
+  //         console.log("error")
+  //     }
+  // }
+
+  const updateImage = (e) =>{
+      const file = e.target.files;
+      console.log("e.target.files",e.target.files)
+      console.log("file",file)
+      setImage(file[0]);
+      if(file.length > 0) {
+        let fileReader = new FileReader();
+        fileReader.onload = function(event){
+          document.getElementById("preview").setAttribute("src",event.target.result)
+        };
+        fileReader.readAsDataURL(file[0])
+
+      }
+  }
 
   return (
     <div >
@@ -116,9 +198,27 @@ const CreateProductForm = () => {
         <label>Image
         <p>Please enter the url for the product. A good image can make your listing more appealing!</p>
         </label>
-        <input placeholder='product image' name='img' type='url' value={img} onChange={(e)=>setImg(e.target.value)} required >    
-        </input>
+        {/* <form id='imageForm' onSubmit={handleSubmit}> */}
+            
+            
+            <input 
+                type="file"
+                name='file'
+                id ="file"
+                accept="image/*"
+                // multiple="multiple"
+                onChange={updateImage}
+            />
+            <div>
+            <img id="preview" ></img>
+            </div>
+            {/* <button id='imageButton' type="submit" hidden>Submit</button> */}
+            {/* {(imageLoading) && <p>Loading</p>} */}
+        {/* </form> */}
+        {/* <input placeholder='product image' name='img' type='url' value={img} onChange={(e)=>setImg(e.target.value)} required >    
+        </input> */}
         </div>
+
         <button className='create-product-btn' type='submit'>Create</button>
       </form>
     </div>

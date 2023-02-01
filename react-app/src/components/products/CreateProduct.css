@@ -83,3 +83,12 @@
 .create-product-btn:hover{
     transform: scale(1.03);
 }
+
+
+/* images */
+.product-info-div #preview{
+    height: 100px;
+    width: 100px;
+    border: transparent ;
+}
+
