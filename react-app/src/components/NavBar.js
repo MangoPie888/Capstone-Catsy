@@ -54,10 +54,12 @@ const NavBar = () => {
 
       <div className="dropdown-menu">
       <ul>
-        <p>First Name:</p>
-        <li>{sessionUser.first_name}</li>
-        <p>Email address:</p>
-        <li>{sessionUser.email}</li>
+        <li><i class="fa-solid fa-user"></i>{sessionUser.first_name}</li>
+        <li><i class="fa-solid fa-envelope"></i>{sessionUser.email}</li>
+        <Link>
+        <li><i class="fa-solid fa-list"></i>My order</li>
+        </Link>
+        
         <LogoutButton />
       </ul>
       </div>

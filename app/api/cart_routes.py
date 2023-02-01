@@ -1,6 +1,6 @@
 from flask import Blueprint,request
 from flask_login import login_required, current_user
-from app.models import Product, User,Cart, Shop,db
+from app.models import Product, User,Cart, Shop,db,Image
 from ..forms import AddShoppingCartForm, EditCartForm
 from sqlalchemy import and_
 
@@ -21,23 +21,26 @@ def display_carted_product():
     whole_info = {}
     for cart in carts:
         allProduct = Product.query.filter(Product.id == cart.product_id).all()
+        images = Image.query.filter(Image.preview == True).all()
         print("allproduct_____________",allProduct)
         for product in allProduct:
-            whole_info={
-                "product":{"id":product.id,
-                "name":product.name,
-                "price":product.price,
-                "description":product.description,
-                "img":product.img,
-                "seller_id":product.seller_id,
-                "shop_id":product.shop_id},
-                "cart":
-                {"id":cart.id,
-                "quantity":cart.quantity,
-                "userId":cart.user_id,
-                "productId":cart.product_id
-                }
-            }
+            for image in images:
+                if(image.product_id == product.id):
+                    whole_info={
+                        "product":{"id":product.id,
+                        "name":product.name,
+                        "price":product.price,
+                        "description":product.description,
+                        "img":image.img,
+                        "seller_id":product.seller_id,
+                        "shop_id":product.shop_id},
+                        "cart":
+                            {"id":cart.id,
+                            "quantity":cart.quantity,
+                            "userId":cart.user_id,
+                            "productId":cart.product_id
+                            }
+                    }
 
             product_lst.append(whole_info)
     

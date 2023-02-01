@@ -4,3 +4,5 @@ from .cart import Cart
 from .product import Product
 from .shop import Shop
 from .image import Image
+from .purchase import Purchase
+from .review import Review

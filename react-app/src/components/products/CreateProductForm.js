@@ -24,8 +24,8 @@ const CreateProductForm = () => {
     //image
     const [image, setImage] = useState(null);
     // const [imageLoading, setImageLoading] = useState(false);
-    const [preview, setPreview] = useState(0);
-    const [productId,setProductId] = useState();
+    const [preview, setPreview] = useState(1);
+    // const [productId,setProductId] = useState();
 
     const productFormSubmission=async(e)=>{
         e.preventDefault()
@@ -33,14 +33,16 @@ const CreateProductForm = () => {
         console.log(inventory)
         try{
           const data= await dispatch(addProduct({name,price,description,/*img,*/category,inventory}))
-          console.log("dataaaaaaaaaaa",data)
-         
+          console.log("data comeback", data)
+          console.log("data.id",data.id)
+          const productId = data.id
+          console.log("productId after set it",productId)
           if(data.errors){
             setErrors(data.errors);
        
           } else{
             console.log("correcttttttttttt")
-            setProductId(data.id)
+            // setProductId(data.id)
             console.log("productIdddddddddd",data.id)
             console.log("preview",preview)
             const formData = new FormData();
@@ -49,7 +51,8 @@ const CreateProductForm = () => {
           formData.append("preview",preview)
 
       // setImageLoading(true);
-
+          console.log("formdataaaaaa", formData)
+          console.log("productid before send it to image fetch", productId)
       const res = await fetch("/api/images" ,{
           method:"POST",
           body:formData
@@ -58,7 +61,7 @@ const CreateProductForm = () => {
       if(res.ok) {
           await res.json();
           // setImageLoading(false);
-          // history.push("/images");
+          history.push("/myproducts");
           console.log("image ok part")
       }
       else{

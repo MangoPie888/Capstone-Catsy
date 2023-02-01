@@ -5,6 +5,8 @@ from .carts import seed_carts, undo_carts
 from .products import seed_products,undo_products
 from .shops import seed_shops, undo_shops
 from .images import seed_images,undo_images
+from .purchases import seed_purchases,undo_purchases
+from .reviews import seed_reviews,undo_reviews
 
 
 
@@ -25,6 +27,8 @@ def seed():
         db.session.execute(f"TRUNCATE table {SCHEMA}.products RESTART IDENTITY CASCADE;")
         db.session.execute(f"TRUNCATE table {SCHEMA}.carts RESTART IDENTITY CASCADE;")
         db.session.execute(f"TRUNCATE table {SCHEMA}.images RESTART IDENTITY CASCADE;")
+        db.session.execute(f"TRUNCATE table {SCHEMA}.purchases RESTART IDENTITY CASCADE;")
+        db.session.execute(f"TRUNCATE table {SCHEMA}.reviews RESTART IDENTITY CASCADE;")
         db.session.commit()
         # command, which will  truncate all tables prefixed with 
         # the schema name (see comment in users.py undo_users function).
@@ -34,6 +38,8 @@ def seed():
         undo_products()
         undo_carts()
         undo_images()
+        undo_purchases()
+        undo_reviews()
     
 
     seed_users()
@@ -41,6 +47,8 @@ def seed():
     seed_products()
     seed_carts()
     seed_images()
+    seed_purchases()
+    seed_reviews()
     # Add other seed functions here
 
 @seed_commands.command('test')
@@ -56,3 +64,5 @@ def undo():
     undo_products()
     undo_carts()
     undo_images()
+    undo_purchases()
+    undo_reviews()

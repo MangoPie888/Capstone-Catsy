@@ -78,7 +78,7 @@ def product_detail(product_id):
                 "message": "product couldn't be found",
                 "statusCode": 404
             }, 404
-
+    image = Image.query.get(product_id)
     owner = User.query.filter(User.id == product.seller_id).one()
     print("11111111111111",owner)
 
@@ -86,7 +86,7 @@ def product_detail(product_id):
             "name":product.name,
             "price":product.price,
             "description":product.description,
-            "img":product.img,
+            "img":image.img,
             "seller_id":product.seller_id,
             "shop_id":product.shop_id,
             "Owner":{

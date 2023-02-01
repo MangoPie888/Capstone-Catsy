@@ -25,7 +25,8 @@ class Product(db.Model):
     passive_deletes=True)
     shop = db.relationship("Shop", back_populates="products")
     images =db.relationship("Image", back_populates="products")
-
+    purchases = db.relationship("Purchase",back_populates="products", cascade="all, delete", passive_deletes=True)
+    reviews = db.relationship("Review",back_populates="products", cascade="all, delete", passive_deletes=True)
 
     def to_dict(self):
         return {

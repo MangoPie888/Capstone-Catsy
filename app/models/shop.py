@@ -17,4 +17,5 @@ class Shop(db.Model):
     owner_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("users.id"),ondelete="CASCADE"))
 
     user = db.relationship("User", back_populates="shop")
-    products= db.relationship("Product", back_populates="shop")
+    products= db.relationship("Product", back_populates="shop",cascade="all, delete",passive_deletes=True)
+    purchases = db.relationship("Purchase", back_populates="shop",cascade="all, delete",passive_deletes=True )

@@ -20,6 +20,8 @@ class User(db.Model, UserMixin):
     passive_deletes=True)
     carts = db.relationship("Cart", back_populates="user", cascade="all, delete",passive_deletes=True )
     shop = db.relationship("Shop", back_populates="user",cascade="all, delete",passive_deletes=True)
+    purchases = db.relationship("Purchase", back_populates="user",cascade="all, delete",passive_deletes=True)
+    reviews = db.relationship("Review", back_populates="user",cascade="all, delete",passive_deletes=True)
 
     @property
     def password(self):
