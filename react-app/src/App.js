@@ -19,6 +19,7 @@ import Checkout from './components/carts/Checkout';
 import Footer from './components/Footer';
 import CreateShop from './components/shop/CreateShop';
 import UploadPicture from './components/products/AddImages';
+import MyOrder from './components/carts/MyOrder';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -53,6 +54,9 @@ function App() {
         </ProtectedRoute>
         <ProtectedRoute path='/myproducts' exact={true} >
           <UserProducts />
+        </ProtectedRoute>
+        <ProtectedRoute path='/myorders' exact={true} >
+          <MyOrder />
         </ProtectedRoute>
         <ProtectedRoute path='/carts' exact={true} >
           <DisplayShoppingCarts />

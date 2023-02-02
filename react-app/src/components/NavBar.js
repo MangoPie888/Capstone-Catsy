@@ -56,7 +56,7 @@ const NavBar = () => {
       <ul>
         <li><i class="fa-solid fa-user"></i>{sessionUser.first_name}</li>
         <li><i class="fa-solid fa-envelope"></i>{sessionUser.email}</li>
-        <Link>
+        <Link to={"/myorders"}>
         <li><i class="fa-solid fa-list"></i>My order</li>
         </Link>
         

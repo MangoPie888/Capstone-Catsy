@@ -21,37 +21,41 @@ def all_purchases():
     purchasedItems = Purchase.query.filter(Purchase.purchaser_id == userId).all()
     print("purchasedItemsssssssssssssssssss",purchasedItems)
 
+    products = []
     for item in purchasedItems:
-        products = []
         product = Product.query.filter(Product.id == item.product_id).one()
         products.append(product)
     
+    print("products listinggggggggggggggggggg",products)
     
     products_list = []
     for product in products:
         for image in images:
-            if(image.product_id == product.id):
-                purchased_products= {
-                    "id":product.id,
-                    "name":product.name,
-                    "price":product.price,
-                    "description":product.description,
-                    "img":image.img,
-                    "seller_id":product.seller_id,
-                    "shop_id":product.shop_id
-                }
-                products_list.append(purchased_products)
+            for good in purchasedItems:
+                if(image.product_id == product.id and product.id == good.product_id):
+                    purchased_products= {
+                        "id":product.id,
+                        "name":product.name,
+                        "price":product.price,
+                        "description":product.description,
+                        "img":image.img,
+                        "seller_id":product.seller_id,
+                        "shop_id":product.shop_id,
+                        "purchaser_id":good.purchaser_id,
+                        "purchase_time":good.create_at,
+                        "status":good.status
+                    }
+                    products_list.append(purchased_products)
+    
 
     print("purchased_products without date and shop", products_list)
 
     return{"purchased_item":products_list}
 
-    # for object in products_list:
-    #     for item in purchasedItems:
-    #         if(object.id == item.product_id):
 
 
-         
+
+
 
 
 #add purchased Item

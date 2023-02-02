@@ -21,3 +21,15 @@ export const addPurchasedItem =(items)=> async(disptach)=>{
         return data
     }
 }
+
+
+
+export const displayAllPurchases=()=> async(disptach)=>{
+    const response = await fetch("/api/purchases")
+
+    if(response.ok) {
+        const data = await response.json()
+        console.log("data from thunk",data)
+        return data
+    }
+}
