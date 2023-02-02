@@ -7,6 +7,7 @@ import UpdateCart from './UpdateCart'
 import { removeCart } from '../../store/cart'
 import { deleteAllProducts } from '../../store/cart'
 import { getAllProducts } from '../../store/products'
+import { addPurchasedItem } from '../../store/purchase'
 
 import "./Cart.css"
 
@@ -47,8 +48,22 @@ const DisplayShoppingCarts = () => {
     
   }
 
+
+  const products = useSelector(state=>state.carts)
+
+  const proList = Object.values(products)
+  const total1 = proList.reduce((totalPrice,pro)=>totalPrice + pro.product.price * pro.cart.quantity ,0)
+  const total = total1.toFixed(2)
+
+
   const checkout=()=>{
-    history.push("/success")
+    // history.push("/success")
+    
+    
+    
+    console.log("purchasedItems", products)
+    dispatch(addPurchasedItem(products))
+    
     dispatch(deleteAllProducts())
   
   }
@@ -57,16 +72,6 @@ const DisplayShoppingCarts = () => {
     dispatch(deleteAllProducts())
   
   }
-
-
-
-
-  const products = useSelector(state=>state.carts)
-
-  const proList = Object.values(products)
-  const total1 = proList.reduce((totalPrice,pro)=>totalPrice + pro.product.price * pro.cart.quantity ,0)
-  const total = total1.toFixed(2)
- 
 
   return (
   
