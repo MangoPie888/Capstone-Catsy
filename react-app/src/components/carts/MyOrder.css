@@ -1,0 +1,25 @@
+.title{
+    text-align: center;
+}
+.item-main-div{
+    margin-bottom: 20px;
+    border-style: dashed;
+    margin-left: 20%;
+    margin-right: 20%
+}
+
+
+.info-price p{
+  display: inline
+}
+
+
+.name-picture img{
+    height: 100px;
+    width: 100px;
+}
+
+.name-picture p{
+    display: inline;
+}
+
