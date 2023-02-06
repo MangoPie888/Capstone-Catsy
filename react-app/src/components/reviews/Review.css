@@ -1,0 +1,22 @@
+.review-img{
+    height: 80px;
+    width: 80px;
+}
+
+
+.star-rating button{
+    background-color: transparent;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+.on {
+    color: #000;
+  }
+  .off {
+    color: #ccc;
+  }
+
+  .review-content-div textarea{
+    resize: none;
+  }

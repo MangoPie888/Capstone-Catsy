@@ -13,6 +13,8 @@ const MyOrder = () => {
     const dispatch = useDispatch()
     const [openModal, setOpenModal] = useState(false)
     let [productId, setProductId] = useState()
+    let [img, setImg] = useState("")
+    let [productName, setProductName] = useState("")
     
 
     useEffect(()=>{
@@ -28,11 +30,21 @@ const MyOrder = () => {
 
     
     const handleReview=(e)=>{
+      console.log("purchaseeeeeee",e.target.value)
+      let infoArray = e.target.value
+      console.log("info",infoArray.split(","))
+      let array = infoArray.split(",")
+      console.log("array[1]",array[1])
+      let array1 = array[1]
+      setImg(array1)
+      console.log("img",img)
+      setProductName(array[0])
+      console.log("name",productName)
       console.log("e.target.id", e.target.id)
       setProductId(e.target.id)
       console.log("productIdddddddd",productId)
       setOpenModal(true)
-      
+        
     }
 
   return (
@@ -54,10 +66,10 @@ const MyOrder = () => {
         </div>
 
         <div className='review-div'>
-          <button id={purchase.id} className='reviewBtn' onClick={handleReview}>Review this product</button>
+          <button id={purchase.id} value={[purchase.name, purchase.img]} className='reviewBtn' onClick={handleReview}>Review this product</button>
           {openModal &&
             <Modal onClose={()=>{setOpenModal(false)}} >
-              <Review productId={productId}/>
+              <Review productId={productId} img={img} productName={productName}/>
             </Modal>
           }  
         </div>
