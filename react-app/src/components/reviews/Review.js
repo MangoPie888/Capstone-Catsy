@@ -2,11 +2,12 @@ import React,{useState} from 'react'
 import { addReview } from '../../store/review';
 import {useDispatch} from 'react-redux'
 
+
+
 import "./Review.css"
 
 const Review = (props) => {
-  const dispatch = useDispatch 
-
+  const dispatch = useDispatch() 
   const [rating, setRating] = useState(0);
   const [review,setReview] = useState('');
 
@@ -20,10 +21,15 @@ const Review = (props) => {
   const name = props.productName
 
 
+  
   const handleReview=(e)=>{
-    e.preventDefault()
-    dispatch(addReview({productId, img, rating,review}))
+  // e.preventDefault()
+  console.log('got here')
+    
+  dispatch(addReview({productId, img, rating,review}))
+
   }
+
 
 
   return (
@@ -37,7 +43,7 @@ const Review = (props) => {
       <span>{name}</span>
       </div>
       
-      <form onSubmit={handleReview}>
+      <form onSubmit={handleReview} >
       
       <div className="star-rating">
       {[...Array(5)].map((star,index) => {
@@ -55,7 +61,7 @@ const Review = (props) => {
       </div>
 
       <div className='review-content-div'>
-        <textarea minLength="5" name="review_content" id="content" cols="30" rows="10" placeholder='Share your experience here' onChange={(e)=>setReview(e.target.value)}></textarea>
+        <textarea minLength="5" name="review_content" id="content" cols="30" rows="10" placeholder='Share your experience here' onChange={(e)=> setReview(e.target.value)}></textarea>
       </div>
 
       <button type='submit'>Submit Review</button>

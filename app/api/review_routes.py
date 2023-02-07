@@ -16,5 +16,22 @@ def create_review():
 
     frontend_Data = request.get_json("info")
     print("frontend-dataaaaaaaaaaaaaa", frontend_Data)
+    productId = frontend_Data["productId"]
+    img = frontend_Data["img"]
+    review = frontend_Data["review"]
+    rating = frontend_Data["rating"]
 
-    return {"hello":"hi"}
+    newReview = Review(
+        content = review,
+        rating = rating,
+        image = img,
+        reviewer_id = userId,
+        product_id = productId,
+    )
+
+    db.session.add(newReview)
+    db.session.commit()
+
+    
+
+    return {"purchase":"ok"}

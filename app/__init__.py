@@ -40,7 +40,7 @@ app.register_blueprint(cart_routes,url_prefix="/api/carts")
 app.register_blueprint(shop_routes,url_prefix="/api/shop")
 app.register_blueprint(image_routes,url_prefix='/api/images')
 app.register_blueprint(purchase_routes,url_prefix='/api/purchases')
-app.register_blueprint(purchase_routes,url_prefix='/api/reviews')
+app.register_blueprint(review_routes,url_prefix='/api/reviews')
 db.init_app(app)
 Migrate(app, db)
 

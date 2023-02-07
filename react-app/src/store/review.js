@@ -12,6 +12,8 @@ const createReview = (data) =>{
 
 //thunk
 export const addReview = (info)=> async(dispatch)=>{
+    console.log("hitted thunk")
+    console.log("info from thunk", info)
     const response = await fetch("/api/reviews",{
         method:"post",
         headers:{
