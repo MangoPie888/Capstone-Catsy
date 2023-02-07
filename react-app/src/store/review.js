@@ -16,7 +16,12 @@ const showReviews = (data) =>{
 
 
 
+
+
+
 //thunk
+
+
 export const displayReview = (productId)=> async(dispatch) =>{
     const response = await fetch(`/api/reviews/${productId}`)
 
@@ -57,12 +62,14 @@ export const addReview = (info)=> async(dispatch)=>{
         return {"error":"something just happened, please try again"}
     }
 }
-    
+
+
 
 
 
 
 //reducer
+
 const initialState ={}
 const reviewsReducer = (state=initialState, action) =>{
     let reviewState
@@ -74,10 +81,9 @@ const reviewsReducer = (state=initialState, action) =>{
                 reviewState[review.id] = review
             })
             return reviewState
+        
         default:
             return initialState
     }
 }
-
-
 export default reviewsReducer

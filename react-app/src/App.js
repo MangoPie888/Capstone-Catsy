@@ -20,6 +20,7 @@ import Footer from './components/Footer';
 import CreateShop from './components/shop/CreateShop';
 import UploadPicture from './components/products/AddImages';
 import MyOrder from './components/carts/MyOrder';
+import MyReviews from './components/reviews/MyReviews';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -66,6 +67,9 @@ function App() {
         </ProtectedRoute>
         <ProtectedRoute path='/createShop' exact={true} >
           <CreateShop />
+        </ProtectedRoute>
+        <ProtectedRoute path='/myreviews' exact={true} >
+          <MyReviews />
         </ProtectedRoute>
         <Route path='/future' exact={true} >
           <Future/>

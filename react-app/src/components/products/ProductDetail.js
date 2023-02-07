@@ -33,7 +33,7 @@ const ProductDetail = () => {
     useEffect(()=>{
         dispatch(getProductDetail(productId))
         dispatch(displayReview(productId))
-    },[dispatch])
+    },[])
 
     
     const shoppingCarts = useSelector(state=>state.carts)
@@ -42,7 +42,7 @@ const ProductDetail = () => {
     const reviewArray = Object.values(reviews)
     console.log("reviewArray", reviewArray)
 
-    let count = null
+    let count = 0
         for(let i =0; i < reviewArray.length; i++) {
         count +=1 
         }

@@ -1,0 +1,10 @@
+.review_container img{
+    height: 100px;
+    width: 100px;
+}
+
+.review_container{
+    margin-bottom: 20px;
+    border-style: dotted;
+    
+}

@@ -1,13 +1,14 @@
 import React,{useState} from 'react'
 import { addReview } from '../../store/review';
 import {useDispatch} from 'react-redux'
-
+import { useHistory } from 'react-router-dom';
 
 
 import "./Review.css"
 
 const Review = (props) => {
   const dispatch = useDispatch() 
+  const history = useHistory()
   const [rating, setRating] = useState(0);
   const [review,setReview] = useState('');
 
@@ -27,6 +28,9 @@ const Review = (props) => {
   console.log('got here')
     
   dispatch(addReview({productId, img, rating,review}))
+  history.push('/myreviews')
+  
+
 
   }
 

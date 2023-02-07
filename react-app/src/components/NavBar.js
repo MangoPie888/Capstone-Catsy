@@ -57,7 +57,10 @@ const NavBar = () => {
         <li><i class="fa-solid fa-user"></i>{sessionUser.first_name}</li>
         <li><i class="fa-solid fa-envelope"></i>{sessionUser.email}</li>
         <Link to={"/myorders"}>
-        <li><i class="fa-solid fa-list"></i>My order</li>
+        <li><i class="fa-solid fa-list"></i>My orders</li>
+        </Link>
+        <Link to={"/myreviews"}>
+        <li><i class="fa-solid fa-list"></i>My reviews</li>
         </Link>
         
         <LogoutButton />
