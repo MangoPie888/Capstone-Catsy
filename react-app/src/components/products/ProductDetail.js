@@ -7,6 +7,7 @@ import {productsInCart} from "../../store/cart"
 import LoginForm from '../auth/LoginForm';
 import { Link } from 'react-router-dom';
 import { addProductInCart } from '../../store/cart';
+import { displayReview } from '../../store/review';
 
 import "./ProductDetail.css"
 
@@ -30,12 +31,26 @@ const ProductDetail = () => {
 
 
     useEffect(()=>{
-      
         dispatch(getProductDetail(productId))
+        dispatch(displayReview(productId))
     },[dispatch])
 
     
     const shoppingCarts = useSelector(state=>state.carts)
+    const reviews = useSelector(state=>state.reviews)
+    console.log("reviews frontend",reviews)
+    const reviewArray = Object.values(reviews)
+    console.log("reviewArray", reviewArray)
+
+    let count = null
+        for(let i =0; i < reviewArray.length; i++) {
+        count +=1 
+        }
+    
+    
+
+    console.log("count",count)
+    
 
     const carts = Object.values(shoppingCarts)
    
@@ -145,7 +160,21 @@ const ProductDetail = () => {
             }   
         </div>
 
+        <div>
+            <h2>Reviews</h2>
+            {reviewArray ? reviewArray.map(review=>{return(<>
+                
+                <p>{review.reviewer_id}</p>
+                <span>{review.created_at}</span>
+                <p>{review.content}</p>
+                </>
+                )
+                
+                })
+                
 
+             : <p>0 reviews</p>}
+        </div>
         
         
                 

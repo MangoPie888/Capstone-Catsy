@@ -35,3 +35,28 @@ def create_review():
     
 
     return {"purchase":"ok"}
+
+
+# display single product review
+@review_routes.route("/<int:product_id>")
+def product_review(product_id):
+    reviews = Review.query.filter(Review.product_id == product_id).all()
+    print("reviewsssssssssssss",reviews)
+
+    # user = User.query.get(reviews[0].reviewer_id).first_name
+  
+  
+    review_list = []
+    for review in reviews:
+        review_detail = {
+            "id":review.id,
+            "content":review.content,
+            "rating":review.rating,
+            "created_at":review.created_at,
+            "image":review.image,
+            "reviewer_id":User.query.get(review.reviewer_id).first_name,
+            "product_id":review.product_id
+        }
+        review_list.append(review_detail)
+
+    return{"reviews":review_list}
