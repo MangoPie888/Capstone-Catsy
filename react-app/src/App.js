@@ -21,6 +21,7 @@ import CreateShop from './components/shop/CreateShop';
 import UploadPicture from './components/products/AddImages';
 import MyOrder from './components/carts/MyOrder';
 import MyReviews from './components/reviews/MyReviews';
+import SearchResult from './components/SearchResult';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -85,6 +86,9 @@ function App() {
         </Route>
         <Route path='/images' exact={true} >
           <UploadPicture/>
+        </Route>
+        <Route path='/search' exact={true} >
+          <SearchResult/>
         </Route>
         <Route path='' exact={true} >
           <AllProducts/>

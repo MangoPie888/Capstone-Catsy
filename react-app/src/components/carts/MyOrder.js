@@ -49,14 +49,14 @@ const MyOrder = () => {
 
   return (
     <div className='main-container'>
-      <p className='title'>Your Orders</p>
+      <h2 className='title'>Your Orders</h2>
 
       {myPurchasesList.length && myPurchasesList.map((purchase=>{
         return(
           <div className='item-main-div'>
         <div className='info-price'>
           <div className='shop-price'>
-            <p>Purchased on {purchase.purchase_time}</p><p>$ {purchase.price}</p>
+        <p>Purchased on {purchase.purchase_time.substring(0,17)}</p><p>$ {purchase.price}</p>
           </div>
         </div>
 

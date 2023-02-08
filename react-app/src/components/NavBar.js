@@ -1,7 +1,7 @@
 
 import React,{useState} from 'react';
 import { useSelector } from 'react-redux';
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink} from 'react-router-dom';
 import LoginForm from './auth/LoginForm';
 import LogoutButton from './auth/LogoutButton';
 import ProfileMenu from './auth/ProfileMenu';
@@ -10,9 +10,14 @@ import "./NavBar.css"
 import logo from '../assets/catsyLogo.png'
 import { useHistory } from 'react-router-dom';
 import { displayStore } from '../store/shop';
+import SearchResult from './SearchResult';
+
+
+
 
 const NavBar = () => {
   const history = useHistory()
+
 
   const sessionUser = useSelector(state => state.session.user);
   const userStore = useSelector(state =>state.shop)
@@ -20,11 +25,26 @@ const NavBar = () => {
   const [showModal, setShowModal] = useState(false)
   const [showProfile, setShowProfile] = useState(false)
 
+  const [search, setSearch] = useState('')
+  console.log("search",search)
+
 
 
   const handleDeadBtn=()=>{
-    history.push('/future')
+    if(search === ""){
+      alert("Your search bar is empty")
+    }
+    else{
+      history.push({
+        pathname:'/search',
+        state:search
+      })
+        
+        }
+      
   }
+
+  
 
   const checkStore=()=>{
     if(Object.keys(userStore).length === 0) {
@@ -110,7 +130,7 @@ const NavBar = () => {
           </NavLink>
           
           <div className="search">
-            <input type="text" className="searchTerm" placeholder="Search for anything" />
+            <input type="text" onChange={(e)=>{setSearch(e.target.value)}} className="searchTerm" placeholder="Search for anything" />
             <button type="submit" className="searchButton" onClick={handleDeadBtn}>
             <i class="fa fa-search"></i>
             </button>

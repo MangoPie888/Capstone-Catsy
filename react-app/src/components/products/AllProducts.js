@@ -15,6 +15,7 @@ import feeder from "../../assets/feeder.jpg"
 import grooming from "../../assets/grooming.jpg"
 import Footer from '../Footer'
 import catFurniture from '../../assets/catFurniture.avif'
+import { displayReview } from '../../store/review'
 
 const AllProducts = () => {
   const history = useHistory()
@@ -38,6 +39,7 @@ const AllProducts = () => {
 
   useEffect(()=>{
     dispatch(getAllProducts())
+    dispatch(displayReview())
 
   },[dispatch])
 

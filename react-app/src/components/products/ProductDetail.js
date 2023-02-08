@@ -37,15 +37,21 @@ const ProductDetail = () => {
 
     
     const shoppingCarts = useSelector(state=>state.carts)
-    const reviews = useSelector(state=>state.reviews)
+    const reviews = useSelector(state=>state.productReviews)
     console.log("reviews frontend",reviews)
-    const reviewArray = Object.values(reviews)
-    console.log("reviewArray", reviewArray)
-
     let count = 0
+    let reviewArray
+    if(reviews){
+        reviewArray = Object.values(reviews)
+        console.log("reviewArray", reviewArray)
         for(let i =0; i < reviewArray.length; i++) {
-        count +=1 
-        }
+            count +=1 
+            }
+    }
+    
+
+ 
+        
     
     
 
