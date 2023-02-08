@@ -1,10 +1,10 @@
 .review_container img{
-    height: 60px;
-    width: 70px;
+    height: 40px;
+    width: 60px;
 }
 
 .review_container{
-    margin-bottom: 20px;
+    /* margin-bottom: 20px; */
 
     width: 70%;
     height: 250px;
@@ -25,8 +25,11 @@
 
 .img-picture-div{
     display: flex;
+    align-items: flex-start;
+    padding-top: 10px;
+ 
     padding-left: 5%;
-    padding-top: 5%;
+    
 
 }
 

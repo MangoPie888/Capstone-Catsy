@@ -166,20 +166,29 @@ const ProductDetail = () => {
             }   
         </div>
 
-        <div>
-            <h2>Reviews</h2>
-            {reviewArray ? reviewArray.map(review=>{return(<>
+        <div className='product-review-div'>
+            <div className='review-title-div'>
+            <h3>{count} review(s)</h3>
+            </div>
+            
+            {reviewArray.length !==0 && reviewArray.map(review=>{return(<>
                 
-                <p>{review.reviewer_id}</p>
-                <span>{review.created_at}</span>
+                <div className='review-detail-div'>
+                <div className='review-name-date-div'>
+                <p id='reviewer-name'><strong>{review.reviewer_id}</strong>&nbsp;&nbsp;&nbsp;&nbsp;</p>
+                <p id='review-date'>{review.created_at.substring(0,17)}</p>
+                </div>
+                {review.rating === 5 && <p>&#11088;&#11088;&#11088;&#11088;&#11088;</p>}
+                {review.rating === 4 && <p>&#11088;&#11088;&#11088;&#11088;</p>}
+                {review.rating === 3 && <p>&#11088;&#11088;&#11088;</p>}
+                {review.rating === 2 && <p>&#11088;&#11088;</p>}
+                {review.rating === 1 && <p>&#11088;</p>}
                 <p>{review.content}</p>
+                </div>
                 </>
                 )
                 
-                })
-                
-
-             : <p>0 reviews</p>}
+                }) }
         </div>
         
         
