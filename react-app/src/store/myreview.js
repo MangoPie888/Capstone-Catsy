@@ -26,6 +26,11 @@ const updateReview =(data) =>{
     }
 }
 
+const REMOVE_REVIEWS = 'session/REMOVE_REVIEWS'
+export const removeUserReviews=()=>({
+    type:REMOVE_REVIEWS,
+  })
+
 //thunk
 export const userReview = ()=> async(dispatch) =>{
     const response = await fetch('/api/reviews/myreviews')
@@ -114,6 +119,8 @@ const userReviewReducer =(state=originalState, action)=>{
             delete userState[action.id];
             return userState;
 
+        case REMOVE_REVIEWS:
+            return originalState
         case UPDATED_REVIEW:
             userState = Object.assign({...state},{[action.data.id]: action.data})
             return userState

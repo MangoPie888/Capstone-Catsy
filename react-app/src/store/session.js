@@ -1,6 +1,7 @@
 import { removeUserProducts } from "./products";
 import {removeCart} from './cart'
 import { cleanStore } from "./shop";
+import { removeUserReviews } from "./myreview";
 // constants
 const SET_USER = 'session/SET_USER';
 const REMOVE_USER = 'session/REMOVE_USER';
@@ -75,7 +76,9 @@ export const logout = () => async (dispatch) => {
     dispatch(removeUser());
     dispatch(removeUserProducts());
     dispatch(removeCart());
-    dispatch(cleanStore())
+    dispatch(cleanStore());
+    dispatch(removeUserReviews());
+
   }
 };
 

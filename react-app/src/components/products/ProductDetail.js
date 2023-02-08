@@ -33,7 +33,7 @@ const ProductDetail = () => {
     useEffect(()=>{
         dispatch(getProductDetail(productId))
         dispatch(displayReview(productId))
-    },[])
+    },[productId])
 
     
     const shoppingCarts = useSelector(state=>state.carts)
