@@ -59,27 +59,42 @@ const MyReviews = () => {
     }
 
   return (
-    <div>
-      <p>My Review Page</p>
+    <div className='myreview-container'>
+      <h2 className='myreview-title'>My Reviews</h2>
       {reviewArray && reviewArray.map((review)=>{
         return(
           <>
           <div className='review_container'>
+          <div className='img-picture-div'>
           <img src={review.product_img} />
-          <span>{review.product_name}</span>
-          <p>{review.rating}</p>
-          <p>{review.content}</p>
-          <button id={review.id} value={[review.content,review.product_img,review.rating,review.product_name,review.image,review.product_id]} onClick={handleEdit}>Edit</button>
+          <p>{review.product_name}</p>
+          </div>
+
+          {/* <div className='rating-title'>
+          
+          
+          </div> */}
+
+          <div className='myreview-content-div'>
+          <p>Rating: {review.rating}</p>
+          <p className='rev-content1'>Review Content:</p>
+          <p className='rev-content2'>{review.content}</p>
+          </div>
+
+          <div className='delete-edit-btn-div'>
+          <button className='rev-edit-btn' id={review.id} value={[review.content,review.product_img,review.rating,review.product_name,review.image,review.product_id]} onClick={handleEdit}>Edit</button>
           {openModal &&
             <Modal onClose={()=>{setOpenModal(false)}} >
               <EditReview content={content} img={productImg} name={productName} rating={rating} reviewId={reviewId} reviewImg={reviewImg} productId={productId} />
             </Modal>
           }  
-          <button id={review.id} onClick={handleDelete}>Delete</button>
+          <button className='rev-delete-btn' id={review.id} onClick={handleDelete}>Delete</button>
+          </div>
+
           </div>
         </>)
       })}
-      <p>end of review</p>
+
     </div>
 
     

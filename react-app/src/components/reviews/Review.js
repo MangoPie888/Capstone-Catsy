@@ -37,14 +37,14 @@ const Review = (props) => {
 
 
   return (
-    <div>
+    <div className='review-main-div'>
 
-      <p>How do you like this product?</p>
+      <p className='review-title'>How do you like this product?</p>
 
       
-      <div>
+      <div className='review-pic-name'>
       <img className='review-img' src={img} alt="product-img"/>
-      <span>{name}</span>
+      <p>{name}</p>
       </div>
       
       <form onSubmit={handleReview} >
@@ -65,11 +65,12 @@ const Review = (props) => {
       </div>
 
       <div className='review-content-div'>
-        <textarea minLength="5" name="review_content" id="content" cols="30" rows="10" placeholder='Share your experience here' onChange={(e)=> setReview(e.target.value)}></textarea>
+        <textarea minLength="5" maxLength="1000" name="review_content" id="content" cols="30" rows="10" placeholder='Share your experience here (5 to 1000 characters)' onChange={(e)=> setReview(e.target.value)}></textarea>
       </div>
 
-      <button type='submit'>Submit Review</button>
-
+      <div className='review-btn-div'>
+      <button className='review-submitbtn' type='submit'>Submit Review</button>
+      </div>
 
     </form>  
     </div>
